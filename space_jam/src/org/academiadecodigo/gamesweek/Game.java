@@ -2,7 +2,6 @@ package org.academiadecodigo.gamesweek;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -11,32 +10,44 @@ public class Game {
     public static double screenHeight;
     public static int cellSize=50;
     private int delay;
-    private Monstar[] monstars;
-    private int numAdversaries=5;
+    private Monstar[] monstar;
+    private int numAdversaries; //5 max
 
 
     //CONSTRUCTOR
-    public Game(double width, double height, int delay){
+    public Game(double width, double height, int delay, int numAdversaries){
         this.screenWidth=width;
         this.screenHeight=height;
         this.delay=delay;
+        this.numAdversaries = numAdversaries;
     }
 
     private void createAdversaries(){
 
-        monstars = new Monstar[numAdversaries];
+        monstar = new Monstar[numAdversaries];
 
         for(int i=0; i<numAdversaries;i++){
             Picture picture = new Picture(0,0,"resources/monstar"+(i+1)+".png");
-            monstars[i] = new Monstar(StartingPositions.values()[i+1],picture);
+            monstar[i] = new Monstar(StartingPositions.values()[i+1],picture);
         }
     }
 
     private void drawAdversaries(){
 
         for(int i=0;i<numAdversaries;i++){
-            monstars[i].moveTo(StartingPositions.POSITION_0.getPosition(),StartingPositions.values()[i+1].getPosition());
-            monstars[i].draw();
+            monstar[i].translateTo(StartingPositions.POSITION_0.getPosition(),StartingPositions.values()[i+1].getPosition());
+            monstar[i].draw();
+        }
+    }
+
+    private void moveMonstars(){
+
+        for (int i=0; i<numAdversaries; i++){
+            if(monstar[i].getCurrentSteps()>Monstar.MAX_STEPS) {
+                monstar[i].newDirection();
+                monstar[i].resetCurrentSteps();
+            }
+            monstar[i].moveRandom();
         }
     }
 
@@ -61,7 +72,15 @@ public class Game {
 
     }
 
-    public void start(){
+    public void start() throws InterruptedException {
+
+        while (true){
+
+            Thread.sleep(delay);
+
+            moveMonstars();
+
+        }
 
     }
 }
