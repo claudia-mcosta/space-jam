@@ -42,11 +42,27 @@ public class Handler implements KeyboardHandler {
         keyboardEventQ.setKey(KeyboardEvent.KEY_Q);
         keyboard.addEventListener(keyboardEventQ);
 
-        KeyboardEvent keyboardEventDiagonal = new KeyboardEvent();
-        keyboardEventDiagonal.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboardEventDiagonal.setKey(KeyboardEvent.KEY_UP);
-        keyboardEventDiagonal.setKey(KeyboardEvent.KEY_RIGHT);
-        keyboard.addEventListener(keyboardEventDiagonal);
+        KeyboardEvent keyboardEventDiagonalDownRight = new KeyboardEvent();
+        keyboardEventDiagonalDownRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventDiagonalDownRight.setKey(KeyboardEvent.KEY_B);
+        keyboard.addEventListener(keyboardEventDiagonalDownRight);
+
+        KeyboardEvent keyboardEventDiagonalUpRight = new KeyboardEvent();
+        keyboardEventDiagonalUpRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventDiagonalUpRight.setKey(KeyboardEvent.KEY_H);
+        keyboard.addEventListener(keyboardEventDiagonalUpRight);
+
+        KeyboardEvent keyboardEventDiagonalUpLeft = new KeyboardEvent();
+        keyboardEventDiagonalUpLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventDiagonalUpLeft.setKey(KeyboardEvent.KEY_F);
+        keyboard.addEventListener(keyboardEventDiagonalUpLeft);
+
+        KeyboardEvent keyboardEventDiagonalDownLeft = new KeyboardEvent();
+        keyboardEventDiagonalDownLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventDiagonalDownLeft.setKey(KeyboardEvent.KEY_V);
+        keyboard.addEventListener(keyboardEventDiagonalDownLeft);
+
+
 
     }
 
@@ -60,6 +76,8 @@ public class Handler implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_RIGHT:
+                player.moveRight();
+                break;
 
             case KeyboardEvent.KEY_LEFT:
                 player.moveLeft();
@@ -76,6 +94,24 @@ public class Handler implements KeyboardHandler {
             case KeyboardEvent.KEY_Q:
                 System.exit(1);
                 break;
+
+            case KeyboardEvent.KEY_B:
+                player.moveDiagonalDownRight();
+                break;
+
+            case KeyboardEvent.KEY_H:
+                player.moveDiagonalUpRight();
+                break;
+
+            case KeyboardEvent.KEY_F:
+                player.moveDiagonalDownLeft();
+                break;
+
+            case KeyboardEvent.KEY_V:
+                player.moveDiagonalUpLeft();
+                break;
+
+
         }
 
     }

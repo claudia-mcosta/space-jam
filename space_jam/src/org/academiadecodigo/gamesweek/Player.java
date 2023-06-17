@@ -32,5 +32,24 @@ public class Player {
         player.translate(0,10);
     }
 
+    public void moveDiagonalDownRight(){
+        player.translate(10,10);
+    }
 
-}
+    public  void moveDiagonalUpRight(){
+        player.translate(10,-10);
+    }
+
+    public void moveDiagonalUpLeft(){
+        player.translate(-10,10);
+    }
+
+    public void moveDiagonalDownLeft(){
+        player.translate(-10,-10);
+    }
+
+
+
+
+    }
+
