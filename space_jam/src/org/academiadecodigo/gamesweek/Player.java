@@ -12,10 +12,6 @@ public class Player {
         player.draw();
     }
 
-    /*public void fill(){
-        player.fill();
-    }*/
-
     public void moveRight(){
         player.translate(10,0);
     }

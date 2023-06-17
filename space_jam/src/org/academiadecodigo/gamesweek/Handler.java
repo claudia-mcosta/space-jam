@@ -1,5 +1,6 @@
 package org.academiadecodigo.gamesweek;
 
+import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -10,11 +11,14 @@ public class Handler implements KeyboardHandler {
     public Keyboard keyboard;
     public Player player;
 
+
+
     public Handler(Player player){
         this.player = player;
         keyboard = new Keyboard(this);
         createKeyboardEvents();
     }
+
 
     public void createKeyboardEvents(){
         KeyboardEvent keyboardEventRight = new KeyboardEvent();

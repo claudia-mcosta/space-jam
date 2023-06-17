@@ -28,13 +28,16 @@ public class Game {
         Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
         backgroundImage.draw();
 
-        Ellipse ball = new Ellipse(screenWidth/2-17,screenHeight/2-17,50,50);
-        ball.setColor(Color.ORANGE);
-        ball.fill();
+        //Ellipse ball = new Ellipse(screenWidth/2-17,screenHeight/2-17,50,50);
+        //ball.setColor(Color.ORANGE);
+        //ball.fill();
 
         Player player = new Player(new Picture(screenWidth/3,screenHeight/2, "resources/MJ_small.png"));
 
+        Ball ball1 = new Ball(new Ellipse(screenWidth/2-17,screenHeight/2-17,50,50));
+
         new Handler(player);
+
     }
 
     public void start(){
