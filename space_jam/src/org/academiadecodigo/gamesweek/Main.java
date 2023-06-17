@@ -2,7 +2,7 @@ package org.academiadecodigo.gamesweek;
 
 public class Main {
     public static void main(String[] args) {
-        Game g = new Game(1217,720,100);
+        Game g = new Game(1250,750,100);
 
         g.init();
     }
