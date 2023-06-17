@@ -35,7 +35,7 @@ public class Game {
     private void drawAdversaries(){
 
         for(int i=0;i<numAdversaries;i++){
-            monstars[i].translate(StartingPositions.values()[i].getPosition().getX(),StartingPositions.values()[i].getPosition().getY());
+            monstars[i].translate(StartingPositions.values()[i].getPosition());
             monstars[i].draw();
         }
     }
@@ -49,7 +49,7 @@ public class Game {
         Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
         backgroundImage.draw();
 
-        Ellipse ball = new Ellipse(screenWidth/2-17,screenHeight/2-17,cellSize/2,cellSize/2);
+        Ellipse ball = new Ellipse(screenWidth/2,screenHeight/2,cellSize/2,cellSize/2);
         ball.setColor(Color.ORANGE);
         ball.fill();
 

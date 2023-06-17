@@ -18,8 +18,8 @@ public class Monstar extends Adversaries{
         this.picture = picture;
     }
 
-    public void translate(double x, double y){
-        picture.translate(x,y);
+    public void translate(Position position){
+        picture.translate(position.getX(),position.getY());
     }
 
     public void draw(){

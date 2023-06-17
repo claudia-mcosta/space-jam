@@ -10,8 +10,8 @@ public enum StartingPositions {
     private Position position;
 
     private StartingPositions(double x, double y){
-        this.position.setX(x);
-        this.position.setY(y);
+
+        position = new Position(x,y);
     }
 
     public Position getPosition(){
