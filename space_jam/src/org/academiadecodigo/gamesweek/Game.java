@@ -32,9 +32,9 @@ public class Game {
         ball.setColor(Color.ORANGE);
         ball.fill();
 
-        Picture MJ = new Picture(screenWidth/3,screenHeight/2,"resources/MJ_small.png");
-        MJ.draw();
+        Player player = new Player(new Picture(screenWidth/3,screenHeight/2, "resources/MJ_small.png"));
 
+        new Handler(player);
     }
 
     public void start(){
