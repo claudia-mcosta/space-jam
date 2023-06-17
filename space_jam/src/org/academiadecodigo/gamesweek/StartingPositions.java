@@ -1,6 +1,7 @@
 package org.academiadecodigo.gamesweek;
 
 public enum StartingPositions {
+    POSITION_0(0,0),
     POSITION_1(Game.screenWidth/2+25,Game.screenHeight/2),
     POSITION_2(Game.screenWidth/2+50,Game.screenHeight/4),
     POSITION_3(Game.screenWidth/2+50,(Game.screenHeight/4)*3),

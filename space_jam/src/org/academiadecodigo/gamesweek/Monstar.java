@@ -2,24 +2,24 @@ package org.academiadecodigo.gamesweek;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Monstar extends Adversaries{
+public class Monstar{
 
     private int speed;
     private int size;
     private Picture picture;
     private Position position;
 
-    public Monstar(){
+    public Monstar(StartingPositions position, Picture picture){
         speed=1;
         size=Game.cellSize;
-    }
-
-    public void setPicture(Picture picture){
+        this.position = position.getPosition();
         this.picture = picture;
     }
 
-    public void translate(Position position){
-        picture.translate(position.getX(),position.getY());
+    public void moveTo(Position startingPosition, Position endPosition){
+        double translateX = endPosition.getX()-startingPosition.getX();
+        double translateY = endPosition.getY()-startingPosition.getY();
+        picture.translate(translateX,translateY);
     }
 
     public void draw(){

@@ -27,24 +27,23 @@ public class Game {
         monstars = new Monstar[numAdversaries];
 
         for(int i=0; i<numAdversaries;i++){
-            monstars[i] = new Monstar();
-            monstars[i].setPicture(new Picture(0,0,"resources/monstar"+(i+1)+".png"));
+            Picture picture = new Picture(0,0,"resources/monstar"+(i+1)+".png");
+            monstars[i] = new Monstar(StartingPositions.values()[i+1],picture);
         }
     }
 
     private void drawAdversaries(){
 
         for(int i=0;i<numAdversaries;i++){
-            monstars[i].translate(StartingPositions.values()[i].getPosition());
+            monstars[i].moveTo(StartingPositions.POSITION_0.getPosition(),StartingPositions.values()[i+1].getPosition());
             monstars[i].draw();
         }
     }
 
     public void init(){
 
-
-        Rectangle background = new Rectangle(PADDING,PADDING,screenWidth,screenHeight);
-        background.draw();
+        //Rectangle background = new Rectangle(PADDING,PADDING,screenWidth,screenHeight);
+        //background.draw();
 
         Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
         backgroundImage.draw();
@@ -59,7 +58,6 @@ public class Game {
 
         createAdversaries();
         drawAdversaries();
-
 
     }
 
