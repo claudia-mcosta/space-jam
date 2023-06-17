@@ -25,15 +25,15 @@ public class Game {
         Rectangle background = new Rectangle(PADDING,PADDING,screenWidth,screenHeight);
         background.draw();
 
-        Ellipse ball = new Ellipse(screenWidth/2,screenHeight/2,50,50);
+        Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
+        backgroundImage.draw();
+
+        Ellipse ball = new Ellipse(screenWidth/2-17,screenHeight/2-17,50,50);
         ball.setColor(Color.ORANGE);
         ball.fill();
 
-        test = new Picture(0,0,"/home/luis/Desktop/AC/SpaceJam/space_jam/resources/pngegg.png");
-
-        Picture backgroundImage = new Picture(0,0,"/home/luis/Desktop/AC/SpaceJam/space_jam/resources/pixelCourt.png");
-        backgroundImage.grow(-800,-300);
-        backgroundImage.translate(10,10);
+        Picture MJ = new Picture(screenWidth/3,screenHeight/2,"resources/MJ_small.png");
+        MJ.draw();
 
     }
 
