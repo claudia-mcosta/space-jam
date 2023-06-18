@@ -13,6 +13,7 @@ public class Monstar{
     private int currentSteps;
     private int stepSize = 10; //number of pixels it moves per step
     private int probOfChange = 5; //0-10 where 10 it never changes direction and 0 it changes every time
+    private boolean hasBall;
 
     public Monstar(StartingPositions position, Picture picture){
         speed=1;
@@ -31,6 +32,37 @@ public class Monstar{
 
     public void draw(){
         picture.draw();
+    }
+
+    public Position findInscribedSquare(Position ballPosition, double squareSide){
+
+        double squareX = ballPosition.getX()+(Game.BALL_SIZE-squareSide)/2;
+        double squareY = ballPosition.getY()+(Game.BALL_SIZE-squareSide)/2;
+
+        return new Position(squareX,squareY);
+    }
+
+    public void tryStealBall(Position ballPosition){
+
+        double insideSquareSize =Math.sqrt(Math.pow(Game.BALL_SIZE,2)/2);
+        Position insideSquarePosition = findInscribedSquare(ballPosition, insideSquareSize);
+
+
+        //if(position.getX()<=ballPosition.getX() && position.getX()>(ballPosition.getX()+Game.BALL_SIZE) && position.getY()<=ballPosition.getY() && position.getY())
+        switch (direction){
+            case UP:
+                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && position.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize)){
+                    hasBall=true;
+                }
+                break;
+            case UP_RIGHT:
+
+                
+        }
+    }
+
+    public void dragBall(Position ballPosition){
+
     }
 
     public boolean hitsBorder(){
@@ -107,7 +139,7 @@ public class Monstar{
         picture.translate(-stepSize,-stepSize);
     }
 
-    public void moveRandom(){
+    public void moveRandom(Position ballPosition){
 
         switch (direction){
             case UP:
@@ -135,6 +167,8 @@ public class Monstar{
                 moveUpLeft();
                 break;
         }
+        if (hasBall)
+            dragBall(ballPosition);
 
         takeAStep();
     }
@@ -163,6 +197,12 @@ public class Monstar{
     }
     public void resetCurrentSteps(){
         currentSteps=0;
+    }
+    public Direction getDirection(){
+        return direction;
+    }
+    public boolean hasBall(){
+        return hasBall;
     }
 
 }

@@ -6,7 +6,8 @@ public enum StartingPositions {
     POSITION_2(Game.screenWidth/2+50,Game.screenHeight/4),
     POSITION_3(Game.screenWidth/2+50,(Game.screenHeight/4)*3),
     POSITION_4((Game.screenWidth/4)*3,(Game.screenHeight/6)*2),
-    POSITION_5((Game.screenWidth/4)*3,(Game.screenHeight/6)*4);
+    POSITION_5((Game.screenWidth/4)*3,(Game.screenHeight/6)*4),
+    POSITION_6(Game.screenWidth/2,Game.screenHeight/2);
 
     private Position position;
 

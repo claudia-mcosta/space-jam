@@ -8,6 +8,10 @@ public class Position {
         this.x=x;
         this.y=y;
     }
+    public Position(StartingPositions position){
+        this.x= position.getPosition().getX();
+        this.y=position.getPosition().getY();
+    }
 
     public double getX(){
         return x;
