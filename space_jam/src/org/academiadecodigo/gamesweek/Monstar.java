@@ -7,7 +7,8 @@ public class Monstar{
     private int speed;
     private int size;
     private Picture picture;
-    private Position position;
+    private Position position; //top left position
+    private Position maxPosition; //bottom right position
     private Direction direction;
     public static int MAX_STEPS=5;
     private int currentSteps;
@@ -18,8 +19,9 @@ public class Monstar{
     public Monstar(StartingPositions position, Picture picture){
         speed=1;
         size=Game.cellSize;
-        this.position = position.getPosition();
         this.picture = picture;
+        this.position = position.getPosition();
+        this.maxPosition = new Position(position.getPosition().getX()+picture.getMaxX(),position.getPosition().getY()+picture.getMaxY());
         this.currentSteps=0;
         this.direction=Direction.values()[(int)(Math.random()*Direction.values().length)];
     }
@@ -48,17 +50,56 @@ public class Monstar{
         Position insideSquarePosition = findInscribedSquare(ballPosition, insideSquareSize);
 
 
-        //if(position.getX()<=ballPosition.getX() && position.getX()>(ballPosition.getX()+Game.BALL_SIZE) && position.getY()<=ballPosition.getY() && position.getY())
+
         switch (direction){
             case UP:
-                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && position.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize)){
+                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && maxPosition.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize)){
                     hasBall=true;
                 }
                 break;
             case UP_RIGHT:
-
-                
+                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && maxPosition.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize) ||
+                        maxPosition.getX()>insideSquarePosition.getX() && maxPosition.getY()>insideSquarePosition.getY() && (position.getY()<insideSquarePosition.getY()+insideSquareSize) ){
+                    hasBall=true;
+                }
+                break;
+            case RIGHT:
+                if(maxPosition.getX()>insideSquarePosition.getX() && maxPosition.getY()>insideSquarePosition.getY() && (position.getY()<insideSquarePosition.getY()+insideSquareSize)){
+                    hasBall=true;
+                }
+                break;
+            case DOWN_RIGHT:
+                if (maxPosition.getX()>insideSquarePosition.getX() && maxPosition.getY()>insideSquarePosition.getY() && (position.getY()<insideSquarePosition.getY()+insideSquareSize) ||
+                        maxPosition.getY()>insideSquarePosition.getY() && maxPosition.getX()>insideSquarePosition.getX() && (position.getX()<insideSquarePosition.getX()+insideSquareSize)){
+                    hasBall=true;
+                }
+                break;
+            case DOWN:
+                if(maxPosition.getY()>insideSquarePosition.getY() && maxPosition.getX()>insideSquarePosition.getX() && (position.getX()<insideSquarePosition.getX()+insideSquareSize)){
+                    hasBall=true;
+                }
+                break;
+            case DOWN_LEFT:
+                if(maxPosition.getY()>insideSquarePosition.getY() && maxPosition.getX()>insideSquarePosition.getX() && (position.getX()<insideSquarePosition.getX()+insideSquareSize) ||
+                        position.getX()<(insideSquarePosition.getX()+insideSquareSize) && (position.getY()<insideSquarePosition.getY()+insideSquareSize) && maxPosition.getY()>insideSquarePosition.getY()){
+                    hasBall=true;
+                }
+                break;
+            case LEFT:
+                if(position.getX()<(insideSquarePosition.getX()+insideSquareSize) && (position.getY()<insideSquarePosition.getY()+insideSquareSize) && maxPosition.getY()>insideSquarePosition.getY()){
+                    hasBall=true;
+                }
+                break;
+            case UP_LEFT:
+                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && maxPosition.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize) ||
+                        position.getX()<(insideSquarePosition.getX()+insideSquareSize) && (position.getY()<insideSquarePosition.getY()+insideSquareSize) && maxPosition.getY()>insideSquarePosition.getY()){
+                    hasBall=true;
+                }
+                break;
+            default:
+                hasBall=false;
         }
+
     }
 
     public void dragBall(Position ballPosition){
