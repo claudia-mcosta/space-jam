@@ -44,9 +44,13 @@ public class Game {
 
         for (int i=0; i<numAdversaries; i++){
             if(monstar[i].getCurrentSteps()>Monstar.MAX_STEPS) {
-                monstar[i].newDirection();
+                monstar[i].chooseDirection();
                 monstar[i].resetCurrentSteps();
             }
+
+            while (monstar[i].hitsBorder())
+                monstar[i].chooseDirection();
+
             monstar[i].moveRandom();
         }
     }

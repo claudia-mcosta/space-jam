@@ -11,7 +11,8 @@ public class Monstar{
     private Direction direction;
     public static int MAX_STEPS=5;
     private int currentSteps;
-    private int stepSize = 20; //number of pixels it moves per step
+    private int stepSize = 10; //number of pixels it moves per step
+    private int probOfChange = 5; //0-10 where 10 it never changes direction and 0 it changes every time
 
     public Monstar(StartingPositions position, Picture picture){
         speed=1;
@@ -30,6 +31,47 @@ public class Monstar{
 
     public void draw(){
         picture.draw();
+    }
+
+    public boolean hitsBorder(){
+
+        switch (direction) {
+            case LEFT:
+                if(picture.getX()<=stepSize)
+                    return true;
+                break;
+            case UP:
+                if(picture.getY()<=stepSize)
+                    return true;
+                break;
+            case RIGHT:
+                if((picture.getMaxX()+stepSize)>=Game.screenWidth)
+                    return true;
+                break;
+            case DOWN:
+                if((picture.getMaxY()+stepSize)>=Game.screenHeight)
+                    return true;
+                break;
+            case UP_RIGHT:
+                if(picture.getY()<stepSize || (picture.getMaxX()+stepSize)>=Game.screenWidth)
+                    return true;
+                break;
+            case DOWN_RIGHT:
+                if((picture.getMaxY()+stepSize)>=Game.screenHeight || (picture.getMaxX()+stepSize)>=Game.screenWidth)
+                    return true;
+                break;
+            case DOWN_LEFT:
+                if((picture.getMaxY()+stepSize)>=Game.screenHeight || picture.getX()<=stepSize)
+                    return true;
+                break;
+            case UP_LEFT:
+                if(picture.getY()<=stepSize || picture.getX()<=stepSize)
+                    return true;
+                break;
+            default:
+                return true;
+        }
+        return false;
     }
 
     private void moveUp(){
@@ -97,8 +139,20 @@ public class Monstar{
         takeAStep();
     }
 
-    public void newDirection(){
-        this.direction=Direction.values()[(int)(Math.random()*Direction.values().length)];
+    public void chooseDirection(){
+
+        Direction newDirection = direction;
+
+        // Sometimes, we want to change Direction...
+        if (Math.random() > ((double) probOfChange) / 10) {
+            newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+
+            // but we do not want to go back (or away from player)
+            while(newDirection.isOpposite(direction)) {
+                newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+            }
+        }
+        this.direction=newDirection;
     }
 
     public int getCurrentSteps(){
