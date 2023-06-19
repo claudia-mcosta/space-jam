@@ -1,5 +1,9 @@
 package org.academiadecodigo.gamesweek;
 
+import org.academiadecodigo.gamesweek.gameObjects.Monstar;
+import org.academiadecodigo.gamesweek.gameObjects.MonstarFactory;
+import org.academiadecodigo.gamesweek.positions.Position;
+import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -28,23 +32,7 @@ public class Game {
         this.numAdversaries = numAdversaries;
     }
 
-    private void createAdversaries(){
-
-        monstar = new Monstar[numAdversaries];
-
-        for(int i=0; i<numAdversaries;i++){
-            Picture picture = new Picture(0,0,"resources/monstar"+(i+1)+".png");
-            monstar[i] = new Monstar(StartingPositions.values()[i+1],picture);
-        }
-    }
-
-    private void drawAdversaries(){
-
-        for(int i=0;i<numAdversaries;i++){
-            monstar[i].translateTo(StartingPositions.POSITION_0.getPosition(),StartingPositions.values()[i+1].getPosition());
-            monstar[i].draw();
-        }
-    }
+    MonstarFactory factory = new MonstarFactory(numAdversaries);
 
     private void moveUp(){
         ballPosition.translatePosition(0,-stepSize);

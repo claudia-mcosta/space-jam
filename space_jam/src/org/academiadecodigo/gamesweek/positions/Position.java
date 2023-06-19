@@ -1,4 +1,4 @@
-package org.academiadecodigo.gamesweek;
+package org.academiadecodigo.gamesweek.positions;
 
 public class Position {
     private double x;
