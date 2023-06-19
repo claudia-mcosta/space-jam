@@ -3,7 +3,11 @@ package org.academiadecodigo.gamesweek.shootout;
 import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.Position;
 import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 
 
 /* TO DO
@@ -24,13 +28,15 @@ public class ShootOut {
     private Picture ball;
     private int score;
     private Player player;
+    private Text textScore;
 
     public ShootOut() {
         this.canvas = Canvas.getInstance();
-        this.background = new Picture(Game.PADDING, Game.PADDING,"space_jam\\resources\\bleachers.jpeg");
+        this.background = new Picture(Game.PADDING, Game.PADDING,"resources/bleachers.jpeg");
         this.hoop = new Hoop((double) 1250 / 2, (double) 750 / 2); // Replace with new Hoop(Game.screenWidth / 2, Game.screen.Height / 2);
-        this.ball = new Picture(Game.PADDING, Game.PADDING,"space_jam\\resources\\ball.png");
+        this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball.png");
         this.player = new Player();
+        this.score = 0;
 
     }
 
@@ -56,6 +62,16 @@ public class ShootOut {
         ball.translate((double) 1250 / 2,500);
         canvas.show(ball);
 
+        // Draw score board
+        Rectangle scoreBoard = new Rectangle(50,50,80,60);
+        scoreBoard.draw();
+        scoreBoard.fill();
+        scoreBoard.setColor(Color.WHITE);
+
+        this.textScore = new Text(75, 75, score + " POINTS");
+        textScore.grow(20,20);
+        textScore.draw();
+
     }
 
     public void start() {
@@ -77,10 +93,13 @@ public class ShootOut {
 
         if ((int) shot.getX() + 100 >= hoop.getTarget().getX() && (int) shot.getX() <= (hoop.getTarget().getWidth() + hoop.getTarget().getX())) {
             score += 3;
+
+            textScore.setText(score + " POINTS");
         }
 
-        System.out.println("Score: " + score);
         return score;
+
+
     }
 
 
@@ -92,6 +111,9 @@ public class ShootOut {
         shootOut.start();
 
     }
+
+
+
 
 
 

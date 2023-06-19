@@ -29,7 +29,7 @@ public class Player {
             //Thread sleep to slow the aim;
             //Try catch to handle a possible exception;
             try{
-                TimeUnit.MILLISECONDS.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(15);
             } catch(InterruptedException e) {
                 System.out.println("Something went wrong");
             }
