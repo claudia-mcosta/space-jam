@@ -15,7 +15,9 @@ public class Hoop {
 
         public Hoop(double x, double y) {
             this.pos = new Position(x + Game.PADDING, y + Game.PADDING);
-            this.picture = new Picture(pos.getX(), pos.getY(), "resources/hoop.png");
+
+            this.picture = new Picture(pos.getX(), pos.getY(), "space_jam/resources/hoop.png");
+
             this.target = new Rectangle(pos.getX(), pos.getY(), picture.getWidth(), picture.getHeight());
 
             grow(width, height);

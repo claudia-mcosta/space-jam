@@ -32,9 +32,9 @@ public class ShootOut {
 
     public ShootOut() {
         this.canvas = Canvas.getInstance();
-        this.background = new Picture(Game.PADDING, Game.PADDING,"resources/bleachers.jpeg");
+        this.background = new Picture(Game.PADDING, Game.PADDING,"space_jam/resources/bleachers.jpeg");
         this.hoop = new Hoop((double) 1250 / 2, (double) 750 / 2); // Replace with new Hoop(Game.screenWidth / 2, Game.screen.Height / 2);
-        this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball.png");
+        this.ball = new Picture(Game.PADDING, Game.PADDING,"space_jam/resources/ball.png");
         this.player = new Player();
         this.score = 0;
 
