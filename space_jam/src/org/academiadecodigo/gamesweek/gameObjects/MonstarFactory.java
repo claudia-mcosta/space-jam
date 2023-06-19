@@ -7,8 +7,9 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class MonstarFactory {
 
     public static Monstar createMonstar(int i){
+
         Picture picture = new Picture(0,0,"resources/monstar"+(i+1)+".png");
-        Direction direction=Direction.values()[(int)(Math.random()*Direction.values().length)];
+        Direction direction = Direction.values()[(int)(Math.random()*Direction.values().length)];
 
         Monstar monstar = new Monstar(StartingPositions.values()[i+1],picture, direction);
 
