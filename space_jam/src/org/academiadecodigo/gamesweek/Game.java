@@ -71,6 +71,10 @@ public class Game {
         MJ.grow(12.5,12.5);
         MJ.draw();
 
+        MichaelJordan player = new MichaelJordan(MJ);
+
+        new Handler(player);
+
         createAdversaries();
         //drawAdversaries();
 
