@@ -1,9 +1,28 @@
 package org.academiadecodigo.gamesweek.gameObjects;
-
+import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
+import org.academiadecodigo.gamesweek.positions.StartingPositions;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Ball extends GameObject {
+public class Ball extends GameObject{
+
+    private Ellipse ball;
+    private Position ballPosition;
+    public static double BALL_SIZE=Game.CELL_SIZE/2;
+
+    public Ball(){
+        super(StartingPositions.POSITION_6.getPosition(),new Position(StartingPositions.POSITION_6.getPosition().getX()+BALL_SIZE,StartingPositions.POSITION_6.getPosition().getY()+BALL_SIZE), Direction.LEFT);
+
+        ballPosition = new Position(StartingPositions.POSITION_6);
+        ball = new Ellipse(ballPosition.getX(), ballPosition.getY(), BALL_SIZE, BALL_SIZE);
+        ball.setColor(Color.ORANGE);
+        ball.fill();
+
+    }
+
 
     public Position findInscribedSquare(Position ballPosition, double squareSide){
 
@@ -13,65 +32,43 @@ public class Ball extends GameObject {
         return new Position(squareX,squareY);
     }
 
-    public void tryStealBall(Position ballPosition){
 
-        double insideSquareSize =Math.sqrt(Math.pow(Game.BALL_SIZE,2)/2);
-        Position insideSquarePosition = findInscribedSquare(ballPosition, insideSquareSize);
-
-
-
-        switch (direction){
-            case UP:
-                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && maxPosition.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize)){
-                    hasBall=true;
-                }
-                break;
-            case UP_RIGHT:
-                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && maxPosition.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize) ||
-                        maxPosition.getX()>insideSquarePosition.getX() && maxPosition.getY()>insideSquarePosition.getY() && (position.getY()<insideSquarePosition.getY()+insideSquareSize) ){
-                    hasBall=true;
-                }
-                break;
-            case RIGHT:
-                if(maxPosition.getX()>insideSquarePosition.getX() && maxPosition.getY()>insideSquarePosition.getY() && (position.getY()<insideSquarePosition.getY()+insideSquareSize)){
-                    hasBall=true;
-                }
-                break;
-            case DOWN_RIGHT:
-                if (maxPosition.getX()>insideSquarePosition.getX() && maxPosition.getY()>insideSquarePosition.getY() && (position.getY()<insideSquarePosition.getY()+insideSquareSize) ||
-                        maxPosition.getY()>insideSquarePosition.getY() && maxPosition.getX()>insideSquarePosition.getX() && (position.getX()<insideSquarePosition.getX()+insideSquareSize)){
-                    hasBall=true;
-                }
-                break;
-            case DOWN:
-                if(maxPosition.getY()>insideSquarePosition.getY() && maxPosition.getX()>insideSquarePosition.getX() && (position.getX()<insideSquarePosition.getX()+insideSquareSize)){
-                    hasBall=true;
-                }
-                break;
-            case DOWN_LEFT:
-                if(maxPosition.getY()>insideSquarePosition.getY() && maxPosition.getX()>insideSquarePosition.getX() && (position.getX()<insideSquarePosition.getX()+insideSquareSize) ||
-                        position.getX()<(insideSquarePosition.getX()+insideSquareSize) && (position.getY()<insideSquarePosition.getY()+insideSquareSize) && maxPosition.getY()>insideSquarePosition.getY()){
-                    hasBall=true;
-                }
-                break;
-            case LEFT:
-                if(position.getX()<(insideSquarePosition.getX()+insideSquareSize) && (position.getY()<insideSquarePosition.getY()+insideSquareSize) && maxPosition.getY()>insideSquarePosition.getY()){
-                    hasBall=true;
-                }
-                break;
-            case UP_LEFT:
-                if(position.getY()>(insideSquarePosition.getY()+insideSquareSize) && maxPosition.getX()>insideSquarePosition.getX() && position.getX()<(insideSquarePosition.getX()+insideSquareSize) ||
-                        position.getX()<(insideSquarePosition.getX()+insideSquareSize) && (position.getY()<insideSquarePosition.getY()+insideSquareSize) && maxPosition.getY()>insideSquarePosition.getY()){
-                    hasBall=true;
-                }
-                break;
-            default:
-                hasBall=false;
-        }
-
+    public void translateTo(Position startingPosition, Position endPosition){
+        double translateX = endPosition.getX()-startingPosition.getX();
+        double translateY = endPosition.getY()-startingPosition.getY();
+        ball.translate(translateX,translateY);
     }
 
-    public void dragBall(Position ballPosition){
-
+    private void moveUp(){
+        getPosition().translatePosition(0,-STEP_SIZE);
+        ball.translate(0,-STEP_SIZE);
+    }
+    private void moveUpRight(){
+        getPosition().translatePosition(STEP_SIZE,-STEP_SIZE);
+        ball.translate(STEP_SIZE,-STEP_SIZE);
+    }
+    private void moveRight(){
+        getPosition().translatePosition(STEP_SIZE,0);
+        ball.translate(STEP_SIZE,0);
+    }
+    private void moveDownRight(){
+        getPosition().translatePosition(STEP_SIZE,STEP_SIZE);
+        ball.translate(STEP_SIZE,STEP_SIZE);
+    }
+    private void moveDown(){
+        getPosition().translatePosition(0,STEP_SIZE);
+        ball.translate(0,STEP_SIZE);
+    }
+    private void moveDownLeft(){
+        getPosition().translatePosition(-STEP_SIZE,STEP_SIZE);
+        ball.translate(-STEP_SIZE,STEP_SIZE);
+    }
+    private void moveLeft(){
+        getPosition().translatePosition(-STEP_SIZE,0);
+        ball.translate(-STEP_SIZE,0);
+    }
+    private void moveUpLeft(){
+        getPosition().translatePosition(-STEP_SIZE,-STEP_SIZE);
+        ball.translate(-STEP_SIZE,-STEP_SIZE);
     }
 }

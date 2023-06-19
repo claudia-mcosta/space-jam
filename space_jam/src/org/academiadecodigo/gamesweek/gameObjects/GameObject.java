@@ -5,128 +5,47 @@ import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class GameObject {
+public abstract class GameObject {
 
-    private Picture picture;
-    private Position position;
-    private Position maxPosition;
+    private Position position; //top left position
+    private Position maxPosition; //bottom right position
     private Direction direction;
+    public static final int STEP_SIZE = 10; //number of pixels it moves per step
 
-    public void translateTo(Position startingPosition, Position endPosition){
-        double translateX = endPosition.getX()-startingPosition.getX();
-        double translateY = endPosition.getY()-startingPosition.getY();
-        picture.translate(translateX,translateY);
+    public GameObject(Position position, Position maxPosition, Direction direction){
+
+        this.position=position;
+        this.maxPosition=maxPosition;
+        this.direction=direction;
     }
 
-    public void draw(){
-        picture.draw();
-    }
+    public void chooseDirection(int probOfChange){
 
-    public boolean hitsBorder(){
+        Direction newDirection = direction;
 
-        switch (direction) {
-            case LEFT:
-                if(picture.getX()<=stepSize)
-                    return true;
-                break;
-            case UP:
-                if(picture.getY()<=stepSize)
-                    return true;
-                break;
-            case RIGHT:
-                if((picture.getMaxX()+stepSize)>= Game.screenWidth)
-                    return true;
-                break;
-            case DOWN:
-                if((picture.getMaxY()+stepSize)>=Game.screenHeight)
-                    return true;
-                break;
-            case UP_RIGHT:
-                if(picture.getY()<stepSize || (picture.getMaxX()+stepSize)>=Game.screenWidth)
-                    return true;
-                break;
-            case DOWN_RIGHT:
-                if((picture.getMaxY()+stepSize)>=Game.screenHeight || (picture.getMaxX()+stepSize)>=Game.screenWidth)
-                    return true;
-                break;
-            case DOWN_LEFT:
-                if((picture.getMaxY()+stepSize)>=Game.screenHeight || picture.getX()<=stepSize)
-                    return true;
-                break;
-            case UP_LEFT:
-                if(picture.getY()<=stepSize || picture.getX()<=stepSize)
-                    return true;
-                break;
-            default:
-                return true;
+        // Sometimes, we want to change Direction...
+        if (Math.random() > ((double) probOfChange) / 10) {
+            newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+
+            // but we do not want to go back (or away from player)
+            while(newDirection.isOpposite(direction)) {
+                newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+            }
         }
-        return false;
+        this.direction=newDirection;
     }
 
-    private void moveUp(){
-        position.translatePosition(0,-stepSize);
-        picture.translate(0,-stepSize);
-    }
-    private void moveUpRight(){
-        position.translatePosition(stepSize,-stepSize);
-        picture.translate(stepSize,-stepSize);
-    }
-    private void moveRight(){
-        position.translatePosition(stepSize,0);
-        picture.translate(stepSize,0);
-    }
-    private void moveDownRight(){
-        position.translatePosition(stepSize,stepSize);
-        picture.translate(stepSize,stepSize);
-    }
-    private void moveDown(){
-        position.translatePosition(0,stepSize);
-        picture.translate(0,stepSize);
-    }
-    private void moveDownLeft(){
-        position.translatePosition(-stepSize,stepSize);
-        picture.translate(-stepSize,stepSize);
-    }
-    private void moveLeft(){
-        position.translatePosition(-stepSize,0);
-        picture.translate(-stepSize,0);
-    }
-    private void moveUpLeft(){
-        position.translatePosition(-stepSize,-stepSize);
-        picture.translate(-stepSize,-stepSize);
-    }
 
-    public void moveRandom(Position ballPosition){
 
-        switch (direction){
-            case UP:
-                moveUp();
-                break;
-            case UP_RIGHT:
-                moveUpRight();
-                break;
-            case RIGHT:
-                moveRight();
-                break;
-            case DOWN_RIGHT:
-                moveDownRight();
-                break;
-            case DOWN:
-                moveDown();
-                break;
-            case DOWN_LEFT:
-                moveDownLeft();
-                break;
-            case LEFT:
-                moveLeft();
-                break;
-            case UP_LEFT:
-                moveUpLeft();
-                break;
-        }
-        if (hasBall)
-            dragBall(ballPosition);
+    public abstract void translateTo(Position startingPosition, Position endPosition);
 
-        takeAStep();
+
+
+
+
+
+    public Direction getDirection(){
+        return direction;
     }
+    public Position getPosition(){return position;}
 }

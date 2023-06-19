@@ -1,5 +1,6 @@
 package org.academiadecodigo.gamesweek;
 
+import org.academiadecodigo.gamesweek.gameObjects.Ball;
 import org.academiadecodigo.gamesweek.gameObjects.Monstar;
 import org.academiadecodigo.gamesweek.gameObjects.MonstarFactory;
 import org.academiadecodigo.gamesweek.positions.Position;
@@ -12,14 +13,15 @@ public class Game {
     public static final int PADDING=10;
     public static double screenWidth;
     public static double screenHeight;
-    public static int cellSize=50;
+    public static int CELL_SIZE=50;
     private int delay;
     private Monstar[] monstar;
     private int numAdversaries; //5 max
-    private Ellipse ball;
+    private Ball ball;
     private Position ballPosition;
-    public static double BALL_SIZE=cellSize/2;
+    public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
+    private int probOfChange = 5; //0-10 where 10 it never changes direction and 0 it changes every time
 
     //public boolean playerHasBall = false;
 
@@ -32,68 +34,12 @@ public class Game {
         this.numAdversaries = numAdversaries;
     }
 
-    MonstarFactory factory = new MonstarFactory(numAdversaries);
+    private void createAdversaries(){
 
-    private void moveUp(){
-        ballPosition.translatePosition(0,-stepSize);
-        ball.translate(0,-stepSize);
-    }
-    private void moveUpRight(){
-        ballPosition.translatePosition(stepSize,-stepSize);
-        ball.translate(stepSize,-stepSize);
-    }
-    private void moveRight(){
-        ballPosition.translatePosition(stepSize,0);
-        ball.translate(stepSize,0);
-    }
-    private void moveDownRight(){
-        ballPosition.translatePosition(stepSize,stepSize);
-        ball.translate(stepSize,stepSize);
-    }
-    private void moveDown(){
-        ballPosition.translatePosition(0,stepSize);
-        ball.translate(0,stepSize);
-    }
-    private void moveDownLeft(){
-        ballPosition.translatePosition(-stepSize,stepSize);
-        ball.translate(-stepSize,stepSize);
-    }
-    private void moveLeft(){
-        ballPosition.translatePosition(-stepSize,0);
-        ball.translate(-stepSize,0);
-    }
-    private void moveUpLeft(){
-        ballPosition.translatePosition(-stepSize,-stepSize);
-        ball.translate(-stepSize,-stepSize);
-    }
+        monstar = new Monstar[numAdversaries];
 
-    private void moveBall(Direction direction){
-
-        switch (direction){
-            case UP:
-                moveUp();
-                break;
-            case UP_RIGHT:
-                moveUpRight();
-                break;
-            case RIGHT:
-                moveRight();
-                break;
-            case DOWN_RIGHT:
-                moveDownRight();
-                break;
-            case DOWN:
-                moveDown();
-                break;
-            case DOWN_LEFT:
-                moveDownLeft();
-                break;
-            case LEFT:
-                moveLeft();
-                break;
-            case UP_LEFT:
-                moveUpLeft();
-                break;
+        for(int i=0; i<numAdversaries;i++){
+            monstar[i] = MonstarFactory.createMonstar(i);
         }
     }
 
@@ -101,42 +47,36 @@ public class Game {
 
         for (int i=0; i<numAdversaries; i++){
             if(monstar[i].getCurrentSteps()>Monstar.MAX_STEPS) {
-                monstar[i].chooseDirection();
+                monstar[i].chooseDirection(probOfChange);
                 monstar[i].resetCurrentSteps();
             }
 
             while (monstar[i].hitsBorder())
-                monstar[i].chooseDirection();
+                monstar[i].chooseDirection(probOfChange);
 
-            monstar[i].moveRandom(ballPosition);
+            monstar[i].move(ballPosition);
+            monstar[i].takeAStep();
 
-            if(!monstar[i].hasBall()){
-                monstar[i].tryStealBall(ballPosition);
-            }else{
-                moveBall(monstar[i].getDirection());
-            }
         }
     }
 
     public void init(){
 
-        //Rectangle background = new Rectangle(PADDING,PADDING,screenWidth,screenHeight);
-        //background.draw();
-
         Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
         backgroundImage.draw();
 
-        ballPosition = new Position(StartingPositions.POSITION_6);
-        ball = new Ellipse(ballPosition.getX(), ballPosition.getY(), BALL_SIZE, BALL_SIZE);
-        ball.setColor(Color.ORANGE);
-        ball.fill();
+        ball = new Ball();
 
         Picture MJ = new Picture(screenWidth/3,screenHeight/2,"resources/MJ_small.png");
         MJ.grow(12.5,12.5);
         MJ.draw();
 
+        MichaelJordan player = new MichaelJordan(MJ);
+
+        new Handler(player);
+
         createAdversaries();
-        drawAdversaries();
+        //drawAdversaries();
 
     }
 
