@@ -1,4 +1,6 @@
-package org.academiadecodigo.gamesweek;
+package org.academiadecodigo.gamesweek.positions;
+
+import org.academiadecodigo.gamesweek.Game;
 
 public enum StartingPositions {
     POSITION_0(0,0),
