@@ -65,13 +65,11 @@ public class Game {
         Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
         backgroundImage.draw();
 
-        ball = new Ball();
+        Picture picture = new Picture(StartingPositions.POSITION_6.getPosition().getX(),StartingPositions.POSITION_6.getPosition().getY(),"resources/ball.png");
+        ball = new Ball(picture);
 
-        Picture MJ = new Picture(screenWidth/3,screenHeight/2,"resources/MJ_small.png");
-        MJ.grow(12.5,12.5);
-        MJ.draw();
-
-        MichaelJordan player = new MichaelJordan(MJ);
+        Picture MJ = new Picture(StartingPositions.POSITION_7.getPosition().getX(),StartingPositions.POSITION_7.getPosition().getY(),"resources/MJ_small.png");
+        MichaelJordan player = new MichaelJordan(MJ,Direction.RIGHT);
 
         new Handler(player);
 

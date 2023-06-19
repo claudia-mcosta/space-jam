@@ -2,19 +2,18 @@ package org.academiadecodigo.gamesweek.gameObjects;
 
 import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.Game;
-import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Monstar extends Player{
+public class Monstar extends Character {
 
     private int speed;
     private int size;
     public static int MAX_STEPS=5;
     private int currentSteps;
 
-    public Monstar(StartingPositions position, Picture picture, Direction direction){
-        super(position.getPosition(), picture, direction);
+    public Monstar(Picture picture, StartingPositions position, Direction direction){
+        super(picture, position.getPosition(), direction);
         speed=1;
         size= Game.CELL_SIZE;
         this.currentSteps=0;

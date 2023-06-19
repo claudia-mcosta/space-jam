@@ -11,14 +11,11 @@ public class Handler implements KeyboardHandler {
     public Keyboard keyboard;
     public MichaelJordan player;
 
-
-
     public Handler(MichaelJordan player){
         this.player = player;
         keyboard = new Keyboard(this);
         createKeyboardEvents();
     }
-
 
     public void createKeyboardEvents(){
         KeyboardEvent keyboardEventRight = new KeyboardEvent();
@@ -46,7 +43,7 @@ public class Handler implements KeyboardHandler {
         keyboardEventQ.setKey(KeyboardEvent.KEY_Q);
         keyboard.addEventListener(keyboardEventQ);
 
-        KeyboardEvent keyboardEventDiagonalDownRight = new KeyboardEvent();
+       /* KeyboardEvent keyboardEventDiagonalDownRight = new KeyboardEvent();
         keyboardEventDiagonalDownRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboardEventDiagonalDownRight.setKey(KeyboardEvent.KEY_B);
         keyboard.addEventListener(keyboardEventDiagonalDownRight);
@@ -64,60 +61,51 @@ public class Handler implements KeyboardHandler {
         KeyboardEvent keyboardEventDiagonalDownLeft = new KeyboardEvent();
         keyboardEventDiagonalDownLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboardEventDiagonalDownLeft.setKey(KeyboardEvent.KEY_V);
-        keyboard.addEventListener(keyboardEventDiagonalDownLeft);
-
-
-
+        keyboard.addEventListener(keyboardEventDiagonalDownLeft);*/
     }
-
-
-
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-
+        Direction direction;
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_RIGHT:
-                player.moveRight();
+                player.setDirection(Direction.RIGHT);
+                if(!player.hitsBorder())
+                    player.moveRight();
                 break;
-
             case KeyboardEvent.KEY_LEFT:
-                player.moveLeft();
+                player.setDirection(Direction.LEFT);
+                if(!player.hitsBorder())
+                    player.moveLeft();
                 break;
-
             case KeyboardEvent.KEY_DOWN:
-                player.moveDown();
+                player.setDirection(Direction.DOWN);
+                if(!player.hitsBorder())
+                    player.moveDown();
                 break;
-
             case KeyboardEvent.KEY_UP:
-                player.moveUp();
+                player.setDirection(Direction.UP);
+                if(!player.hitsBorder())
+                    player.moveUp();
                 break;
-
             case KeyboardEvent.KEY_Q:
                 System.exit(1);
                 break;
-
-            case KeyboardEvent.KEY_B:
+            /*case KeyboardEvent.KEY_B:
                 player.moveDiagonalDownRight();
                 break;
-
             case KeyboardEvent.KEY_H:
                 player.moveDiagonalUpRight();
                 break;
-
             case KeyboardEvent.KEY_F:
                 player.moveDiagonalDownLeft();
                 break;
-
             case KeyboardEvent.KEY_V:
                 player.moveDiagonalUpLeft();
-                break;
-
-
+                break;*/
         }
-
     }
 
     @Override
