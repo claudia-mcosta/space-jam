@@ -23,6 +23,8 @@ public class Game {
 
     //public boolean playerHasBall = false;
 
+    public static int SHOOTOUT_CELL_SIZE = 10;
+
 
     //CONSTRUCTOR
     public Game(double width, double height, int delay, int numAdversaries){

@@ -11,6 +11,7 @@ public enum Direction {
     UP_LEFT,
     NONE;
 
+
     public boolean isOpposite(Direction dir) {
         if(dir.equals(oppositeDirection()[0]) || dir.equals(oppositeDirection()[1]) || dir.equals(oppositeDirection()[2])){
             return true;
