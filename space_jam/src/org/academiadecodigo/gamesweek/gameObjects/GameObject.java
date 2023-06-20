@@ -45,8 +45,8 @@ public abstract class GameObject {
         return false;
     }
 
-    //Translates picture - GFX
-    public void translateTo(Position startingPosition, Position endPosition){
+    //Translates picture from one position to another - GFX
+    public void translateFrom(Position startingPosition, Position endPosition){
         double translateX = endPosition.getX()-startingPosition.getX();
         double translateY = endPosition.getY()-startingPosition.getY();
         picture.translate(translateX,translateY);

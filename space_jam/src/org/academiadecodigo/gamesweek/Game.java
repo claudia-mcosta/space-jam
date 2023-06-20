@@ -11,15 +11,12 @@ public class Game {
     public static double screenHeight;
     public static int CELL_SIZE=50;
     private Picture backgroundImage;
-    private Picture ballPicture;
-    private Picture MJPicture;
     private int delay;
     private Monstar[] monstar;
     private int numAdversaries; //5 max
     private Ball ball;
     private Hoop hoop;
     private MichaelJordan player;
-    private Position ballPosition;
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
 
@@ -35,6 +32,7 @@ public class Game {
         this.numAdversaries = numAdversaries;
     }
 
+    //Create the Monstars
     private void createAdversaries(){
 
         monstar = new Monstar[numAdversaries];
@@ -44,6 +42,7 @@ public class Game {
         }
     }
 
+    //Checks the conditions for the Monstars to move
     private void moveMonstars(){
 
         for (int i=0; i<numAdversaries; i++){
@@ -55,12 +54,13 @@ public class Game {
             while (monstar[i].hitsBorder())
                 monstar[i].chooseDirection();
 
-            monstar[i].move(ballPosition);
+            monstar[i].move(ball.getPosition());
             monstar[i].takeAStep();
 
         }
     }
 
+    //Initializes all the objects essential to the game
     public void init(){
 
         backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
@@ -85,21 +85,22 @@ public class Game {
         createAdversaries();
 
         initDraw();
-
     }
 
+    //Draws all the pictures on canvas
     private void initDraw(){
         backgroundImage.draw();
         ball.draw();
         player.draw();
 
         for(int i=0; i<monstar.length;i++){
-            monstar[i].translateTo(monstar[i].getPosition(),StartingPositions.values()[i+1].getPosition());
+            Position picturePosition = new Position(monstar[i].getPicture().getX(),monstar[i].getPicture().getY());
+            monstar[i].translateFrom(picturePosition,StartingPositions.values()[i+1].getPosition());
             monstar[i].draw();
         }
-
     }
 
+    //Start and run game
     public void start() throws InterruptedException {
 
         while (true){
@@ -117,6 +118,5 @@ public class Game {
                 ball.getPicture().draw();
             }
         }
-
     }
 }

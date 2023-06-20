@@ -13,6 +13,7 @@ public class Monstar extends Character {
     private int currentSteps;
     private int probOfChange = 5; //0-10 where 10 it never changes direction and 0 it changes every time
 
+    //CONSTRUCTOR
     public Monstar(Picture picture, StartingPositions position, Direction direction){
         super(picture, position.getPosition(), direction);
         speed=1;
@@ -27,16 +28,17 @@ public class Monstar extends Character {
 
         // Sometimes, we want to change Direction...
         if (Math.random() > ((double) probOfChange) / 10) {
-            newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+            newDirection = Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
 
             // but we do not want to go back (or away from player)
             while(newDirection.isOpposite(getDirection())) {
-                newDirection = Direction.values()[(int) (Math.random() * Direction.values().length)];
+                newDirection = Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
             }
         }
         setDirection(newDirection);
     }
 
+    //GETTERS & SETTERS
     public int getCurrentSteps(){
         return currentSteps;
     }

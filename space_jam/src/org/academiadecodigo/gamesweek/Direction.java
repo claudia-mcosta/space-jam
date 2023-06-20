@@ -18,6 +18,7 @@ public enum Direction {
         return false;
     }
 
+    //TO BE REVISED
     public Direction[] oppositeDirection() {
 
         Direction[] opposite = new Direction[]{Direction.DOWN, Direction.DOWN_LEFT, Direction.DOWN_RIGHT};

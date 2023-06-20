@@ -14,8 +14,6 @@ public class MonstarFactory {
 
         Monstar monstar = new Monstar(picture, StartingPositions.values()[i+1],direction);
 
-        monstar.translateTo(StartingPositions.POSITION_0.getPosition(),StartingPositions.values()[i+1].getPosition());
-
         return monstar;
     }
 }
