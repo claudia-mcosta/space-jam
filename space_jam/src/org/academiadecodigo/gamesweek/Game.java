@@ -5,6 +5,8 @@ import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import static org.academiadecodigo.gamesweek.shootout.ShootOut.shoot;
+
 public class Game {
     public static final int PADDING=10;
     public static double screenWidth;
@@ -102,6 +104,16 @@ public class Game {
         }
     }
 
+    private void clearField(){
+        ball.getPicture().delete();
+        player.getPicture().delete();
+
+        for(int i=0; i<monstar.length;i++){
+            monstar[i].getPicture().delete();
+        }
+        backgroundImage.delete();
+    }
+
     //Start and run game
     public void start() throws InterruptedException {
 
@@ -112,8 +124,8 @@ public class Game {
 
             if(player.overlaps(hoop)){
                 //Go to shootout
-
-                ball.getPicture().delete();
+                clearField();
+                shoot();
             }
             else {
                 moveMonstars();
