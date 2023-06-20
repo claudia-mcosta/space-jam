@@ -10,7 +10,8 @@ public enum StartingPositions {
     POSITION_4((Game.screenWidth/4)*3,(Game.screenHeight/6)*2), //Monstar4
     POSITION_5((Game.screenWidth/4)*3,(Game.screenHeight/6)*4), //Monstar5
     POSITION_6(Game.screenWidth/2,Game.screenHeight/2), //Ball
-    POSITION_7(Game.screenWidth/3,Game.screenHeight/2); //MJ
+    POSITION_7(Game.screenWidth/3,Game.screenHeight/2), //MJ
+    POSITION_8(1120,360);
 
     private Position position;
 

@@ -82,7 +82,7 @@ public abstract class GameObject {
                     return true;
                 break;
             default:
-                return true;
+                return false;
         }
         return false;
     }
@@ -147,6 +147,8 @@ public abstract class GameObject {
             case UP_LEFT:
                 moveUpLeft();
                 break;
+            default:
+                break;
         }
     }
 
@@ -159,5 +161,6 @@ public abstract class GameObject {
     public Direction getDirection(){
         return direction;
     }
+    public Picture getPicture(){return picture;}
     public Position getPosition(){return position;}
 }

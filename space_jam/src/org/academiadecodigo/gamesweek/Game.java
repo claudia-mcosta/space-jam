@@ -1,12 +1,11 @@
 package org.academiadecodigo.gamesweek;
 
 import org.academiadecodigo.gamesweek.gameObjects.Ball;
+import org.academiadecodigo.gamesweek.gameObjects.MichaelJordan;
 import org.academiadecodigo.gamesweek.gameObjects.Monstar;
 import org.academiadecodigo.gamesweek.gameObjects.MonstarFactory;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -18,6 +17,7 @@ public class Game {
     private Monstar[] monstar;
     private int numAdversaries; //5 max
     private Ball ball;
+    private MichaelJordan player;
     private Position ballPosition;
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
@@ -65,16 +65,14 @@ public class Game {
         Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
         backgroundImage.draw();
 
-        Picture picture = new Picture(StartingPositions.POSITION_6.getPosition().getX(),StartingPositions.POSITION_6.getPosition().getY(),"resources/ball.png");
-        ball = new Ball(picture);
+        ball = new Ball(new Picture(StartingPositions.POSITION_6.getPosition().getX(),StartingPositions.POSITION_6.getPosition().getY(),"resources/ball.png"));
 
         Picture MJ = new Picture(StartingPositions.POSITION_7.getPosition().getX(),StartingPositions.POSITION_7.getPosition().getY(),"resources/MJ_small.png");
-        MichaelJordan player = new MichaelJordan(MJ,Direction.RIGHT);
+        this.player = new MichaelJordan(MJ,Direction.RIGHT);
 
         new Handler(player);
 
         createAdversaries();
-        //drawAdversaries();
 
     }
 
@@ -86,6 +84,15 @@ public class Game {
 
             moveMonstars();
 
+            if(player.isAtHoop()){
+                System.out.println("I'm at the hoop");
+                System.out.println(player.getDirection());
+                //Go to shootout
+            }
+            else {
+                System.out.println("Not at the hoop");
+                System.out.println(player.getDirection());
+            }
         }
 
     }

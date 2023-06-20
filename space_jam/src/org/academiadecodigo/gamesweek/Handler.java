@@ -1,6 +1,6 @@
 package org.academiadecodigo.gamesweek;
 
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.academiadecodigo.gamesweek.gameObjects.MichaelJordan;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -19,24 +19,40 @@ public class Handler implements KeyboardHandler {
 
     public void createKeyboardEvents(){
         KeyboardEvent keyboardEventRight = new KeyboardEvent();
+        KeyboardEvent keyboardEventRightReleased = new KeyboardEvent();
         keyboardEventRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventRightReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboardEventRight.setKey(KeyboardEvent.KEY_RIGHT);
+        keyboardEventRightReleased.setKey(KeyboardEvent.KEY_RIGHT);
         keyboard.addEventListener(keyboardEventRight);
+        keyboard.addEventListener(keyboardEventRightReleased);
 
         KeyboardEvent keyboardEventLeft = new KeyboardEvent();
+        KeyboardEvent keyboardEventLeftReleased = new KeyboardEvent();
         keyboardEventLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventLeftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboardEventLeft.setKey(KeyboardEvent.KEY_LEFT);
+        keyboardEventLeftReleased.setKey(KeyboardEvent.KEY_LEFT);
         keyboard.addEventListener(keyboardEventLeft);
+        keyboard.addEventListener(keyboardEventLeftReleased);
 
         KeyboardEvent keyboardEventUp = new KeyboardEvent();
+        KeyboardEvent keyboardEventUpReleased = new KeyboardEvent();
         keyboardEventUp.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventUpReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboardEventUp.setKey(KeyboardEvent.KEY_UP);
+        keyboardEventUpReleased.setKey(KeyboardEvent.KEY_UP);
         keyboard.addEventListener(keyboardEventUp);
+        keyboard.addEventListener(keyboardEventUpReleased);
 
         KeyboardEvent keyboardEventDown = new KeyboardEvent();
+        KeyboardEvent keyboardEventDownReleased = new KeyboardEvent();
         keyboardEventDown.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventDownReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboardEventDown.setKey(KeyboardEvent.KEY_DOWN);
+        keyboardEventDownReleased.setKey(KeyboardEvent.KEY_DOWN);
         keyboard.addEventListener(keyboardEventDown);
+        keyboard.addEventListener(keyboardEventDownReleased);
 
         KeyboardEvent keyboardEventQ = new KeyboardEvent();
         keyboardEventQ.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -110,6 +126,9 @@ public class Handler implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+
+        player.setDirection(Direction.NONE);
+
 
     }
 }
