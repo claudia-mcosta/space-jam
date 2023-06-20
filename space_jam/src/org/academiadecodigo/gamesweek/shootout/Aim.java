@@ -6,6 +6,7 @@ import org.academiadecodigo.gamesweek.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /* TO DO
  *
@@ -31,8 +32,8 @@ public class Aim {
      *  private Line line = new Line(startX, startY, endX, endY);
      */
 
-    private Rectangle aim;
-    private int aimSize = Game.cellSize * 2;
+    private Picture aim; // Rectangle aim;
+    private int aimSize = Game.cellSize * 5;
     private Position pos;
     private Color color = Color.BLUE;
     private Rectangle aimBar;
@@ -54,24 +55,32 @@ public class Aim {
 
         // Set positions for start and end of aimbar
         aimBarSize[0] = new Position(Game.PADDING + Game.cellSize, hoop.getPos().getY());
-        aimBarSize[1] = new Position((Game.PADDING + 1250) - (Game.cellSize * 2), hoop.getPos().getY());
+        aimBarSize[1] = new Position(1250 - (Game.cellSize * 2), hoop.getPos().getY());
 
         // Set aim starting position (currently starting at left boundary)
         this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
-        this.aim = new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
-        this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(),aimSize);
+        this.aim = new Picture(pos.getX(), pos.getY(), "space_jam/resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
+        this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(), aimSize);
 
-        // Set initial color
-        aim.setColor(color);
-        // Show aimbar + aim on screen
-        aimBar.draw();
+        /* To use if aim is a square and not a picture
+         * // Set initial color
+         * aim.setColor(color);
+         * // Show aimbar + aim on screen
+         * aimBar.draw();
+         * // Fill aim shape
+         * aim.fill();
+         */
+
+        // To use if aim is a picture
         aim.draw();
-        // Fill aim shape
-        aim.fill();
     }
 
     public Position getPos() {
         return pos;
+    }
+
+    public int getAimSize() {
+        return aimSize;
     }
 
     public Color getColor() {
@@ -80,7 +89,7 @@ public class Aim {
 
     public void setColor(Color color) {
         this.color = color;
-        aim.setColor(color);
+        // aim.setColor(color);
     }
 
     public void moveRight() {
@@ -123,20 +132,14 @@ public class Aim {
                 System.out.println("Unable to move aim.");
         }
 
-        // Change movement to opposite direction when aim hits boundaries - find better way to calculate the right boundary
-        if (aim.getX() <= aimBarSize[0].getX() || aim.getX() >= (aimBarSize[1].getX() - Game.cellSize)) {
+        // Change movement to opposite direction when aim hits boundaries
+        if (aim.getX() <= aimBarSize[0].getX() || (aim.getX() + aim.getWidth()) >= (aimBarSize[0].getX() + aimBar.getWidth())) {
             moveOppositeDirection(direction);
         }
 
-        if (aim.getX() >= aimBarSize[1].getX()) {
-            System.out.println(aimBarSize[1].getX());
-            System.out.println(aim.getX());
-            System.out.println(aim.getX() + (aimSize));
-        }
-
         // Draw and fill aim rectangle in new position
-        aim.draw();
-        aim.fill();
+        // aim.draw();
+        // aim.fill();
 
         /* Line tests NOT WORKING!!
          * if (endY > 0 && endX < 1250 + Game.PADDING) {

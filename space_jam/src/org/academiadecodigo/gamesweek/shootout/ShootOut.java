@@ -8,8 +8,6 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-
-
 /* TO DO
  *
  * Overall cleanup with methods and classes
@@ -37,7 +35,6 @@ public class ShootOut {
         this.ball = new Picture(Game.PADDING, Game.PADDING,"space_jam/resources/ball.png");
         this.player = new Player();
         this.score = 0;
-
     }
 
     public void init(){
@@ -58,7 +55,7 @@ public class ShootOut {
         // Draw hoop image and target frame
         hoop.draw();
 
-        // Reposition, resize and show ball image
+        // Reposition, resize and show ball image - Improve ball translate to be more dynamic in relation to screen size
         ball.translate((double) 1250 / 2,500);
         canvas.show(ball);
 
@@ -90,16 +87,17 @@ public class ShootOut {
          * System.out.println("Hoop Right Edge = " + (hoop.getTarget().getX() + hoop.getTarget().getWidth()));
          */
 
-
+        // change 100 to aim size
+        // Show score from shot and add it to the overall score
         if ((int) shot.getX() + 100 >= hoop.getTarget().getX() && (int) shot.getX() <= (hoop.getTarget().getWidth() + hoop.getTarget().getX())) {
             score += 3;
-
-            textScore.setText(score + " POINTS");
         }
 
+        // System.out.println("Score: " + score);
+
+        textScore.setText(score + " POINTS");
+
         return score;
-
-
     }
 
 
@@ -111,10 +109,5 @@ public class ShootOut {
         shootOut.start();
 
     }
-
-
-
-
-
 
 }
