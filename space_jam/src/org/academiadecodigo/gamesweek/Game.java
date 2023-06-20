@@ -11,6 +11,8 @@ public class Game {
     public static int screenHeight;
     private int delay;
 
+    public static int cellSize = 10;
+
     private Picture test;
 
     //CONSTRUCTOR
