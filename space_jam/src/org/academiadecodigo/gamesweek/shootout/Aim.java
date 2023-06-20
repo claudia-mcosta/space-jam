@@ -4,7 +4,6 @@ import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -33,7 +32,7 @@ public class Aim {
      */
 
     private Picture aim; // Rectangle aim;
-    private int aimSize = Game.cellSize * 5;
+    private int aimSize = Game.SHOOTOUT_CELL_SIZE * 5;
     private Position pos;
     private Color color = Color.BLUE;
     private Rectangle aimBar;
@@ -54,12 +53,12 @@ public class Aim {
          */
 
         // Set positions for start and end of aimbar
-        aimBarSize[0] = new Position(Game.PADDING + Game.cellSize, hoop.getPos().getY());
-        aimBarSize[1] = new Position(1250 - (Game.cellSize * 2), hoop.getPos().getY());
+        aimBarSize[0] = new Position(Game.PADDING + Game.SHOOTOUT_CELL_SIZE, hoop.getPos().getY());
+        aimBarSize[1] = new Position(1250 - (Game.SHOOTOUT_CELL_SIZE * 2), hoop.getPos().getY());
 
         // Set aim starting position (currently starting at left boundary)
         this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
-        this.aim = new Picture(pos.getX(), pos.getY(), "space_jam/resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
+        this.aim = new Picture(pos.getX(), pos.getY(), "resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
         this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(), aimSize);
 
         /* To use if aim is a square and not a picture
@@ -93,13 +92,13 @@ public class Aim {
     }
 
     public void moveRight() {
-        pos.setX(pos.getX() + Game.cellSize);
-        aim.translate(Game.cellSize,0);
+        pos.setX(pos.getX() + Game.SHOOTOUT_CELL_SIZE);
+        aim.translate(Game.SHOOTOUT_CELL_SIZE,0);
     }
 
     public void moveLeft() {
-        pos.setX(pos.getX() - Game.cellSize);
-        aim.translate(-Game.cellSize,0);
+        pos.setX(pos.getX() - Game.SHOOTOUT_CELL_SIZE);
+        aim.translate(-Game.SHOOTOUT_CELL_SIZE,0);
     }
 
     public void moveOppositeDirection(Direction currentDirection) {
