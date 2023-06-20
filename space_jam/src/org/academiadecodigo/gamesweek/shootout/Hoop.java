@@ -38,8 +38,9 @@ public class Hoop {
         private void center() {
         // Center the picture and target on the Position
 
-            picture.translate(-(picture.getWidth() / 2), -(picture.getHeight() / 2));
-            target.translate(-(target.getWidth() / 2), -(target.getHeight() / 2));
+            picture.translate(-(double) picture.getWidth() / 2, -(double) picture.getHeight() / 2);
+            target.translate(-(double) target.getWidth() / 2, -(double) target.getHeight() / 2);
+            
         }
 
         private void grow(int width, int height) {
