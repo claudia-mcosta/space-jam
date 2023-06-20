@@ -15,7 +15,7 @@ public class Game {
     private Monstar[] monstar;
     private int numAdversaries; //5 max
     private Ball ball;
-    private Hoop hoop;
+    private HoopPosition hoop;
     private MichaelJordan player;
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
@@ -80,7 +80,7 @@ public class Game {
         int hoopSize = 40;
 
         Position hoopMaxPosition = new Position(StartingPositions.POSITION_8.getPosition().getX()+hoopSize,StartingPositions.POSITION_8.getPosition().getY()+hoopSize);
-        hoop = new Hoop(StartingPositions.POSITION_8.getPosition(),hoopMaxPosition);
+        hoop = new HoopPosition(StartingPositions.POSITION_8.getPosition(),hoopMaxPosition);
 
         createAdversaries();
 

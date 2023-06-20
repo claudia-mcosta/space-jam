@@ -2,9 +2,9 @@ package org.academiadecodigo.gamesweek.gameObjects;
 
 import org.academiadecodigo.gamesweek.positions.Position;
 
-public class Hoop extends GameObject{
+public class HoopPosition extends GameObject{
 
-    public Hoop(Position position, Position maxPosition){
+    public HoopPosition(Position position, Position maxPosition){
         super(position,maxPosition);
     }
 }
