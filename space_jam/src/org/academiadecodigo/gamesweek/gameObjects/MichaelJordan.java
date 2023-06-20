@@ -8,10 +8,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class MichaelJordan extends Character {
 
-    public MichaelJordan(Picture picture, Direction direction){
-        super(picture, new Position(StartingPositions.POSITION_7),direction);
-
+    public MichaelJordan(Picture picture, Position position, Direction direction){
+        super(picture, position,direction);
         picture.grow(12.5,12.5);
-        picture.draw();
     }
 }

@@ -11,7 +11,6 @@ public class Ball extends GameObject{
 
     public Ball(Picture picture){
         super(picture, StartingPositions.POSITION_6.getPosition(), Direction.LEFT);
-        picture.draw();
     }
 
     public Position findInscribedSquare(Position ballPosition, double squareSide){

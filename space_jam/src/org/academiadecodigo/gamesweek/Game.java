@@ -1,9 +1,6 @@
 package org.academiadecodigo.gamesweek;
 
-import org.academiadecodigo.gamesweek.gameObjects.Ball;
-import org.academiadecodigo.gamesweek.gameObjects.MichaelJordan;
-import org.academiadecodigo.gamesweek.gameObjects.Monstar;
-import org.academiadecodigo.gamesweek.gameObjects.MonstarFactory;
+import org.academiadecodigo.gamesweek.gameObjects.*;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -13,15 +10,19 @@ public class Game {
     public static double screenWidth;
     public static double screenHeight;
     public static int CELL_SIZE=50;
+    private Picture backgroundImage;
+    private Picture ballPicture;
+    private Picture MJPicture;
     private int delay;
     private Monstar[] monstar;
     private int numAdversaries; //5 max
     private Ball ball;
+    private Hoop hoop;
     private MichaelJordan player;
     private Position ballPosition;
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
-    private int probOfChange = 5; //0-10 where 10 it never changes direction and 0 it changes every time
+
 
     //public boolean playerHasBall = false;
 
@@ -47,12 +48,12 @@ public class Game {
 
         for (int i=0; i<numAdversaries; i++){
             if(monstar[i].getCurrentSteps()>Monstar.MAX_STEPS) {
-                monstar[i].chooseDirection(probOfChange);
+                monstar[i].chooseDirection();
                 monstar[i].resetCurrentSteps();
             }
 
             while (monstar[i].hitsBorder())
-                monstar[i].chooseDirection(probOfChange);
+                monstar[i].chooseDirection();
 
             monstar[i].move(ballPosition);
             monstar[i].takeAStep();
@@ -62,17 +63,40 @@ public class Game {
 
     public void init(){
 
-        Picture backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
-        backgroundImage.draw();
+        backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
 
-        ball = new Ball(new Picture(StartingPositions.POSITION_6.getPosition().getX(),StartingPositions.POSITION_6.getPosition().getY(),"resources/ball.png"));
+        double ballX = StartingPositions.POSITION_6.getPosition().getX();
+        double ballY = StartingPositions.POSITION_6.getPosition().getY();
 
-        Picture MJ = new Picture(StartingPositions.POSITION_7.getPosition().getX(),StartingPositions.POSITION_7.getPosition().getY(),"resources/MJ_small.png");
-        this.player = new MichaelJordan(MJ,Direction.RIGHT);
+        ball = new Ball(new Picture(ballX, ballY,"resources/ball.png"));
+
+        double MJX = StartingPositions.POSITION_7.getPosition().getX();
+        double MJY = StartingPositions.POSITION_7.getPosition().getY();
+
+        this.player = new MichaelJordan(new Picture(MJX,MJY,"resources/MJ_small.png"),StartingPositions.POSITION_7.getPosition(),Direction.RIGHT);
 
         new Handler(player);
 
+        int hoopSize = 40;
+
+        Position hoopMaxPosition = new Position(StartingPositions.POSITION_8.getPosition().getX()+hoopSize,StartingPositions.POSITION_8.getPosition().getY()+hoopSize);
+        hoop = new Hoop(StartingPositions.POSITION_8.getPosition(),hoopMaxPosition);
+
         createAdversaries();
+
+        initDraw();
+
+    }
+
+    private void initDraw(){
+        backgroundImage.draw();
+        ball.draw();
+        player.draw();
+
+        for(int i=0; i<monstar.length;i++){
+            monstar[i].translateTo(monstar[i].getPosition(),StartingPositions.values()[i+1].getPosition());
+            monstar[i].draw();
+        }
 
     }
 
@@ -82,16 +106,15 @@ public class Game {
 
             Thread.sleep(delay);
 
-            moveMonstars();
 
-            if(player.isAtHoop()){
-                System.out.println("I'm at the hoop");
-                System.out.println(player.getDirection());
+            if(player.overlaps(hoop)){
                 //Go to shootout
+
+                ball.getPicture().delete();
             }
             else {
-                System.out.println("Not at the hoop");
-                System.out.println(player.getDirection());
+                moveMonstars();
+                ball.getPicture().draw();
             }
         }
 

@@ -11,7 +11,7 @@ public enum StartingPositions {
     POSITION_5((Game.screenWidth/4)*3,(Game.screenHeight/6)*4), //Monstar5
     POSITION_6(Game.screenWidth/2,Game.screenHeight/2), //Ball
     POSITION_7(Game.screenWidth/3,Game.screenHeight/2), //MJ
-    POSITION_8(1120,360);
+    POSITION_8(1120,360); //Hoop
 
     private Position position;
 

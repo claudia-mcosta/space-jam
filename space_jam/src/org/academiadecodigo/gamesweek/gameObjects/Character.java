@@ -8,13 +8,15 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public abstract class Character extends GameObject{
 
     private boolean hasBall=false;
-    private int hoopSize = 40;
+
+    //int hoopSize = 40;
+
 
     public Character(Picture picture, Position position, Direction direction){
         super(picture,position,direction);
     }
 
-    public boolean isAtHoop(){
+    /*public boolean isAtHoop(){
 
         Picture picture = getPicture();
         Position hoopPosition = StartingPositions.POSITION_8.getPosition();
@@ -26,7 +28,7 @@ public abstract class Character extends GameObject{
             return true;
         }
         return false;
-    }
+    }*/
 
     public boolean hasBall(){
         return hasBall;
