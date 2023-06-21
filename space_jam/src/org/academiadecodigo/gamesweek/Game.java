@@ -8,6 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import static org.academiadecodigo.gamesweek.shootout.ShootOut.shoot;
 
 public class Game {
+
     public static final int PADDING=10;
     public static double screenWidth;
     public static double screenHeight;
@@ -21,9 +22,10 @@ public class Game {
     private MichaelJordan player;
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
+    public int score = 0;
 
 
-    //public boolean playerHasBall = false;
+    // public boolean playerHasBall = false;
 
     public static int SHOOTOUT_CELL_SIZE = 10;
 
@@ -143,4 +145,12 @@ public class Game {
             }
         }
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+    public int getScore(){
+        return score;
+    }
+
 }

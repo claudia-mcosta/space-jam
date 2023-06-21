@@ -22,17 +22,16 @@ public class Player {
 
     public void aim(Hoop hoop, ShootOut shootOut){
         this.shootOut = shootOut;
+        this.shot = new Position(-1, -1);
         this.aim = new Aim(hoop);
-        this.numShots=0;
-
-        new InputHandler(this);
+        this.numShots = 0;
 
         new InputHandler(this);
         TimerClock timerClock = new TimerClock(10);
 
         timerClock.start();
 
-        while (shot == null){
+        while (shot.getX() == -1){
 
             //long timeLeft = timerClock.getEndTime() - timerClock.getTimeSinceStartInSeconds();
             //Timer for 10 seconds;
@@ -55,12 +54,12 @@ public class Player {
             }
         }
 
+        shootOut.score(shot);
     }
 
     public void shoot() {
 
         shot = aim.getPos();
-        shootOut.score(shot);
 
     }
 

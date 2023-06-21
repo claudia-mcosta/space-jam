@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="92509a3b-bb32-45ea-864e-86c2991f3e40" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/scoreboard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/allclasses-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/allpackages-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/copy.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/element-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-13.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-14.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-15.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-16.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-17.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-18.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-19.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index-files/index-9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/legal/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/legal/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/legal/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/legal/jquery.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/legal/jqueryUI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/member-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/module-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Canvas.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Color.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Colorable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Ellipse.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Fillable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Line.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Movable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Rectangle.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Shape.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/Text.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/graphics/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/keyboard/Keyboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/keyboard/KeyboardEvent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/keyboard/KeyboardEventType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/keyboard/KeyboardHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/keyboard/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/keyboard/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/mouse/Mouse.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/mouse/MouseEvent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/mouse/MouseHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/mouse/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/mouse/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/pictures/Color.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/pictures/Picture.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/pictures/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/pictures/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/test/Tester.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/test/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/org/academiadecodigo/simplegraphics/test/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/package-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/resources/glass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/resources/x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/script-dir/jquery-3.6.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/script-dir/jquery-ui.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/script-dir/jquery-ui.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/search-page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/tag-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SimpleGFXDocs/type-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../class-repo-main-liveCoding-simpleGraphicsShowOff/liveCoding/simpleGraphicsShowOff/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../class-repo-main-liveCoding-simpleGraphicsShowOff/liveCoding/simpleGraphicsShowOff/lib/simple-graphics-0.2.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../class-repo-main-liveCoding-simpleGraphicsShowOff/liveCoding/simpleGraphicsShowOff/resources/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../class-repo-main-liveCoding-simpleGraphicsShowOff/liveCoding/simpleGraphicsShowOff/simpleGraphicsShowOff.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../class-repo-main-liveCoding-simpleGraphicsShowOff/liveCoding/simpleGraphicsShowOff/src/Handler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../class-repo-main-liveCoding-simpleGraphicsShowOff/liveCoding/simpleGraphicsShowOff/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../class-repo-main-liveCoding-simpleGraphicsShowOff/liveCoding/simpleGraphicsShowOff/src/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/simple_graphics_0_2_1_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/simple-graphics-0.2.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pngegg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/Aim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/Aim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/Hoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/Hoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/ShootOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/gamesweek/shootout/ShootOut.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2RWvMwb07oNqdVTFQrywBuHwvl5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Cláudia/spaceJam/space_jam&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="space_jam" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="space_jam" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="92509a3b-bb32-45ea-864e-86c2991f3e40" name="Changes" comment="" />
+      <created>1687378610608</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687378610608</updated>
+    </task>
+    <servers />
+  </component>
+</project>
