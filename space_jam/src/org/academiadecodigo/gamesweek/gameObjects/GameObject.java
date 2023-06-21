@@ -51,6 +51,7 @@ public abstract class GameObject {
                 position.getX()<object2.getMaxPosition().getX() &&
                 position.getY()<object2.getMaxPosition().getY() &&
                 maxPosition.getY()>object2.getPosition().getY()){
+            System.out.println("OVERLAPS!");
             return true;
         }
         return false;
@@ -199,6 +200,6 @@ public abstract class GameObject {
 
     @Override
     public String toString() {
-        return "X: "+position.getX()+" Y: "+position.getY()+" MaxX: "+maxPosition.getX()+" MaxY: "+maxPosition.getY();
+        return "Object: "+this.getClass().getSimpleName();
     }
 }

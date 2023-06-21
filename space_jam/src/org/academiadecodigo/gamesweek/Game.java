@@ -13,7 +13,7 @@ public class Game {
     public static double screenHeight;
     public static int CELL_SIZE=50;
     private Picture backgroundImage;
-    private int delay;
+    public static int delay;
     private Monstar[] monstar;
     private int numAdversaries; //5 max
     private Ball ball;
@@ -60,6 +60,7 @@ public class Game {
 
             monstar[i].move();
             monstar[i].takeAStep();
+            monstar[i].tryStealBall(ball);
 
         }
     }
@@ -81,7 +82,7 @@ public class Game {
 
         this.player = new MichaelJordan(new Picture(MJX,MJY,"resources/MJ_small.png"),StartingPositions.POSITION_7.getPosition(),Direction.RIGHT);
 
-        new Handler(player);
+        new Handler(player,ball);
 
         int hoopSize = 40;
 
@@ -136,7 +137,7 @@ public class Game {
             }
             else {
                 moveMonstars();
-
+                /*player.tryStealBall(ball);*/
                 if(ball.isFollowing()){
                     ball.moveBall();
                 }

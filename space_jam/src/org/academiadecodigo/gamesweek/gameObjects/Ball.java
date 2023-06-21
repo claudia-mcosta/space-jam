@@ -16,11 +16,16 @@ public class Ball extends GameObject{
     }
 
     public void moveBall(){
+        System.out.println(following);
         this.setDirection(following.getDirection());
         move();
     }
 
     public boolean isFollowing(){
         return following!=null;
+    }
+
+    public void setFollowing(Character character){
+        following=character;
     }
 }

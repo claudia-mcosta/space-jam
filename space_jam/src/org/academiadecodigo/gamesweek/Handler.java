@@ -1,22 +1,27 @@
 package org.academiadecodigo.gamesweek;
 
+import org.academiadecodigo.gamesweek.gameObjects.Ball;
 import org.academiadecodigo.gamesweek.gameObjects.MichaelJordan;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import java.util.concurrent.TimeUnit;
+
 public class Handler implements KeyboardHandler {
 
     public Keyboard keyboard;
     public MichaelJordan player;
+    private Ball ball;
     private boolean leftPressed=false;
     private boolean upPressed=false;
     private boolean rightPressed=false;
     private boolean downPressed=false;
 
-    public Handler(MichaelJordan player){
+    public Handler(MichaelJordan player, Ball ball){
         this.player = player;
+        this.ball = ball;
         keyboard = new Keyboard(this);
         createKeyboardEvents();
     }
@@ -67,8 +72,6 @@ public class Handler implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-
-        Direction direction;
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_RIGHT:
@@ -151,10 +154,44 @@ public class Handler implements KeyboardHandler {
                 System.exit(1);
                 break;
         }
+
+        player.tryStealBall(ball);
+        if(ball.isFollowing()){
+            ball.moveBall();
+        }
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+
+        /*switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_RIGHT:
+                player.setDirection(Direction.RIGHT);
+                if (!player.hitsBorder())
+                    player.moveRight();
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                player.setDirection(Direction.LEFT);
+                if (!player.hitsBorder())
+                    player.moveLeft();
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                downPressed=true;
+                player.setDirection(Direction.DOWN);
+                if (!player.hitsBorder())
+                    player.moveDown();
+                break;
+            case KeyboardEvent.KEY_UP:
+                upPressed=true;
+                player.setDirection(Direction.UP);
+                if (!player.hitsBorder())
+                    player.moveUp();
+                break;
+            case KeyboardEvent.KEY_Q:
+                System.exit(1);
+                break;
+        }*/
+
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_RIGHT:
@@ -205,6 +242,10 @@ public class Handler implements KeyboardHandler {
                         player.moveRight();
                 }
                 break;
+        }
+        player.tryStealBall(ball);
+        if(ball.isFollowing()){
+            ball.moveBall();
         }
 
         player.setDirection(Direction.NONE);

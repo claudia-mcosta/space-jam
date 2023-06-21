@@ -13,13 +13,15 @@ public abstract class Character extends GameObject{
         super(picture,position,direction);
     }
 
-    public boolean hasBall(){
-        return hasBall;
-    }
-
     public void tryStealBall(Ball ball){
-        this.overlaps(ball);
-
+        if(this.overlaps(ball)) {
+            hasBall = true;
+            ball.setFollowing(this);
+            //System.out.println(this);
+        }else {
+            hasBall = false;
+            ball.setFollowing(null);
+        }
 
     }
 
