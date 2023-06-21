@@ -1,6 +1,6 @@
 package org.academiadecodigo.gamesweek.shootout;
 
-import org.academiadecodigo.gamesweek.Position;
+import org.academiadecodigo.gamesweek.positions.Position;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,16 +14,22 @@ public class Player {
     private Position shot;
     private Aim aim;
     private ShootOut shootOut;
+    private int numShots;
 
 
 
     public void aim(Hoop hoop, ShootOut shootOut){
         this.shootOut = shootOut;
         this.aim = new Aim(hoop);
+        this.numShots=0;
 
         new InputHandler(this);
 
         while (shot == null) {
+
+            if(numShots==2){
+
+            }
             aim.move();
 
             //Thread sleep to slow the aim;
@@ -40,8 +46,9 @@ public class Player {
     public void shoot() {
 
         shot = aim.getPos();
+        System.out.println(shot.toString());
         shootOut.score(shot);
-
+        numShots++;
     }
 
 

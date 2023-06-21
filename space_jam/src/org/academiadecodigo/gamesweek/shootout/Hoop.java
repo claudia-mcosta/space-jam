@@ -1,7 +1,7 @@
 package org.academiadecodigo.gamesweek.shootout;
 
 import org.academiadecodigo.gamesweek.Game;
-import org.academiadecodigo.gamesweek.Position;
+import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 

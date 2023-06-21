@@ -2,7 +2,8 @@ package org.academiadecodigo.gamesweek.shootout;
 
 import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.Game;
-import org.academiadecodigo.gamesweek.Position;
+import org.academiadecodigo.gamesweek.positions.Position;
+import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -53,8 +54,8 @@ public class Aim {
          */
 
         // Set positions for start and end of aimbar
-        aimBarSize[0] = new Position(Game.PADDING + Game.SHOOTOUT_CELL_SIZE, hoop.getPos().getY());
-        aimBarSize[1] = new Position(1250 - (Game.SHOOTOUT_CELL_SIZE * 2), hoop.getPos().getY());
+        aimBarSize[0] = StartingPositions.POSITION_9.getPosition();
+        aimBarSize[1] = StartingPositions.POSITION_10.getPosition();
 
         // Set aim starting position (currently starting at left boundary)
         this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
