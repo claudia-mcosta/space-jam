@@ -129,7 +129,7 @@ public class Game {
             }
             else {
                 moveMonstars();
-                ball.getPicture().draw();
+                //ball.getPicture().draw();
             }
         }
     }
