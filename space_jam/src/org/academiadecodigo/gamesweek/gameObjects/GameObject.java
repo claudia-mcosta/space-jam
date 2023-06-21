@@ -195,6 +195,7 @@ public abstract class GameObject {
     public Picture getPicture(){return picture;}
     public Position getPosition(){return position;}
     public Position getMaxPosition(){return maxPosition;}
+    public void setPosition(Position position){this.position = position;}
 
     @Override
     public String toString() {

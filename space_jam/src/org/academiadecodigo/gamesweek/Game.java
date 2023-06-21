@@ -94,15 +94,20 @@ public class Game {
     }
 
     //Draws all the pictures on canvas
-    private void initDraw(){
+    public void initDraw(){
         backgroundImage.draw();
         ball.draw();
         player.draw();
+        player.translateFrom(player.getPosition(), StartingPositions.POSITION_7.getPosition());
+        player.setPosition(StartingPositions.POSITION_7.getPosition());
+
 
         for(int i=0; i<monstar.length;i++){
             Position picturePosition = new Position(monstar[i].getPicture().getX(),monstar[i].getPicture().getY());
-            monstar[i].translateFrom(picturePosition,StartingPositions.values()[i+1].getPosition());
             monstar[i].draw();
+            monstar[i].translateFrom(picturePosition,StartingPositions.values()[i+1].getPosition());
+            monstar[i].setPosition(StartingPositions.values()[i+1].getPosition());
+
         }
     }
 
@@ -127,7 +132,7 @@ public class Game {
             if(player.overlaps(hoop)){
                 //Go to shootout
                 clearField();
-                shoot();
+                shoot(this);
             }
             else {
                 moveMonstars();

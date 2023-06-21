@@ -35,6 +35,10 @@ public class Hoop {
             picture.draw();
         }
 
+        public void delete() {
+        picture.delete();
+    }
+
         private void center() {
         // Center the picture and target on the Position
 

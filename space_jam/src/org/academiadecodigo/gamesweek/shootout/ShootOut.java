@@ -20,21 +20,21 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class ShootOut {
 
-    private Canvas canvas;
     private Picture background;
     private Hoop hoop;
     private Picture ball;
     private int score;
     private Player player;
     private Text textScore;
+    private Game field;
 
-    public ShootOut() {
-        this.canvas = Canvas.getInstance();
+    public ShootOut(Game field) {
         this.background = new Picture(Game.PADDING, Game.PADDING,"resources/bleachers.jpeg");
         this.hoop = new Hoop((double) 1250 / 2, (double) 750 / 2); // Replace with new Hoop(Game.screenWidth / 2, Game.screen.Height / 2);
         this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball_shootout.png");
         this.player = new Player();
         this.score = 0;
+        this.field = field;
     }
 
     public void init(){
@@ -50,14 +50,14 @@ public class ShootOut {
         // Reposition, resize and show background image (change 1250 and 750 to Game.getWidth() and Game.getHeight())
         background.translate((double) (1250 - background.getWidth()) / 2, (double) (750 - background.getHeight()) / 2);
         background.grow((double) (1250 - background.getWidth()) / 2, (double) (750 - background.getHeight()) / 2);
-        canvas.show(background);
+        background.draw();
 
         // Draw hoop image and target frame
         hoop.draw();
 
         // Reposition, resize and show ball image - Improve ball translate to be more dynamic in relation to screen size
         ball.translate((double) 1250 / 2,500);
-        canvas.show(ball);
+        ball.draw();
 
         // Draw score board
         Rectangle scoreBoard = new Rectangle(50,50,80,60);
@@ -95,19 +95,27 @@ public class ShootOut {
 
         // System.out.println("Score: " + score);
 
-        textScore.setText(score + " POINTS");
+        clearShootOut();
+        field.initDraw();
 
+        textScore.setText(score + " POINTS");
         return score;
     }
 
 
-    public static void shoot() {
+    public static void shoot(Game field) {
 
-        ShootOut shootOut = new ShootOut();
-
+        ShootOut shootOut = new ShootOut(field);
         shootOut.init();
         shootOut.start();
 
+    }
+
+    public void clearShootOut() {
+        background.delete();
+        hoop.delete();
+        ball.delete();
+        player.getAim().clearAim();
     }
 
 }

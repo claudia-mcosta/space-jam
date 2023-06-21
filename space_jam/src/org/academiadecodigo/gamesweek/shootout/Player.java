@@ -16,7 +16,9 @@ public class Player {
     private ShootOut shootOut;
     private int numShots;
 
-
+    public Aim getAim() {
+        return aim;
+    }
 
     public void aim(Hoop hoop, ShootOut shootOut){
         this.shootOut = shootOut;
@@ -25,19 +27,31 @@ public class Player {
 
         new InputHandler(this);
 
-        while (shot == null) {
+        new InputHandler(this);
+        TimerClock timerClock = new TimerClock(10);
 
-            if(numShots==2){
+        timerClock.start();
 
+        while (shot == null){
+
+            //long timeLeft = timerClock.getEndTime() - timerClock.getTimeSinceStartInSeconds();
+            //Timer for 10 seconds;
+            if(timerClock.getTimeLeft() > 0){
+                aim.move();
+                System.out.println(timerClock.getTimeLeft() - 1);
+
+                //Thread sleep to slow the aim;
+                //Try catch to handle a possible exception;
+                try {
+                    TimeUnit.MILLISECONDS.sleep(15);
+                } catch (InterruptedException e) {
+                    System.out.println("Something went wrong");
+                }
             }
-            aim.move();
-
-            //Thread sleep to slow the aim;
-            //Try catch to handle a possible exception;
-            try{
-                TimeUnit.MILLISECONDS.sleep(15);
-            } catch(InterruptedException e) {
-                System.out.println("Something went wrong");
+            else {
+                timerClock.stop();
+                System.out.println("time finished.");
+                break;
             }
         }
 
@@ -46,9 +60,8 @@ public class Player {
     public void shoot() {
 
         shot = aim.getPos();
-        System.out.println(shot.toString());
         shootOut.score(shot);
-        numShots++;
+
     }
 
 

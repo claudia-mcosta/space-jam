@@ -161,6 +161,11 @@ public class Aim {
          */
     }
 
+    public void clearAim(){
+        aim.delete();
+        aimBar.delete();
+    }
+
 
 
 }
