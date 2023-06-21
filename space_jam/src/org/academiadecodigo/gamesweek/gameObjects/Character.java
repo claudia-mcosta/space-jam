@@ -17,4 +17,10 @@ public abstract class Character extends GameObject{
         return hasBall;
     }
 
+    public void tryStealBall(Ball ball){
+        this.overlaps(ball);
+
+
+    }
+
 }

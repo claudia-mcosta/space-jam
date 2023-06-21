@@ -58,7 +58,7 @@ public class Game {
             while (monstar[i].hitsBorder())
                 monstar[i].chooseDirection();
 
-            monstar[i].move(ball.getPosition());
+            monstar[i].move();
             monstar[i].takeAStep();
 
         }
@@ -71,8 +71,10 @@ public class Game {
 
         double ballX = StartingPositions.POSITION_6.getPosition().getX();
         double ballY = StartingPositions.POSITION_6.getPosition().getY();
+        double innerSquareSide = Math.sqrt(Math.pow(BALL_SIZE,2)/2);
+        Position innerSquarePosition = new Position(ballX+(BALL_SIZE-innerSquareSide)/2,ballY+(BALL_SIZE-innerSquareSide)/2);
 
-        ball = new Ball(new Picture(ballX, ballY,"resources/ball.png"));
+        ball = new Ball(new Picture(ballX, ballY,"resources/ball.png"),innerSquarePosition,innerSquareSide);
 
         double MJX = StartingPositions.POSITION_7.getPosition().getX();
         double MJY = StartingPositions.POSITION_7.getPosition().getY();
@@ -129,7 +131,10 @@ public class Game {
             }
             else {
                 moveMonstars();
-                //ball.getPicture().draw();
+
+                if(ball.isFollowing()){
+                    ball.moveBall();
+                }
             }
         }
     }
