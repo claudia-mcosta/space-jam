@@ -7,16 +7,20 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Ball extends GameObject{
 
-    public Ball(Picture picture){
-        super(picture, StartingPositions.POSITION_6.getPosition(), Direction.LEFT);
+    private Character following;
+
+    public Ball(Picture picture, Position innerSquarePosition, double innerSquareSide){
+        super(picture, innerSquarePosition, innerSquareSide);
+
+        following=null;
     }
 
-    public Position findInscribedSquare(Position ballPosition, double squareSide){
+    public void moveBall(){
+        this.setDirection(following.getDirection());
+        move();
+    }
 
-        //squareSide missing
-        double squareX = ballPosition.getX()+(Game.BALL_SIZE-squareSide)/2;
-        double squareY = ballPosition.getY()+(Game.BALL_SIZE-squareSide)/2;
-
-        return new Position(squareX,squareY);
+    public boolean isFollowing(){
+        return following!=null;
     }
 }

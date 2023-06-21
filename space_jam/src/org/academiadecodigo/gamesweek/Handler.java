@@ -10,6 +10,10 @@ public class Handler implements KeyboardHandler {
 
     public Keyboard keyboard;
     public MichaelJordan player;
+    private boolean leftPressed=false;
+    private boolean upPressed=false;
+    private boolean rightPressed=false;
+    private boolean downPressed=false;
 
     public Handler(MichaelJordan player){
         this.player = player;
@@ -59,25 +63,6 @@ public class Handler implements KeyboardHandler {
         keyboardEventQ.setKey(KeyboardEvent.KEY_Q);
         keyboard.addEventListener(keyboardEventQ);
 
-       /* KeyboardEvent keyboardEventDiagonalDownRight = new KeyboardEvent();
-        keyboardEventDiagonalDownRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboardEventDiagonalDownRight.setKey(KeyboardEvent.KEY_B);
-        keyboard.addEventListener(keyboardEventDiagonalDownRight);
-
-        KeyboardEvent keyboardEventDiagonalUpRight = new KeyboardEvent();
-        keyboardEventDiagonalUpRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboardEventDiagonalUpRight.setKey(KeyboardEvent.KEY_H);
-        keyboard.addEventListener(keyboardEventDiagonalUpRight);
-
-        KeyboardEvent keyboardEventDiagonalUpLeft = new KeyboardEvent();
-        keyboardEventDiagonalUpLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboardEventDiagonalUpLeft.setKey(KeyboardEvent.KEY_F);
-        keyboard.addEventListener(keyboardEventDiagonalUpLeft);
-
-        KeyboardEvent keyboardEventDiagonalDownLeft = new KeyboardEvent();
-        keyboardEventDiagonalDownLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboardEventDiagonalDownLeft.setKey(KeyboardEvent.KEY_V);
-        keyboard.addEventListener(keyboardEventDiagonalDownLeft);*/
     }
 
     @Override
@@ -87,48 +72,142 @@ public class Handler implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_RIGHT:
+                rightPressed=true;
                 player.setDirection(Direction.RIGHT);
-                if(!player.hitsBorder())
-                    player.moveRight();
+                if(upPressed){
+                    player.setDirection(Direction.UP_RIGHT);
+                    if(!player.hitsBorder())
+                        player.moveUpRight();
+                }else if(downPressed) {
+                    player.setDirection(Direction.DOWN_RIGHT);
+                    if (!player.hitsBorder())
+                        player.moveDownRight();
+                }else if(leftPressed){
+                    player.setDirection(Direction.NONE);
+                }else {
+                    player.setDirection(Direction.RIGHT);
+                    if (!player.hitsBorder())
+                        player.moveRight();
+                }
                 break;
             case KeyboardEvent.KEY_LEFT:
+                leftPressed=true;
                 player.setDirection(Direction.LEFT);
-                if(!player.hitsBorder())
-                    player.moveLeft();
+                if(upPressed){
+                    player.setDirection(Direction.UP_LEFT);
+                    if(!player.hitsBorder())
+                        player.moveUpLeft();
+                }else if(downPressed){
+                    player.setDirection(Direction.DOWN_LEFT);
+                    if(!player.hitsBorder())
+                        player.moveDownLeft();
+                }else if(rightPressed){
+                    player.setDirection(Direction.NONE);
+                }else {
+                    player.setDirection(Direction.LEFT);
+                    if (!player.hitsBorder())
+                        player.moveLeft();
+                }
                 break;
             case KeyboardEvent.KEY_DOWN:
+                downPressed=true;
                 player.setDirection(Direction.DOWN);
-                if(!player.hitsBorder())
-                    player.moveDown();
+                if(leftPressed){
+                    player.setDirection(Direction.DOWN_LEFT);
+                    if(!player.hitsBorder())
+                        player.moveDownLeft();
+                }else if(rightPressed){
+                    player.setDirection(Direction.DOWN_RIGHT);
+                    if(!player.hitsBorder())
+                        player.moveDownRight();
+                }else if(upPressed){
+                    player.setDirection(Direction.NONE);
+                }else {
+                    player.setDirection(Direction.DOWN);
+                    if (!player.hitsBorder())
+                        player.moveDown();
+                }
                 break;
             case KeyboardEvent.KEY_UP:
+                upPressed=true;
                 player.setDirection(Direction.UP);
-                if(!player.hitsBorder())
-                    player.moveUp();
+                if(rightPressed){
+                    player.setDirection(Direction.UP_RIGHT);
+                    if(!player.hitsBorder())
+                        player.moveUpRight();
+                }else if(leftPressed){
+                    player.setDirection(Direction.UP_LEFT);
+                    if(!player.hitsBorder())
+                        player.moveUpLeft();
+                }else if(downPressed){
+                    player.setDirection(Direction.NONE);
+                }else {
+                    player.setDirection(Direction.UP);
+                    if (!player.hitsBorder())
+                        player.moveUp();
+                }
                 break;
             case KeyboardEvent.KEY_Q:
                 System.exit(1);
                 break;
-            /*case KeyboardEvent.KEY_B:
-                player.moveDiagonalDownRight();
-                break;
-            case KeyboardEvent.KEY_H:
-                player.moveDiagonalUpRight();
-                break;
-            case KeyboardEvent.KEY_F:
-                player.moveDiagonalDownLeft();
-                break;
-            case KeyboardEvent.KEY_V:
-                player.moveDiagonalUpLeft();
-                break;*/
         }
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        player.setDirection(Direction.NONE);
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_RIGHT:
+                rightPressed=false;
+                if(upPressed){
+                    player.setDirection(Direction.UP);
+                    if (!player.hitsBorder())
+                        player.moveUp();
+                }else if(downPressed){
+                    player.setDirection(Direction.DOWN);
+                    if (!player.hitsBorder())
+                        player.moveDown();
+                }
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                leftPressed=false;
+                if(upPressed){
+                    player.setDirection(Direction.UP);
+                    if (!player.hitsBorder())
+                        player.moveUp();
+                }else if(downPressed){
+                    player.setDirection(Direction.DOWN);
+                    if (!player.hitsBorder())
+                        player.moveDown();
+                }
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                downPressed=false;
+                if(leftPressed){
+                    player.setDirection(Direction.LEFT);
+                    if (!player.hitsBorder())
+                        player.moveLeft();
+                }else if(rightPressed){
+                    player.setDirection(Direction.RIGHT);
+                    if (!player.hitsBorder())
+                        player.moveRight();
+                }
+                break;
+            case KeyboardEvent.KEY_UP:
+                upPressed=false;
+                if(leftPressed){
+                    player.setDirection(Direction.LEFT);
+                    if (!player.hitsBorder())
+                        player.moveLeft();
+                }else if(rightPressed){
+                    player.setDirection(Direction.RIGHT);
+                    if (!player.hitsBorder())
+                        player.moveRight();
+                }
+                break;
+        }
 
+        player.setDirection(Direction.NONE);
 
     }
 }

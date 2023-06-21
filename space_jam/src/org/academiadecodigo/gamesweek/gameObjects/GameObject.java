@@ -14,6 +14,7 @@ public abstract class GameObject {
     private double height;
     private Direction direction;
     public static final int STEP_SIZE = 10; //number of pixels it moves per step
+    public static final double DIAGONAL_STEP=Math.sqrt(Math.pow(STEP_SIZE,2)/2);
 
     //CONSTRUCTORS
     public GameObject(Picture picture, Position position, Direction direction){
@@ -25,6 +26,16 @@ public abstract class GameObject {
         this.width=picture.getWidth();
         this.height=picture.getHeight();
     }
+    public GameObject(Picture picture, Position position, double side){
+
+        this.picture=picture;
+        this.position=position;
+        this.direction=null;
+        this.maxPosition = new Position(position.getX()+side, position.getY()+side);
+        this.width=picture.getWidth();
+        this.height=picture.getHeight();
+    }
+
     public GameObject(Position position,Position maxPosition){
         this.position=position;
         this.maxPosition=maxPosition;
@@ -101,9 +112,9 @@ public abstract class GameObject {
         picture.translate(0,-STEP_SIZE);
     }
     public void moveUpRight(){
-        position.translatePosition(STEP_SIZE,-STEP_SIZE);
-        maxPosition.translatePosition(STEP_SIZE,-STEP_SIZE);
-        picture.translate(STEP_SIZE,-STEP_SIZE);
+        position.translatePosition(DIAGONAL_STEP,-DIAGONAL_STEP);
+        maxPosition.translatePosition(DIAGONAL_STEP,-DIAGONAL_STEP);
+        picture.translate(DIAGONAL_STEP,-DIAGONAL_STEP);
     }
     public void moveRight(){
         position.translatePosition(STEP_SIZE,0);
@@ -111,9 +122,9 @@ public abstract class GameObject {
         picture.translate(STEP_SIZE,0);
     }
     public void moveDownRight(){
-        position.translatePosition(STEP_SIZE,STEP_SIZE);
-        maxPosition.translatePosition(STEP_SIZE,STEP_SIZE);
-        picture.translate(STEP_SIZE,STEP_SIZE);
+        position.translatePosition(DIAGONAL_STEP,DIAGONAL_STEP);
+        maxPosition.translatePosition(DIAGONAL_STEP,DIAGONAL_STEP);
+        picture.translate(DIAGONAL_STEP,DIAGONAL_STEP);
     }
     public void moveDown(){
         position.translatePosition(0,STEP_SIZE);
@@ -121,9 +132,9 @@ public abstract class GameObject {
         picture.translate(0,STEP_SIZE);
     }
     public void moveDownLeft(){
-        position.translatePosition(-STEP_SIZE,STEP_SIZE);
-        maxPosition.translatePosition(-STEP_SIZE,STEP_SIZE);
-        picture.translate(-STEP_SIZE,STEP_SIZE);
+        position.translatePosition(-DIAGONAL_STEP,DIAGONAL_STEP);
+        maxPosition.translatePosition(-DIAGONAL_STEP,DIAGONAL_STEP);
+        picture.translate(-DIAGONAL_STEP,DIAGONAL_STEP);
     }
     public void moveLeft(){
         position.translatePosition(-STEP_SIZE,0);
@@ -131,13 +142,13 @@ public abstract class GameObject {
         picture.translate(-STEP_SIZE,0);
     }
     public void moveUpLeft(){
-        position.translatePosition(-STEP_SIZE,-STEP_SIZE);
-        maxPosition.translatePosition(-STEP_SIZE,-STEP_SIZE);
-        picture.translate(-STEP_SIZE,-STEP_SIZE);
+        position.translatePosition(-DIAGONAL_STEP,-DIAGONAL_STEP);
+        maxPosition.translatePosition(-DIAGONAL_STEP,-DIAGONAL_STEP);
+        picture.translate(-DIAGONAL_STEP,-DIAGONAL_STEP);
     }
 
     //Check direction on which to move object
-    public void move(Position ballPosition){
+    public void move(){
 
         switch (getDirection()){
             case UP:

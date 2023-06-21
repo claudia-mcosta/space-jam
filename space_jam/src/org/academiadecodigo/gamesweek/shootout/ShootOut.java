@@ -1,7 +1,7 @@
 package org.academiadecodigo.gamesweek.shootout;
 
 import org.academiadecodigo.gamesweek.Game;
-import org.academiadecodigo.gamesweek.Position;
+import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.simplegraphics.graphics.Canvas;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -32,7 +32,7 @@ public class ShootOut {
         this.canvas = Canvas.getInstance();
         this.background = new Picture(Game.PADDING, Game.PADDING,"resources/bleachers.jpeg");
         this.hoop = new Hoop((double) 1250 / 2, (double) 750 / 2); // Replace with new Hoop(Game.screenWidth / 2, Game.screen.Height / 2);
-        this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball.png");
+        this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball_shootout.png");
         this.player = new Player();
         this.score = 0;
     }
