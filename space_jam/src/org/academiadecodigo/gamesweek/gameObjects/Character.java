@@ -22,7 +22,5 @@ public abstract class Character extends GameObject{
             hasBall = false;
             ball.setFollowing(null);
         }
-
     }
-
 }

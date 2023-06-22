@@ -140,7 +140,6 @@ public class Game {
             }
             else {
                 moveMonstars();
-                /*player.tryStealBall(ball);*/
                 if(ball.isFollowing()){
                     ball.moveBall();
                 }
