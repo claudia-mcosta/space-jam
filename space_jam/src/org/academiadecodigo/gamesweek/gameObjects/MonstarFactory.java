@@ -2,6 +2,7 @@ package org.academiadecodigo.gamesweek.gameObjects;
 
 
 import org.academiadecodigo.gamesweek.Direction;
+import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 

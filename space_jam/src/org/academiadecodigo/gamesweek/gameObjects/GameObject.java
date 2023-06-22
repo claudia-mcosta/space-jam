@@ -3,6 +3,7 @@ package org.academiadecodigo.gamesweek.gameObjects;
 import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class GameObject {
@@ -16,6 +17,7 @@ public abstract class GameObject {
     public static final int STEP_SIZE = 10; //number of pixels it moves per step
     public static final double DIAGONAL_STEP=Math.sqrt(Math.pow(STEP_SIZE,2)/2);
 
+
     //CONSTRUCTORS
     public GameObject(Picture picture, Position position, Direction direction){
 
@@ -26,12 +28,13 @@ public abstract class GameObject {
         this.width=picture.getWidth();
         this.height=picture.getHeight();
     }
-    public GameObject(Picture picture, Position position, double side){
 
+    public GameObject(Picture picture){
+
+        this.position=new Position(picture.getX(),picture.getY());
+        this.maxPosition=new Position(picture.getMaxX(),picture.getMaxY());
         this.picture=picture;
-        this.position=position;
         this.direction=null;
-        this.maxPosition = new Position(position.getX()+side, position.getY()+side);
         this.width=picture.getWidth();
         this.height=picture.getHeight();
     }
@@ -141,6 +144,7 @@ public abstract class GameObject {
         position.translatePosition(-STEP_SIZE,0);
         maxPosition.translatePosition(-STEP_SIZE,0);
         picture.translate(-STEP_SIZE,0);
+
     }
     public void moveUpLeft(){
         position.translatePosition(-DIAGONAL_STEP,-DIAGONAL_STEP);
@@ -179,6 +183,10 @@ public abstract class GameObject {
             default:
                 break;
         }
+
+            /*System.out.println(position.toString());
+            System.out.println("Max Position- "+maxPosition.toString());
+            System.out.println("Picture - X: "+picture.getX()+" Y: "+picture.getY()+"|| Max X: "+picture.getMaxX()+" Max Y: "+picture.getMaxY());*/
     }
 
     //Draws object - GFX
@@ -197,6 +205,8 @@ public abstract class GameObject {
     public Position getPosition(){return position;}
     public Position getMaxPosition(){return maxPosition;}
     public void setPosition(Position position){this.position = position;}
+    public double getWidth(){return width;}
+    public double getHeight(){return  height;}
 
     @Override
     public String toString() {

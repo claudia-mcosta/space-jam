@@ -5,6 +5,7 @@ import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.gamesweek.shootout.Hoop;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Monstar extends Character {
@@ -57,22 +58,24 @@ public class Monstar extends Character {
 
             Direction oppositeDirection = Direction.RIGHT;
 
-            if(!ball){
+            /*if(!ball){
                 oppositeDirection = findObjectOppositeDirection(ballObject);
             }else{
                 oppositeDirection = findObjectOppositeDirection(hoopObject);
             }
-            newDirection = oppositeDirection.oppositeDirection()[(int) (Math.random() * 3)];
+            newDirection = oppositeDirection.oppositeDirection()[(int) (Math.random() * 3)];*/
 
-            //newDirection = Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
+            newDirection = Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
 
             // but we do not want to go back (or away from player)
-            /*while(newDirection.isOpposite(getDirection())) {
+            while(newDirection.isOpposite(getDirection())) {
                 newDirection = Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
-            }*/
+            }
         }
         setDirection(newDirection);
     }
+
+
 
     //GETTERS & SETTERS
     public int getCurrentSteps(){

@@ -1,9 +1,12 @@
 package org.academiadecodigo.gamesweek;
 
 import org.academiadecodigo.gamesweek.gameObjects.*;
+import org.academiadecodigo.gamesweek.gameObjects.Character;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.gamesweek.shootout.InputHandler;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import static org.academiadecodigo.gamesweek.shootout.ShootOut.shoot;
@@ -73,22 +76,30 @@ public class Game {
 
             monstar[i].move();
             monstar[i].takeAStep();
-            monstar[i].tryStealBall(ball);
+            monstar[i].ballCollision(ball);
+            //monstar[i].tryStealBall(ball);
 
         }
     }
 
+
+
     //Initializes all the objects essential to the game
     public void init(){
 
+        /*Rectangle backGround = new Rectangle(PADDING,PADDING,1250,750);
+        backGround.setColor(Color.GREEN);
+        backGround.draw();*/
         backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
+
+        System.out.println(backgroundImage.getX()+backgroundImage.getWidth());
 
         double ballX = StartingPositions.POSITION_6.getPosition().getX();
         double ballY = StartingPositions.POSITION_6.getPosition().getY();
-        double innerSquareSide = Math.sqrt(Math.pow(BALL_SIZE,2)/2);
-        Position innerSquarePosition = new Position(ballX+(BALL_SIZE-innerSquareSide)/2,ballY+(BALL_SIZE-innerSquareSide)/2);
+        /*double innerSquareSide = Math.sqrt(Math.pow(BALL_SIZE,2)/2);
+        Position innerSquarePosition = new Position(ballX+(BALL_SIZE-innerSquareSide)/2,ballY+(BALL_SIZE-innerSquareSide)/2);*/
 
-        ball = new Ball(new Picture(ballX, ballY,"resources/ball.png"),innerSquarePosition,innerSquareSide);
+        ball = new Ball(new Picture(ballX, ballY,"resources/ball.png"));
 
         double MJX = StartingPositions.POSITION_7.getPosition().getX();
         double MJY = StartingPositions.POSITION_7.getPosition().getY();
@@ -151,9 +162,6 @@ public class Game {
             }
             else {
                 moveMonstars();
-                if(ball.isFollowing()){
-                    ball.moveBall();
-                }
             }
         }
     }

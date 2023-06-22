@@ -15,7 +15,6 @@ public class MichaelJordan extends Character {
     private Aim aim;
     private ShootOut shootOut;
     private int numShots;
-    private final static double PLAYER_MOVEMENT=4;
 
     public MichaelJordan(Picture picture, Position position, Direction direction){
         super(picture, position,direction);
@@ -67,47 +66,6 @@ public class MichaelJordan extends Character {
 
         shot = aim.getPos();
 
-    }
-
-    public void moveUp(){
-        this.getPosition().translatePosition(0,-PLAYER_MOVEMENT);
-        this.getMaxPosition().translatePosition(0,-PLAYER_MOVEMENT);
-        this.getPicture().translate(0,-PLAYER_MOVEMENT);
-    }
-    public void moveUpRight(){
-        this.getPosition().translatePosition(PLAYER_MOVEMENT,-PLAYER_MOVEMENT);
-        this.getMaxPosition().translatePosition(PLAYER_MOVEMENT,-PLAYER_MOVEMENT);
-        this.getPicture().translate(PLAYER_MOVEMENT,-PLAYER_MOVEMENT);
-    }
-    public void moveRight(){
-        this.getPosition().translatePosition(PLAYER_MOVEMENT,0);
-        this.getMaxPosition().translatePosition(PLAYER_MOVEMENT,0);
-        this.getPicture().translate(PLAYER_MOVEMENT,0);
-    }
-    public void moveDownRight(){
-        this.getPosition().translatePosition(PLAYER_MOVEMENT,PLAYER_MOVEMENT);
-        this.getMaxPosition().translatePosition(PLAYER_MOVEMENT,PLAYER_MOVEMENT);
-        this.getPicture().translate(PLAYER_MOVEMENT,PLAYER_MOVEMENT);
-    }
-    public void moveDown(){
-        this.getPosition().translatePosition(0,PLAYER_MOVEMENT);
-        this.getMaxPosition().translatePosition(0,PLAYER_MOVEMENT);
-        this.getPicture().translate(0,PLAYER_MOVEMENT);
-    }
-    public void moveDownLeft(){
-        this.getPosition().translatePosition(-PLAYER_MOVEMENT,PLAYER_MOVEMENT);
-        this.getMaxPosition().translatePosition(-PLAYER_MOVEMENT,PLAYER_MOVEMENT);
-        this.getPicture().translate(-PLAYER_MOVEMENT,PLAYER_MOVEMENT);
-    }
-    public void moveLeft(){
-        this.getPosition().translatePosition(-PLAYER_MOVEMENT,0);
-        this.getMaxPosition().translatePosition(-PLAYER_MOVEMENT,0);
-        this.getPicture().translate(-PLAYER_MOVEMENT,0);
-    }
-    public void moveUpLeft(){
-        this.getPosition().translatePosition(-PLAYER_MOVEMENT,-PLAYER_MOVEMENT);
-        this.getMaxPosition().translatePosition(-PLAYER_MOVEMENT,-PLAYER_MOVEMENT);
-        this.getPicture().translate(-PLAYER_MOVEMENT,-PLAYER_MOVEMENT);
     }
 
 
