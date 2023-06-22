@@ -23,6 +23,7 @@ public class Game {
     private MichaelJordan player;
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
+    private InputHandler inputHandler;
 
 
     //public boolean playerHasBall = false;
@@ -36,6 +37,10 @@ public class Game {
         this.screenHeight=height;
         this.delay=delay;
         this.numAdversaries = numAdversaries;
+    }
+
+    public InputHandler getInputHandler() {
+        return inputHandler;
     }
 
     public MichaelJordan getPlayer(){return player;}
@@ -81,21 +86,24 @@ public class Game {
     //Initializes all the objects essential to the game
     public void init(){
 
-        backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
+        backgroundImage = new Picture(PADDING,PADDING,"space_jam/resources/pixelCourt.png");
 
         double ballX = StartingPositions.POSITION_6.getPosition().getX();
         double ballY = StartingPositions.POSITION_6.getPosition().getY();
         double innerSquareSide = Math.sqrt(Math.pow(BALL_SIZE,2)/2);
         Position innerSquarePosition = new Position(ballX+(BALL_SIZE-innerSquareSide)/2,ballY+(BALL_SIZE-innerSquareSide)/2);
 
-        ball = new Ball(new Picture(ballX, ballY,"resources/ball.png"),innerSquarePosition,innerSquareSide);
+        ball = new Ball(new Picture(ballX, ballY,"space_jam/resources/ball.png"),innerSquarePosition,innerSquareSide);
 
         double MJX = StartingPositions.POSITION_7.getPosition().getX();
         double MJY = StartingPositions.POSITION_7.getPosition().getY();
 
-        this.player = new MichaelJordan(new Picture(MJX,MJY,"resources/MJ_small.png"),StartingPositions.POSITION_7.getPosition(),Direction.RIGHT);
+        this.player = new MichaelJordan(new Picture(MJX,MJY,"space_jam/resources/MJ_small.png"),StartingPositions.POSITION_7.getPosition(),Direction.RIGHT);
 
-        new InputHandler(player,ball);
+        this.inputHandler = new InputHandler(player,ball);
+
+        inputHandler.createKeyPressedEventsGame();
+        inputHandler.createKeyReleasedEvents();
 
         int hoopSize = 40;
 
@@ -134,6 +142,7 @@ public class Game {
             monstar[i].getPicture().delete();
         }
         backgroundImage.delete();
+        inputHandler.removeKeyPressedEventsGame();
     }
 
     //Start and run game

@@ -27,14 +27,17 @@ public class ShootOut {
     private MichaelJordan michaelJordan;
     private Text textScore;
     private Game field;
+    private InputHandler inputHandler;
+
 
     public ShootOut(Game field) {
-        this.background = new Picture(Game.PADDING, Game.PADDING,"resources/bleachers.jpeg");
+        this.background = new Picture(Game.PADDING, Game.PADDING,"space_jam/resources/bleachers.jpeg");
         this.hoop = new Hoop((double) 1250 / 2, (double) 750 / 2); // Replace with new Hoop(Game.screenWidth / 2, Game.screen.Height / 2);
-        this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball_shootout.png");
+        this.ball = new Picture(Game.PADDING, Game.PADDING,"space_jam/resources/ball_shootout.png");
         this.michaelJordan = field.getPlayer();
         this.score = 0;
         this.field = field;
+        this.inputHandler = field.getInputHandler();
     }
 
     public void init(){
@@ -46,6 +49,7 @@ public class ShootOut {
          * frame.pack();
          * frame.setVisible(true);
          */
+
 
         // Reposition, resize and show background image (change 1250 and 750 to Game.getWidth() and Game.getHeight())
         background.translate((double) (1250 - background.getWidth()) / 2, (double) (750 - background.getHeight()) / 2);
@@ -68,6 +72,8 @@ public class ShootOut {
         this.textScore = new Text(75, 75, score + " POINTS");
         textScore.grow(20,20);
         textScore.draw();
+
+        inputHandler.createKeyPressedEventsShootOut();
 
     }
 
@@ -108,7 +114,6 @@ public class ShootOut {
         ShootOut shootOut = new ShootOut(field);
         shootOut.init();
         shootOut.start();
-
     }
 
     public void clearShootOut() {
@@ -116,6 +121,6 @@ public class ShootOut {
         hoop.delete();
         ball.delete();
         michaelJordan.getAim().clearAim();
+        inputHandler.removeKeyPressedEventsShootOut();
     }
-
 }

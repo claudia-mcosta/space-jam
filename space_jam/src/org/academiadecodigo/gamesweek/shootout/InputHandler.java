@@ -26,6 +26,8 @@ public class InputHandler implements KeyboardHandler {
     private boolean rightPressed=false;
     private boolean downPressed=false;
 
+    private ShootOut shootOut;
+
 
     public InputHandler(MichaelJordan michaelJordan, Ball ball){
         this.michaelJordan = michaelJordan;
@@ -41,28 +43,51 @@ public class InputHandler implements KeyboardHandler {
         for (int i = 0; i < events.length; i++) {
             events[i] = new KeyboardEvent();
         }
-
-        createKeyPressedEvents();
-        createKeyReleasedEvents();
     }
 
-    private void createKeyPressedEvents() {
-        events[0].setKey(KeyboardEvent.KEY_I);
-        events[1].setKey(KeyboardEvent.KEY_SPACE);
-        events[2].setKey(KeyboardEvent.KEY_ESC);
-        events[3].setKey(KeyboardEvent.KEY_RIGHT);
-        events[4].setKey(KeyboardEvent.KEY_LEFT);
-        events[5].setKey(KeyboardEvent.KEY_UP);
-        events[6].setKey(KeyboardEvent.KEY_DOWN);
-        events[7].setKey(KeyboardEvent.KEY_Q);
+    public void createKeyPressedEventsGame(){
 
-        for(int i = 0; i < events.length; i++){
+        events[0].setKey(KeyboardEvent.KEY_RIGHT);
+        events[1].setKey(KeyboardEvent.KEY_LEFT);
+        events[2].setKey(KeyboardEvent.KEY_UP);
+        events[3].setKey(KeyboardEvent.KEY_DOWN);
+        events[4].setKey(KeyboardEvent.KEY_ESC);
+
+        for(int i = 0; i < 5 ;i++){
             events[i].setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
             keyboard.addEventListener(events[i]);
         }
     }
 
-    private void createKeyReleasedEvents() {
+    public void removeKeyPressedEventsGame(){
+
+            for (int i = 0; i < 5; i++) {
+                keyboard.removeEventListener(events[i]);
+            }
+    }
+
+    public void createKeyPressedEventsShootOut(){
+
+        events[5].setKey(KeyboardEvent.KEY_I);
+        events[6].setKey(KeyboardEvent.KEY_Q);
+         events[7].setKey(KeyboardEvent.KEY_SPACE);
+
+        for(int i = 5; i < 8;i++){
+            events[i].setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboard.addEventListener(events[i]);
+        }
+    }
+
+    public void removeKeyPressedEventsShootOut()
+    {
+            for (int i = 5; i < 8; i++)
+            {
+                keyboard.removeEventListener(events[i]);
+            }
+    }
+
+
+    public void createKeyReleasedEvents() {
         events[8].setKey(KeyboardEvent.KEY_RIGHT);
         events[9].setKey(KeyboardEvent.KEY_LEFT);
         events[10].setKey(KeyboardEvent.KEY_UP);
@@ -77,6 +102,7 @@ public class InputHandler implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent){
+
         switch (keyboardEvent.getKey()){
 
             case KeyboardEvent.KEY_I:
