@@ -33,7 +33,7 @@ public class Aim {
      */
 
     private Picture aim; // Rectangle aim;
-    private int aimSize; // = Game.SHOOTOUT_CELL_SIZE * 5;
+    private int aimSize = Game.SHOOTOUT_CELL_SIZE * 5;
     private Position pos;
     private Color color = Color.BLUE;
     private Rectangle aimBar;
@@ -60,7 +60,6 @@ public class Aim {
         // Set aim starting position (currently starting at left boundary)
         this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
         this.aim = new Picture(pos.getX(), pos.getY(), "resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
-        this.aimSize = aim.getWidth();
         this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(), aimSize);
 
         /* To use if aim is a square and not a picture
