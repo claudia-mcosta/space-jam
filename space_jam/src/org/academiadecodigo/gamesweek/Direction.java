@@ -19,6 +19,7 @@ public enum Direction {
         return false;
     }
 
+
     //TO BE REVISED
     public Direction[] oppositeDirection() {
 

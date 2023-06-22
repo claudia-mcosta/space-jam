@@ -23,4 +23,8 @@ public abstract class Character extends GameObject{
             ball.setFollowing(null);
         }
     }
+
+    public boolean hasBall(){
+        return hasBall;
+    }
 }

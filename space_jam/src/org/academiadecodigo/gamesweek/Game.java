@@ -18,7 +18,8 @@ public class Game {
     private Monstar[] monstar;
     private int numAdversaries; //5 max
     private Ball ball;
-    private HoopPosition hoop;
+    private HoopPosition rightHoop;
+    private HoopPosition leftHoop;
     private MichaelJordan player;
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
@@ -49,17 +50,26 @@ public class Game {
         }
     }
 
+    private boolean monstarBall(){
+
+        for(Monstar monstar:monstar){
+            if(monstar.hasBall())
+                return true;
+        }
+        return false;
+    }
+
     //Checks the conditions for the Monstars to move
     private void moveMonstars(){
 
         for (int i=0; i<numAdversaries; i++){
             if(monstar[i].getCurrentSteps()>Monstar.MAX_STEPS) {
-                monstar[i].chooseDirection();
+                monstar[i].chooseDirection(monstarBall(),ball, leftHoop);
                 monstar[i].resetCurrentSteps();
             }
 
             while (monstar[i].hitsBorder())
-                monstar[i].chooseDirection();
+                monstar[i].chooseDirection(monstarBall(),ball, leftHoop);
 
             monstar[i].move();
             monstar[i].takeAStep();
@@ -90,7 +100,8 @@ public class Game {
         int hoopSize = 40;
 
         Position hoopMaxPosition = new Position(StartingPositions.POSITION_8.getPosition().getX()+hoopSize,StartingPositions.POSITION_8.getPosition().getY()+hoopSize);
-        hoop = new HoopPosition(StartingPositions.POSITION_8.getPosition(),hoopMaxPosition);
+        rightHoop = new HoopPosition(StartingPositions.POSITION_8.getPosition(),hoopMaxPosition);
+        leftHoop = new HoopPosition(StartingPositions.POSITION_11.getPosition(),hoopMaxPosition);
 
         createAdversaries();
 
@@ -133,7 +144,7 @@ public class Game {
             Thread.sleep(delay);
 
 
-            if(player.overlaps(hoop)){
+            if(player.overlaps(rightHoop)){
                 //Go to shootout
                 clearField();
                 shoot(this);

@@ -13,7 +13,8 @@ public enum StartingPositions {
     POSITION_7(Game.screenWidth/3,Game.screenHeight/2), //MJ
     POSITION_8(1120,360), //HoopField
     POSITION_9(Game.PADDING + Game.SHOOTOUT_CELL_SIZE, Game.PADDING +Game.screenHeight/2), //Shootout Aim
-    POSITION_10(Game.screenWidth - (Game.SHOOTOUT_CELL_SIZE * 2), Game.PADDING +Game.screenHeight/2); //Shootout Aim
+    POSITION_10(Game.screenWidth - (Game.SHOOTOUT_CELL_SIZE * 2), Game.PADDING +Game.screenHeight/2), //Shootout Aim
+    POSITION_11(Game.SHOOTOUT_CELL_SIZE * 2, Game.PADDING +Game.screenHeight/2);
 
     private Position position;
 
