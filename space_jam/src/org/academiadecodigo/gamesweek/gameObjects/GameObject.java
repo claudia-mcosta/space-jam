@@ -5,7 +5,6 @@ import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-
 public abstract class GameObject {
 
     private Picture picture;
