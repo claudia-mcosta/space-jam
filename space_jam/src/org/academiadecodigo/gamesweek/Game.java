@@ -3,6 +3,7 @@ package org.academiadecodigo.gamesweek;
 import org.academiadecodigo.gamesweek.gameObjects.*;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
+import org.academiadecodigo.gamesweek.shootout.InputHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import static org.academiadecodigo.gamesweek.shootout.ShootOut.shoot;
@@ -35,6 +36,8 @@ public class Game {
         this.delay=delay;
         this.numAdversaries = numAdversaries;
     }
+
+    public MichaelJordan getPlayer(){return player;}
 
     //Create the Monstars
     private void createAdversaries(){
@@ -82,7 +85,7 @@ public class Game {
 
         this.player = new MichaelJordan(new Picture(MJX,MJY,"resources/MJ_small.png"),StartingPositions.POSITION_7.getPosition(),Direction.RIGHT);
 
-        new Handler(player,ball);
+        new InputHandler(player,ball);
 
         int hoopSize = 40;
 

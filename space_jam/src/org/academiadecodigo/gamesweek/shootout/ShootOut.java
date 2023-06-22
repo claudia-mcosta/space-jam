@@ -1,8 +1,8 @@
 package org.academiadecodigo.gamesweek.shootout;
 
 import org.academiadecodigo.gamesweek.Game;
+import org.academiadecodigo.gamesweek.gameObjects.MichaelJordan;
 import org.academiadecodigo.gamesweek.positions.Position;
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
@@ -24,7 +24,7 @@ public class ShootOut {
     private Hoop hoop;
     private Picture ball;
     private int score;
-    private Player player;
+    private MichaelJordan michaelJordan;
     private Text textScore;
     private Game field;
 
@@ -32,7 +32,7 @@ public class ShootOut {
         this.background = new Picture(Game.PADDING, Game.PADDING,"resources/bleachers.jpeg");
         this.hoop = new Hoop((double) 1250 / 2, (double) 750 / 2); // Replace with new Hoop(Game.screenWidth / 2, Game.screen.Height / 2);
         this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball_shootout.png");
-        this.player = new Player();
+        this.michaelJordan = field.getPlayer();
         this.score = 0;
         this.field = field;
     }
@@ -72,7 +72,7 @@ public class ShootOut {
     }
 
     public void start() {
-        player.aim(hoop, this);
+        michaelJordan.aim(hoop, this);
     }
 
     public int score(Position shot) {
@@ -115,7 +115,7 @@ public class ShootOut {
         background.delete();
         hoop.delete();
         ball.delete();
-        player.getAim().clearAim();
+        michaelJordan.getAim().clearAim();
     }
 
 }

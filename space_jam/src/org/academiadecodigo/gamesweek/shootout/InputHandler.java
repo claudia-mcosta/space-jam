@@ -1,5 +1,8 @@
 package org.academiadecodigo.gamesweek.shootout;
 
+import org.academiadecodigo.gamesweek.Direction;
+import org.academiadecodigo.gamesweek.gameObjects.Ball;
+import org.academiadecodigo.gamesweek.gameObjects.MichaelJordan;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -15,28 +18,58 @@ public class InputHandler implements KeyboardHandler {
 
     Keyboard keyboard;
     KeyboardEvent[] events;
-    Player player;
+    MichaelJordan michaelJordan;
+    private Ball ball;
+
+    private boolean leftPressed=false;
+    private boolean upPressed=false;
+    private boolean rightPressed=false;
+    private boolean downPressed=false;
 
 
-    public InputHandler(Player player){
-        this.player = player;
+    public InputHandler(MichaelJordan michaelJordan, Ball ball){
+        this.michaelJordan = michaelJordan;
         keyboard = new Keyboard(this);
+        this.ball=ball;
+
+        events = new KeyboardEvent[12];
         createEvents();
     }
 
-    private void createEvents(){
-        events = new KeyboardEvent[3];
+    private void createEvents() {
 
-        for(int i = 0; i < events.length; i++){
+        for (int i = 0; i < events.length; i++) {
             events[i] = new KeyboardEvent();
         }
 
+        createKeyPressedEvents();
+        createKeyReleasedEvents();
+    }
+
+    private void createKeyPressedEvents() {
         events[0].setKey(KeyboardEvent.KEY_I);
         events[1].setKey(KeyboardEvent.KEY_SPACE);
         events[2].setKey(KeyboardEvent.KEY_ESC);
+        events[3].setKey(KeyboardEvent.KEY_RIGHT);
+        events[4].setKey(KeyboardEvent.KEY_LEFT);
+        events[5].setKey(KeyboardEvent.KEY_UP);
+        events[6].setKey(KeyboardEvent.KEY_DOWN);
+        events[7].setKey(KeyboardEvent.KEY_Q);
 
         for(int i = 0; i < events.length; i++){
             events[i].setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboard.addEventListener(events[i]);
+        }
+    }
+
+    private void createKeyReleasedEvents() {
+        events[8].setKey(KeyboardEvent.KEY_RIGHT);
+        events[9].setKey(KeyboardEvent.KEY_LEFT);
+        events[10].setKey(KeyboardEvent.KEY_UP);
+        events[11].setKey(KeyboardEvent.KEY_DOWN);
+
+        for(int i = 8; i < events.length;i++){
+            events[i].setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
             keyboard.addEventListener(events[i]);
         }
     }
@@ -51,17 +84,160 @@ public class InputHandler implements KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_SPACE:
                 // Lock target to shoot
-                player.shoot();
+                michaelJordan.shoot();
                 break;
             case KeyboardEvent.KEY_ESC:
                 // Exit game with ESC key instead of closing window with mouse.
                 System.exit(1);
                 break;
+            case KeyboardEvent.KEY_RIGHT:
+                rightPressed=true;
+                michaelJordan.setDirection(Direction.RIGHT);
+                if(upPressed){
+                    michaelJordan.setDirection(Direction.UP_RIGHT);
+                    if(!michaelJordan.hitsBorder())
+                        michaelJordan.moveUpRight();
+                }else if(downPressed) {
+                    michaelJordan.setDirection(Direction.DOWN_RIGHT);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveDownRight();
+                }else if(leftPressed){
+                    michaelJordan.setDirection(Direction.NONE);
+                }else {
+                    michaelJordan.setDirection(Direction.RIGHT);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveRight();
+                }
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                leftPressed=true;
+                michaelJordan.setDirection(Direction.LEFT);
+                if(upPressed){
+                    michaelJordan.setDirection(Direction.UP_LEFT);
+                    if(!michaelJordan.hitsBorder())
+                        michaelJordan.moveUpLeft();
+                }else if(downPressed){
+                    michaelJordan.setDirection(Direction.DOWN_LEFT);
+                    if(!michaelJordan.hitsBorder())
+                        michaelJordan.moveDownLeft();
+                }else if(rightPressed){
+                    michaelJordan.setDirection(Direction.NONE);
+                }else {
+                    michaelJordan.setDirection(Direction.LEFT);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveLeft();
+                }
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                downPressed=true;
+                michaelJordan.setDirection(Direction.DOWN);
+                if(leftPressed){
+                    michaelJordan.setDirection(Direction.DOWN_LEFT);
+                    if(!michaelJordan.hitsBorder())
+                        michaelJordan.moveDownLeft();
+                }else if(rightPressed){
+                    michaelJordan.setDirection(Direction.DOWN_RIGHT);
+                    if(!michaelJordan.hitsBorder())
+                        michaelJordan.moveDownRight();
+                }else if(upPressed){
+                    michaelJordan.setDirection(Direction.NONE);
+                }else {
+                    michaelJordan.setDirection(Direction.DOWN);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveDown();
+                }
+                break;
+            case KeyboardEvent.KEY_UP:
+                upPressed=true;
+                michaelJordan.setDirection(Direction.UP);
+                if(rightPressed){
+                    michaelJordan.setDirection(Direction.UP_RIGHT);
+                    if(!michaelJordan.hitsBorder())
+                        michaelJordan.moveUpRight();
+                }else if(leftPressed){
+                    michaelJordan.setDirection(Direction.UP_LEFT);
+                    if(!michaelJordan.hitsBorder())
+                        michaelJordan.moveUpLeft();
+                }else if(downPressed){
+                    michaelJordan.setDirection(Direction.NONE);
+                }else {
+                    michaelJordan.setDirection(Direction.UP);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveUp();
+                }
+                break;
+            case KeyboardEvent.KEY_Q:
+                System.exit(1);
+                break;
         }
+
+        michaelJordan.tryStealBall(ball);
+        if(ball.isFollowing()){
+            ball.moveBall();
+        }
+
     }
 
 
-    public void keyReleased(KeyboardEvent keyboardEvent){
+    public void keyReleased (KeyboardEvent keyboardEvent){
+
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_RIGHT:
+                rightPressed = false;
+                if (upPressed) {
+                    michaelJordan.setDirection(Direction.UP);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveUp();
+                } else if (downPressed) {
+                    michaelJordan.setDirection(Direction.DOWN);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveDown();
+                }
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                leftPressed = false;
+                if (upPressed) {
+                    michaelJordan.setDirection(Direction.UP);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveUp();
+                } else if (downPressed) {
+                    michaelJordan.setDirection(Direction.DOWN);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveDown();
+                }
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                downPressed = false;
+                if (leftPressed) {
+                    michaelJordan.setDirection(Direction.LEFT);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveLeft();
+                } else if (rightPressed) {
+                    michaelJordan.setDirection(Direction.RIGHT);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveRight();
+                }
+                break;
+            case KeyboardEvent.KEY_UP:
+                upPressed = false;
+                if (leftPressed) {
+                    michaelJordan.setDirection(Direction.LEFT);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveLeft();
+                } else if (rightPressed) {
+                    michaelJordan.setDirection(Direction.RIGHT);
+                    if (!michaelJordan.hitsBorder())
+                        michaelJordan.moveRight();
+                }
+                break;
+        }
+
+        michaelJordan.tryStealBall(ball);
+        if(ball.isFollowing()){
+            ball.moveBall();
+        }
+
+        michaelJordan.setDirection(Direction.NONE);
 
     }
 
