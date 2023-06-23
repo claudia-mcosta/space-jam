@@ -57,24 +57,25 @@ public abstract class Character extends GameObject{
     }
 
 
-    /*public void reCenter(StartingPositions position, double width, double height){
-        double currentX = this.getPicture().getX();
-        double currentY = this.getPicture().getY();
+    public void reCenter(StartingPositions position, double width, double height){
+        //double pictureX = this.getPicture().getX();
+        //double pictureY = this.getPicture().getY();
         double currentX = getPosition().getX();
         double currentY = getPosition().getY();
-        double currentMaxX = getMaxPosition().getX();
-        double currentMaxY = getMaxPosition().getY();
+        double currentMaxX = currentX+width;
+        double currentMaxY = currentY+height;
 
+        //double pictureFinalX = position.getPosition().getX();
+        //double pictureFinalY = position.getPosition().getY();
         double finalX = position.getPosition().getX();
         double finalY = position.getPosition().getY();
-        double finalCurrentX = StartingPositions.POSITION_12.getPosition().getX();
-        double finalCurrentY = 385;
-        //double finalCenterY = StartingPositions.POSITION_12.getPosition().getY();
+        double finalMaxX = finalX+width;
+        double finalMaxY = finalY+height;
 
         this.getPicture().translate(finalX-currentX,finalY-currentY);
-        //this.getPosition().translatePosition(currentX-finalX,currentY-finalY);
-        center.translatePosition(finalCenterX-currentCenterX,finalCenterY-currentCenterY);
-    }*/
+        this.getPosition().translatePosition(finalX-currentX,finalY-currentY);
+        this.getMaxPosition().translatePosition(finalMaxX-currentMaxX,finalMaxY-currentMaxY);
+    }
 
     public boolean hasBall(){
         return hasBall;

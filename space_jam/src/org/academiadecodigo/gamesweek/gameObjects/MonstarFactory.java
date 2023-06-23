@@ -13,7 +13,7 @@ public class MonstarFactory {
         Picture picture = new Picture(0,0,"resources/monstar"+(i+1)+".png");
         Direction direction = Direction.values()[(int)(Math.random()*Direction.values().length)];
 
-        Monstar monstar = new Monstar(picture, StartingPositions.values()[i+1],direction);
+        Monstar monstar = new Monstar(picture, StartingPositions.POSITION_0,direction);
 
         return monstar;
     }

@@ -33,7 +33,7 @@ public class Ball extends GameObject {
         double finalX = StartingPositions.POSITION_6.getPosition().getX();
         double finalY = StartingPositions.POSITION_6.getPosition().getY();
         double finalCenterX = StartingPositions.POSITION_12.getPosition().getX();
-        double finalCenterY = 385;
+        double finalCenterY = StartingPositions.POSITION_12.getPosition().getY();
         //double finalCenterY = StartingPositions.POSITION_12.getPosition().getY();
 
         this.getPicture().translate(finalX-currentX,finalY-currentY);

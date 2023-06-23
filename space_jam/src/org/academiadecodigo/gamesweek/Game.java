@@ -116,17 +116,25 @@ public class Game {
     //Draws all the pictures on canvas
     public void initDraw(){
         backgroundImage.draw();
+        ball.reCenter();
         ball.draw();
-        player.draw();
-        player.translateFrom(player.getPosition(), StartingPositions.POSITION_7.getPosition());
-        player.setPosition(StartingPositions.POSITION_7.getPosition());
 
+        player.reCenter(StartingPositions.POSITION_7,player.getWidth(),player.getHeight());
+        for(int i=0; i<monstar.length;i++){
+            monstar[i].reCenter(StartingPositions.values()[i+1],monstar[i].getWidth(),monstar[i].getHeight());
+        }
+        player.draw();
+        //player.translateFrom(player.getPosition(), StartingPositions.POSITION_7.getPosition());
+        //player.setPosition(new Position (StartingPositions.POSITION_7));
+        //Max position?
 
         for(int i=0; i<monstar.length;i++){
-            Position picturePosition = new Position(monstar[i].getPicture().getX(),monstar[i].getPicture().getY());
+            //Position picturePosition = new Position(monstar[i].getPicture().getX(),monstar[i].getPicture().getY());
+            monstar[i].reCenter(StartingPositions.values()[i+1],monstar[i].getWidth(),monstar[i].getHeight());
             monstar[i].draw();
-            monstar[i].translateFrom(picturePosition,StartingPositions.values()[i+1].getPosition());
-            monstar[i].setPosition(StartingPositions.values()[i+1].getPosition());
+            //monstar[i].translateFrom(picturePosition,StartingPositions.values()[i+1].getPosition());
+            //monstar[i].setPosition(new Position(StartingPositions.values()[i+1]));
+            //Max position?
 
         }
     }
@@ -151,11 +159,14 @@ public class Game {
 
             if(player.overlaps(rightHoop)){
                 //Go to shootout
-                clearField();
-                shoot(this);
+
+                initDraw();
+
+                //clearField();
+                //shoot(this);
             }
             else {
-                //moveMonstars();
+                moveMonstars();
             }
         }
     }
