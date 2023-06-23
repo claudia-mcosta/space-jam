@@ -12,6 +12,7 @@ public abstract class Character extends GameObject{
 
     public Character(Picture picture, StartingPositions position, Direction direction){
         super(picture,position,direction);
+
     }
 
     public boolean characterCollision(Character character){
@@ -29,6 +30,7 @@ public abstract class Character extends GameObject{
                 r1x <= r2x + r2w &&    // r1 left edge past r2 right
                 r1y + r1h >= r2y &&    // r1 top edge past r2 bottom
                 r1y <= r2y + r2h) {    // r1 bottom edge past r2 top
+
             return true;
         }
         return false;

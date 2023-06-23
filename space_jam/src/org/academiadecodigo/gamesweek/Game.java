@@ -56,6 +56,7 @@ public class Game {
         for(int i=0; i<numAdversaries;i++){
             monstar[i] = MonstarFactory.createMonstar(i);
         }
+        player.setMonstars(monstar);
     }
 
     private boolean monstarBall(){
@@ -96,7 +97,7 @@ public class Game {
         ball = new Ball(new Picture(ballPosition.getX(), ballPosition.getY(),"resources/ball.png"));
 
         Position MJPosition = new Position(StartingPositions.POSITION_7);
-        this.player = new MichaelJordan(new Picture(MJPosition.getX(), MJPosition.getY(),"resources/MJ_small.png"),StartingPositions.POSITION_7,Direction.RIGHT);
+        this.player = new MichaelJordan(new Picture(MJPosition.getX(), MJPosition.getY(),"resources/MJ_small.png"),StartingPositions.POSITION_7,Direction.RIGHT, monstar);
 
         this.inputHandler = new InputHandler(player,ball);
 

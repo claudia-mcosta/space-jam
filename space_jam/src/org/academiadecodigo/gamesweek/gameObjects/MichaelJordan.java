@@ -15,10 +15,25 @@ public class MichaelJordan extends Character {
     private Aim aim;
     private ShootOut shootOut;
     private int numShots;
+    private Monstar[] monstars;
+    private final double PLAYER_MOVEMENT = 4;
+    private final double PLAYER_DIAGONAL = Math.sqrt(Math.pow(PLAYER_MOVEMENT,2)/2);
 
-    public MichaelJordan(Picture picture, StartingPositions position, Direction direction){
+    public MichaelJordan(Picture picture, StartingPositions position, Direction direction, Monstar[] monstars){
         super(picture, position,direction);
         picture.grow(12.5,12.5);
+
+        this.monstars=monstars;
+    }
+
+    public boolean hasCollisions(){
+
+        for(int i=0;i<monstars.length;i++){
+            if(this.hitsBorder() /*|| this.characterCollision(monstars[i])*/){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Aim getAim() {
@@ -62,10 +77,57 @@ public class MichaelJordan extends Character {
         shootOut.score(shot);
     }
 
+    //Move object in a direction - POS & GFX
+    public void moveUp(){
+        this.getPosition().translatePosition(0,-PLAYER_MOVEMENT);
+        this.getMaxPosition().translatePosition(0,-PLAYER_MOVEMENT);
+        this.getPicture().translate(0,-PLAYER_MOVEMENT);
+    }
+    public void moveUpRight(){
+        this.getPosition().translatePosition(PLAYER_DIAGONAL,-PLAYER_DIAGONAL);
+        this.getMaxPosition().translatePosition(PLAYER_DIAGONAL,-PLAYER_DIAGONAL);
+        this.getPicture().translate(PLAYER_DIAGONAL,-PLAYER_DIAGONAL);
+    }
+    public void moveRight(){
+        this.getPosition().translatePosition(PLAYER_MOVEMENT,0);
+        this.getMaxPosition().translatePosition(PLAYER_MOVEMENT,0);
+        this.getPicture().translate(PLAYER_MOVEMENT,0);
+    }
+    public void moveDownRight(){
+        this.getPosition().translatePosition(PLAYER_DIAGONAL,PLAYER_DIAGONAL);
+        this.getMaxPosition().translatePosition(PLAYER_DIAGONAL,PLAYER_DIAGONAL);
+        this.getPicture().translate(PLAYER_DIAGONAL,PLAYER_DIAGONAL);
+    }
+    public void moveDown(){
+        this.getPosition().translatePosition(0,PLAYER_MOVEMENT);
+        this.getMaxPosition().translatePosition(0,PLAYER_MOVEMENT);
+        this.getPicture().translate(0,PLAYER_MOVEMENT);
+    }
+    public void moveDownLeft(){
+        this.getPosition().translatePosition(-PLAYER_DIAGONAL,PLAYER_DIAGONAL);
+        this.getMaxPosition().translatePosition(-PLAYER_DIAGONAL,PLAYER_DIAGONAL);
+        this.getPicture().translate(-PLAYER_DIAGONAL,PLAYER_DIAGONAL);
+    }
+    public void moveLeft(){
+        this.getPosition().translatePosition(-PLAYER_MOVEMENT,0);
+        this.getMaxPosition().translatePosition(-PLAYER_MOVEMENT,0);
+        this.getPicture().translate(-PLAYER_MOVEMENT,0);
+
+    }
+    public void moveUpLeft(){
+        this.getPosition().translatePosition(-PLAYER_DIAGONAL,-PLAYER_DIAGONAL);
+        this.getMaxPosition().translatePosition(-PLAYER_DIAGONAL,-PLAYER_DIAGONAL);
+        this.getPicture().translate(-PLAYER_DIAGONAL,-PLAYER_DIAGONAL);
+    }
+
     public void shoot() {
 
         shot = aim.getPos();
 
+    }
+
+    public void setMonstars(Monstar[] monstars){
+        this.monstars=monstars;
     }
 
 

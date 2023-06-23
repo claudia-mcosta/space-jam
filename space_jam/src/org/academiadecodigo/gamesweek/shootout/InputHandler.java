@@ -121,17 +121,17 @@ public class InputHandler implements KeyboardHandler {
                 michaelJordan.setDirection(Direction.RIGHT);
                 if(upPressed){
                     michaelJordan.setDirection(Direction.UP_RIGHT);
-                    if(!michaelJordan.hitsBorder())
+                    if(!michaelJordan.hasCollisions())
                         michaelJordan.moveUpRight();
                 }else if(downPressed) {
                     michaelJordan.setDirection(Direction.DOWN_RIGHT);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveDownRight();
                 }else if(leftPressed){
                     michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.RIGHT);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveRight();
                 }
                 break;
@@ -140,17 +140,17 @@ public class InputHandler implements KeyboardHandler {
                 michaelJordan.setDirection(Direction.LEFT);
                 if(upPressed){
                     michaelJordan.setDirection(Direction.UP_LEFT);
-                    if(!michaelJordan.hitsBorder())
+                    if(!michaelJordan.hasCollisions())
                         michaelJordan.moveUpLeft();
                 }else if(downPressed){
                     michaelJordan.setDirection(Direction.DOWN_LEFT);
-                    if(!michaelJordan.hitsBorder())
+                    if(!michaelJordan.hasCollisions())
                         michaelJordan.moveDownLeft();
                 }else if(rightPressed){
                     michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.LEFT);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveLeft();
                 }
                 break;
@@ -159,17 +159,17 @@ public class InputHandler implements KeyboardHandler {
                 michaelJordan.setDirection(Direction.DOWN);
                 if(leftPressed){
                     michaelJordan.setDirection(Direction.DOWN_LEFT);
-                    if(!michaelJordan.hitsBorder())
+                    if(!michaelJordan.hasCollisions())
                         michaelJordan.moveDownLeft();
                 }else if(rightPressed){
                     michaelJordan.setDirection(Direction.DOWN_RIGHT);
-                    if(!michaelJordan.hitsBorder())
+                    if(!michaelJordan.hasCollisions())
                         michaelJordan.moveDownRight();
                 }else if(upPressed){
                     michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.DOWN);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveDown();
                 }
                 break;
@@ -178,17 +178,17 @@ public class InputHandler implements KeyboardHandler {
                 michaelJordan.setDirection(Direction.UP);
                 if(rightPressed){
                     michaelJordan.setDirection(Direction.UP_RIGHT);
-                    if(!michaelJordan.hitsBorder())
+                    if(!michaelJordan.hasCollisions())
                         michaelJordan.moveUpRight();
                 }else if(leftPressed){
                     michaelJordan.setDirection(Direction.UP_LEFT);
-                    if(!michaelJordan.hitsBorder())
+                    if(!michaelJordan.hasCollisions())
                         michaelJordan.moveUpLeft();
                 }else if(downPressed){
                     michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.UP);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveUp();
                 }
                 break;
@@ -206,11 +206,11 @@ public class InputHandler implements KeyboardHandler {
                 rightPressed = false;
                 if (upPressed) {
                     michaelJordan.setDirection(Direction.UP);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveUp();
                 } else if (downPressed) {
                     michaelJordan.setDirection(Direction.DOWN);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveDown();
                 }
                 break;
@@ -218,11 +218,11 @@ public class InputHandler implements KeyboardHandler {
                 leftPressed = false;
                 if (upPressed) {
                     michaelJordan.setDirection(Direction.UP);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveUp();
                 } else if (downPressed) {
                     michaelJordan.setDirection(Direction.DOWN);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveDown();
                 }
                 break;
@@ -230,11 +230,11 @@ public class InputHandler implements KeyboardHandler {
                 downPressed = false;
                 if (leftPressed) {
                     michaelJordan.setDirection(Direction.LEFT);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveLeft();
                 } else if (rightPressed) {
                     michaelJordan.setDirection(Direction.RIGHT);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveRight();
                 }
                 break;
@@ -242,11 +242,11 @@ public class InputHandler implements KeyboardHandler {
                 upPressed = false;
                 if (leftPressed) {
                     michaelJordan.setDirection(Direction.LEFT);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveLeft();
                 } else if (rightPressed) {
                     michaelJordan.setDirection(Direction.RIGHT);
-                    if (!michaelJordan.hitsBorder())
+                    if (!michaelJordan.hasCollisions())
                         michaelJordan.moveRight();
                 }
                 break;
