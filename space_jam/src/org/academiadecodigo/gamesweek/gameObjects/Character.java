@@ -10,15 +10,17 @@ public abstract class Character extends GameObject{
 
     private boolean hasBall=false;
 
-    public Character(Picture picture, Position position, Direction direction){
+    public Character(Picture picture, StartingPositions position, Direction direction){
         super(picture,position,direction);
     }
 
     public void ballCollision(Ball ball){
 
+        //Ball
         double cx = ball.getCenter().getX();
         double cy = ball.getCenter().getY();
         double radius = ball.getRadius();
+        //Character
         double rx = this.getPosition().getX();
         double ry = this.getPosition().getY();
         double rw = this.getWidth();
@@ -43,14 +45,36 @@ public abstract class Character extends GameObject{
         if (distance <= radius) {
             hasBall=true;
             ball.setDirection(this.getDirection());
-            //if(!ball.hitsBorder())
-            ball.move();
+            if(ball.hitsBorder()){
+                ball.reCenter();
+            }else
+                ball.move();
             System.out.println("Ball Centre: "+ball.getCenter().toString());
             System.out.println("OVERLAPS");
         }else {
             hasBall=false;
         }
     }
+
+
+    /*public void reCenter(StartingPositions position, double width, double height){
+        double currentX = this.getPicture().getX();
+        double currentY = this.getPicture().getY();
+        double currentX = getPosition().getX();
+        double currentY = getPosition().getY();
+        double currentMaxX = getMaxPosition().getX();
+        double currentMaxY = getMaxPosition().getY();
+
+        double finalX = position.getPosition().getX();
+        double finalY = position.getPosition().getY();
+        double finalCurrentX = StartingPositions.POSITION_12.getPosition().getX();
+        double finalCurrentY = 385;
+        //double finalCenterY = StartingPositions.POSITION_12.getPosition().getY();
+
+        this.getPicture().translate(finalX-currentX,finalY-currentY);
+        //this.getPosition().translatePosition(currentX-finalX,currentY-finalY);
+        center.translatePosition(finalCenterX-currentCenterX,finalCenterY-currentCenterY);
+    }*/
 
     public boolean hasBall(){
         return hasBall;

@@ -31,9 +31,9 @@ public class ShootOut {
 
 
     public ShootOut(Game field) {
-        this.background = new Picture(Game.PADDING, Game.PADDING,"space_jam/resources/bleachers.jpeg");
+        this.background = new Picture(Game.PADDING, Game.PADDING,"resources/bleachers.jpeg");
         this.hoop = new Hoop((double) 1250 / 2, (double) 750 / 2); // Replace with new Hoop(Game.screenWidth / 2, Game.screen.Height / 2);
-        this.ball = new Picture(Game.PADDING, Game.PADDING,"space_jam/resources/ball_shootout.png");
+        this.ball = new Picture(Game.PADDING, Game.PADDING,"resources/ball_shootout.png");
         this.michaelJordan = field.getPlayer();
         this.score = 0;
         this.field = field;

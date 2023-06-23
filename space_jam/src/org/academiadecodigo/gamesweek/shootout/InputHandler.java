@@ -192,9 +192,6 @@ public class InputHandler implements KeyboardHandler {
                         michaelJordan.moveUp();
                 }
                 break;
-            case KeyboardEvent.KEY_Q:
-                System.exit(1);
-                break;
         }
         michaelJordan.ballCollision(ball);
 

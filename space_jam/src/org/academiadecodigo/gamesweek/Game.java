@@ -91,15 +91,11 @@ public class Game {
 
         backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
 
-        double ballX = StartingPositions.POSITION_6.getPosition().getX();
-        double ballY = StartingPositions.POSITION_6.getPosition().getY();
+        Position ballPosition = new Position(StartingPositions.POSITION_6);
+        ball = new Ball(new Picture(ballPosition.getX(), ballPosition.getY(),"resources/ball.png"));
 
-        ball = new Ball(new Picture(ballX, ballY,"resources/ball.png"),innerSquarePosition,innerSquareSide);
-
-        double MJX = StartingPositions.POSITION_7.getPosition().getX();
-        double MJY = StartingPositions.POSITION_7.getPosition().getY();
-
-        this.player = new MichaelJordan(new Picture(MJX,MJY,"space_jam/resources/MJ_small.png"),StartingPositions.POSITION_7.getPosition(),Direction.RIGHT);
+        Position MJPosition = new Position(StartingPositions.POSITION_7);
+        this.player = new MichaelJordan(new Picture(MJPosition.getX(), MJPosition.getY(),"resources/MJ_small.png"),StartingPositions.POSITION_7,Direction.RIGHT);
 
         this.inputHandler = new InputHandler(player,ball);
 
@@ -153,14 +149,13 @@ public class Game {
 
             Thread.sleep(delay);
 
-
             if(player.overlaps(rightHoop)){
                 //Go to shootout
                 clearField();
                 shoot(this);
             }
             else {
-                moveMonstars();
+                //moveMonstars();
             }
         }
     }

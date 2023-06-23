@@ -16,7 +16,7 @@ public class MichaelJordan extends Character {
     private ShootOut shootOut;
     private int numShots;
 
-    public MichaelJordan(Picture picture, Position position, Direction direction){
+    public MichaelJordan(Picture picture, StartingPositions position, Direction direction){
         super(picture, position,direction);
         picture.grow(12.5,12.5);
     }

@@ -18,7 +18,7 @@ public class Monstar extends Character {
 
     //CONSTRUCTOR
     public Monstar(Picture picture, StartingPositions position, Direction direction){
-        super(picture, position.getPosition(), direction);
+        super(picture, position, direction);
         speed=1;
         size= Game.CELL_SIZE;
         this.currentSteps=0;

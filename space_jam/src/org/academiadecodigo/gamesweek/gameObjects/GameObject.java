@@ -3,6 +3,7 @@ package org.academiadecodigo.gamesweek.gameObjects;
 import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
+import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -19,12 +20,12 @@ public abstract class GameObject {
 
 
     //CONSTRUCTORS
-    public GameObject(Picture picture, Position position, Direction direction){
+    public GameObject(Picture picture, StartingPositions position, Direction direction){
 
         this.picture=picture;
-        this.position=position;
+        this.position= new Position (position);
         this.direction=direction;
-        this.maxPosition = new Position(position.getX()+picture.getWidth(), position.getY()+picture.getHeight());
+        this.maxPosition = new Position(this.position.getX()+picture.getWidth(), this.position.getY()+picture.getHeight());
         this.width=picture.getWidth();
         this.height=picture.getHeight();
     }

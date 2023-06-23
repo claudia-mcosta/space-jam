@@ -59,7 +59,7 @@ public class Aim {
 
         // Set aim starting position (currently starting at left boundary)
         this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
-        this.aim = new Picture(pos.getX(), pos.getY(), "space_jam/resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
+        this.aim = new Picture(pos.getX(), pos.getY(), "resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
         this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(), aimSize);
 
         /* To use if aim is a square and not a picture
