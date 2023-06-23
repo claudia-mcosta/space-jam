@@ -10,7 +10,7 @@ public class MonstarFactory {
 
     public static Monstar createMonstar(int i){
 
-        Picture picture = new Picture(0,0,"resources/monstar"+(i+1)+".png");
+        Picture picture = new Picture(0,0,"space_jam/resources/monstar"+(i+1)+".png");
         Direction direction = Direction.values()[(int)(Math.random()*Direction.values().length)];
 
         Monstar monstar = new Monstar(picture, StartingPositions.values()[i+1],direction);
