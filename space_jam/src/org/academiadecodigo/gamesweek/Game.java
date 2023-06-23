@@ -4,7 +4,10 @@ import org.academiadecodigo.gamesweek.gameObjects.*;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.gamesweek.shootout.InputHandler;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import static org.academiadecodigo.gamesweek.shootout.ShootOut.shoot;
 
 public class Game {
     public static final int PADDING=10;
@@ -12,6 +15,7 @@ public class Game {
     public static double screenHeight;
     public static int CELL_SIZE=50;
     private Picture backgroundImage;
+    private Picture scoreboard;
     public static int delay;
     private Monstar[] monstar;
     private int numAdversaries; //5 max
@@ -22,6 +26,8 @@ public class Game {
     public static double BALL_SIZE=CELL_SIZE/2;
     private int stepSize = 10;
     private InputHandler inputHandler;
+    private int score;
+    private Text scoreDisplay;
 
 
     //public boolean playerHasBall = false;
@@ -95,6 +101,12 @@ public class Game {
 
         backgroundImage = new Picture(PADDING,PADDING,"resources/pixelCourt.png");
 
+        scoreboard = new Picture(Game.PADDING, Game.PADDING,"resources/scoreboard.png");
+        scoreboard.translate((Game.screenWidth - scoreboard.getWidth()) / 2, 0);
+        scoreDisplay =  new Text(Game.PADDING, Game.PADDING, String.valueOf(score));
+        scoreDisplay.translate((Game.screenWidth / 2) - 100, 18);
+        scoreDisplay.grow(10, 10);
+
         Position ballPosition = new Position(StartingPositions.POSITION_6);
         ball = new Ball(new Picture(ballPosition.getX(), ballPosition.getY(),"resources/ball.png"));
 
@@ -121,6 +133,9 @@ public class Game {
     public void initDraw(){
         backgroundImage.draw();
 
+        scoreboard.draw();
+        scoreDisplay.draw();
+
         ball.reCenter();
         ball.draw();
 
@@ -142,6 +157,10 @@ public class Game {
         }
         backgroundImage.delete();
         inputHandler.removeKeyPressedEventsGame();
+
+        scoreboard.delete();
+        scoreDisplay.delete();
+
     }
 
     //Start and run game
@@ -154,14 +173,27 @@ public class Game {
             if(player.overlaps(rightHoop)){
                 //Go to shootout
 
-                initDraw();
+                //initDraw();
 
-                //clearField();
-                //shoot(this);
+                clearField();
+                shoot(this);
             }
             else {
                 moveMonstars();
             }
         }
     }
+
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int score) {
+        this.score = score;
+    }
+    public Picture getScoreboard(){return scoreboard;}
+    public Text getScoreDisplay() {return scoreDisplay;}
+    public void setScoreDisplay(Text scoreDisplay) {
+        this.scoreDisplay = scoreDisplay;
+    }
+
 }

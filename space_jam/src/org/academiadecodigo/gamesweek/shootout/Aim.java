@@ -22,18 +22,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Aim {
 
-    /*
-     *  Line tests NOT WORKING!!
-     *
-     *  private int startX;
-     *  private int startY;
-     *  private int endX;
-     *  private int endY;
-     *  private Line line = new Line(startX, startY, endX, endY);
-     */
-
     private Picture aim; // Rectangle aim;
-    private int aimSize = Game.SHOOTOUT_CELL_SIZE * 5;
+    private int aimSize; // = Game.SHOOTOUT_CELL_SIZE * 5;
     private Position pos;
     private Color color = Color.BLUE;
     private Rectangle aimBar;
@@ -42,17 +32,6 @@ public class Aim {
 
     public Aim(Hoop hoop) {
 
-        /*
-         * Line tests NOT WORKING!!
-         *
-         * this.startX = (1250 / 2) + Game.PADDING; // (Game.screenWidth / 2) + Game.PADDING;
-         * this.startY = 750 + Game.PADDING; // Game.screenHeight + Game.PADDING;
-         * this.endX = 0;
-         * this.endY = 750 + Game.PADDING; // Game.screenHeight + Game.PADDING;
-         * this.line = new Line(startX, startY, endX, endY);
-         * line.draw();
-         */
-
         // Set positions for start and end of aimbar
         aimBarSize[0] = StartingPositions.POSITION_9.getPosition();
         aimBarSize[1] = StartingPositions.POSITION_10.getPosition();
@@ -60,6 +39,7 @@ public class Aim {
         // Set aim starting position (currently starting at left boundary)
         this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
         this.aim = new Picture(pos.getX(), pos.getY(), "resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
+        this.aimSize = aim.getWidth();
         this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(), aimSize);
 
         /* To use if aim is a square and not a picture
@@ -105,7 +85,7 @@ public class Aim {
     public void moveOppositeDirection(Direction currentDirection) {
     // Switch movement direction to opposite direction - Place in Direction class?
 
-        switch (direction) {
+        switch (currentDirection) {
             case LEFT:
                 direction = Direction.RIGHT;
                 break;
@@ -141,31 +121,10 @@ public class Aim {
         // aim.draw();
         // aim.fill();
 
-        /* Line tests NOT WORKING!!
-         * if (endY > 0 && endX < 1250 + Game.PADDING) {
-         *     endY -= 10;
-         *     System.out.println("EndY " + endY);
-         * }
-         * if (endY == 0 && endX < 1250 + Game.PADDING) {
-         *     endX += 10;
-         *     System.out.println("EndX " + endX);
-         * }
-         *
-         * if (endX == 1250 + Game.PADDING && endY == 0) {
-         *     endY += 10;
-         * }
-         *
-         * line.delete();
-         * line = new Line(startX, startY, endX, endY);
-         * line.draw();
-         */
     }
 
     public void clearAim(){
         aim.delete();
-        aimBar.delete();
     }
-
-
 
 }
