@@ -14,6 +14,26 @@ public abstract class Character extends GameObject{
         super(picture,position,direction);
     }
 
+    public boolean characterCollision(Character character){
+
+        double r1x = this.getPosition().getX();
+        double r1y = this.getPosition().getY();
+        double r1w = this.getWidth();
+        double r1h = this.getHeight();
+        double r2x = character.getPosition().getX();
+        double r2y = character.getPosition().getY();
+        double r2w = character.getWidth();
+        double r2h = character.getHeight();
+
+        if (r1x + r1w >= r2x &&    // r1 right edge past r2 left
+                r1x <= r2x + r2w &&    // r1 left edge past r2 right
+                r1y + r1h >= r2y &&    // r1 top edge past r2 bottom
+                r1y <= r2y + r2h) {    // r1 bottom edge past r2 top
+            return true;
+        }
+        return false;
+    }
+
     public void ballCollision(Ball ball){
 
         //Ball

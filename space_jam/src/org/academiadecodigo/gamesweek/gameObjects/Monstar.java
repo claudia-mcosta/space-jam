@@ -24,6 +24,11 @@ public class Monstar extends Character {
         this.currentSteps=0;
     }
 
+    public boolean playerHit(){
+
+        return false;
+    }
+
     //Find ball and hoop
     public Direction findObjectOppositeDirection(GameObject object){
 

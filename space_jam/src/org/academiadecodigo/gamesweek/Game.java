@@ -79,10 +79,11 @@ public class Game {
             while (monstar[i].hitsBorder())
                 monstar[i].chooseDirection(monstarBall(),ball, leftHoop);
 
-            monstar[i].move();
-            monstar[i].takeAStep();
-            monstar[i].ballCollision(ball);
-
+            if(!monstar[i].characterCollision(player)) {
+                monstar[i].move();
+                monstar[i].takeAStep();
+                monstar[i].ballCollision(ball);
+            }
         }
     }
 
@@ -116,26 +117,16 @@ public class Game {
     //Draws all the pictures on canvas
     public void initDraw(){
         backgroundImage.draw();
+
         ball.reCenter();
         ball.draw();
 
         player.reCenter(StartingPositions.POSITION_7,player.getWidth(),player.getHeight());
-        for(int i=0; i<monstar.length;i++){
-            monstar[i].reCenter(StartingPositions.values()[i+1],monstar[i].getWidth(),monstar[i].getHeight());
-        }
         player.draw();
-        //player.translateFrom(player.getPosition(), StartingPositions.POSITION_7.getPosition());
-        //player.setPosition(new Position (StartingPositions.POSITION_7));
-        //Max position?
 
         for(int i=0; i<monstar.length;i++){
-            //Position picturePosition = new Position(monstar[i].getPicture().getX(),monstar[i].getPicture().getY());
             monstar[i].reCenter(StartingPositions.values()[i+1],monstar[i].getWidth(),monstar[i].getHeight());
             monstar[i].draw();
-            //monstar[i].translateFrom(picturePosition,StartingPositions.values()[i+1].getPosition());
-            //monstar[i].setPosition(new Position(StartingPositions.values()[i+1]));
-            //Max position?
-
         }
     }
 

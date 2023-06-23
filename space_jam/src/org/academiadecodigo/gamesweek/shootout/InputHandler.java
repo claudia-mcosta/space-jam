@@ -128,7 +128,7 @@ public class InputHandler implements KeyboardHandler {
                     if (!michaelJordan.hitsBorder())
                         michaelJordan.moveDownRight();
                 }else if(leftPressed){
-                    //michaelJordan.setDirection(Direction.NONE);
+                    michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.RIGHT);
                     if (!michaelJordan.hitsBorder())
@@ -147,7 +147,7 @@ public class InputHandler implements KeyboardHandler {
                     if(!michaelJordan.hitsBorder())
                         michaelJordan.moveDownLeft();
                 }else if(rightPressed){
-                    //michaelJordan.setDirection(Direction.NONE);
+                    michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.LEFT);
                     if (!michaelJordan.hitsBorder())
@@ -166,7 +166,7 @@ public class InputHandler implements KeyboardHandler {
                     if(!michaelJordan.hitsBorder())
                         michaelJordan.moveDownRight();
                 }else if(upPressed){
-                    //michaelJordan.setDirection(Direction.NONE);
+                    michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.DOWN);
                     if (!michaelJordan.hitsBorder())
@@ -185,7 +185,7 @@ public class InputHandler implements KeyboardHandler {
                     if(!michaelJordan.hitsBorder())
                         michaelJordan.moveUpLeft();
                 }else if(downPressed){
-                    //michaelJordan.setDirection(Direction.NONE);
+                    michaelJordan.setDirection(Direction.NONE);
                 }else {
                     michaelJordan.setDirection(Direction.UP);
                     if (!michaelJordan.hitsBorder())
@@ -254,8 +254,7 @@ public class InputHandler implements KeyboardHandler {
 
         michaelJordan.ballCollision(ball);
 
-        //michaelJordan.setDirection(Direction.NONE);
-
+        michaelJordan.setDirection(Direction.NONE);
     }
 
 
