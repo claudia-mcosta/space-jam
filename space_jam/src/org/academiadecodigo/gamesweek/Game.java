@@ -1,15 +1,10 @@
 package org.academiadecodigo.gamesweek;
 
 import org.academiadecodigo.gamesweek.gameObjects.*;
-import org.academiadecodigo.gamesweek.gameObjects.Character;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.gamesweek.shootout.InputHandler;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-import static org.academiadecodigo.gamesweek.shootout.ShootOut.shoot;
 
 public class Game {
     public static final int PADDING=10;
@@ -73,17 +68,24 @@ public class Game {
 
         for (int i=0; i<numAdversaries; i++){
             if(monstar[i].getCurrentSteps()>Monstar.MAX_STEPS) {
-                monstar[i].chooseDirection(monstarBall(),ball, leftHoop);
+                //monstar[i].chooseObjectDirection(monstarBall(),ball, leftHoop);
+                monstar[i].chooseRandomDirection(monstarBall(),ball, leftHoop);
                 monstar[i].resetCurrentSteps();
             }
 
             while (monstar[i].hitsBorder())
-                monstar[i].chooseDirection(monstarBall(),ball, leftHoop);
+                monstar[i].chooseRandomDirection(monstarBall(),ball, leftHoop);
 
             if(!monstar[i].characterCollision(player)) {
                 monstar[i].move();
                 monstar[i].takeAStep();
                 monstar[i].ballCollision(ball);
+            }else {
+                monstar[i].setDirection(monstar[i].getDirection().returnOppositeDirection());
+                monstar[i].move();
+                monstar[i].takeAStep();
+                monstar[i].ballCollision(ball);
+
             }
         }
     }

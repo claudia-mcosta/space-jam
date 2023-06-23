@@ -55,18 +55,17 @@ public abstract class GameObject {
                 position.getX()<object2.getMaxPosition().getX() &&
                 position.getY()<object2.getMaxPosition().getY() &&
                 maxPosition.getY()>object2.getPosition().getY()){
-            System.out.println("OVERLAPS!");
             return true;
         }
         return false;
     }
 
     //Translates picture from one position to another - GFX
-    public void translateFrom(Position startingPosition, Position endPosition){
+    /*public void translateFrom(Position startingPosition, Position endPosition){
         double translateX = endPosition.getX()-startingPosition.getX();
         double translateY = endPosition.getY()-startingPosition.getY();
         picture.translate(translateX,translateY);
-    }
+    }*/
 
     //Border checks - GFX
     public boolean hitsBorder(){
@@ -185,9 +184,6 @@ public abstract class GameObject {
                 break;
         }
 
-            /*System.out.println(position.toString());
-            System.out.println("Max Position- "+maxPosition.toString());
-            System.out.println("Picture - X: "+picture.getX()+" Y: "+picture.getY()+"|| Max X: "+picture.getMaxX()+" Max Y: "+picture.getMaxY());*/
     }
 
     //Draws object - GFX

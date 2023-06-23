@@ -80,15 +80,12 @@ public abstract class Character extends GameObject{
 
 
     public void reCenter(StartingPositions position, double width, double height){
-        //double pictureX = this.getPicture().getX();
-        //double pictureY = this.getPicture().getY();
+
         double currentX = getPosition().getX();
         double currentY = getPosition().getY();
         double currentMaxX = currentX+width;
         double currentMaxY = currentY+height;
 
-        //double pictureFinalX = position.getPosition().getX();
-        //double pictureFinalY = position.getPosition().getY();
         double finalX = position.getPosition().getX();
         double finalY = position.getPosition().getY();
         double finalMaxX = finalX+width;

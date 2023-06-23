@@ -2,10 +2,7 @@ package org.academiadecodigo.gamesweek.gameObjects;
 
 import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.Game;
-import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
-import org.academiadecodigo.gamesweek.shootout.Hoop;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Monstar extends Character {
@@ -24,13 +21,13 @@ public class Monstar extends Character {
         this.currentSteps=0;
     }
 
-    public boolean playerHit(){
+    /*public boolean playerHit(){
 
         return false;
-    }
+    }*/
 
     //Find ball and hoop
-    public Direction findObjectOppositeDirection(GameObject object){
+    /*public Direction findObjectOppositeDirection(GameObject object){
 
         //Returns the OPPOSITE direction that the object is
         if(this.getPosition().getX()>object.getPosition().getX() && this.getPosition().getY()>object.getMaxPosition().getY() && this.getMaxPosition().getY()<object.getPosition().getY()){
@@ -51,24 +48,86 @@ public class Monstar extends Character {
             return Direction.UP_RIGHT;
         }else
             return Direction.NONE;
-    }
+    }*/
+
+
+    /*public Direction findObjectDirection(GameObject object){
+        if(this.getMaxPosition().getX()<object.getPosition().getX())
+            return Direction.RIGHT;
+        else if(this.getPosition().getX()>object.getMaxPosition().getX())
+            return Direction.LEFT;
+        else
+            return Direction.LEFT;
+        //if(this.getMaxPosition().getY()<object.getPosition().getY())
+            //return Direction.DOWN;
+        // if(this.getPosition().getY()>object.getMaxPosition().getY())
+        //            return Direction.UP;
+    }*/
+
+    /*public void chooseObjectDirection(boolean ball, Ball ballObject, HoopPosition hoopObject){
+
+        Direction newDirection = this.getDirection();
+
+        if(!ball) {
+            switch (this.findObjectDirection(ballObject)) {
+                case LEFT:
+                    switch ((int)(Math.random()*3)){
+                        case 0:
+                            newDirection=Direction.UP_LEFT;
+                            break;
+                        case 1:
+                            newDirection=Direction.LEFT;
+                            break;
+                        case 2:
+                            newDirection=Direction.DOWN_LEFT;
+                        default:
+                            newDirection=Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
+                    }
+                    break;
+                case RIGHT:
+                    switch ((int)(Math.random()*3)){
+                        case 0:
+                            newDirection=Direction.UP_RIGHT;
+                            break;
+                        case 1:
+                            newDirection=Direction.RIGHT;
+                            break;
+                        case 2:
+                            newDirection=Direction.DOWN_RIGHT;
+                            break;
+                        default:
+                            newDirection=Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
+                    }
+                    break;
+                default:
+                    newDirection=Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
+            }
+        }else{
+            switch ((int)(Math.random()*3)){
+                case 0:
+                    newDirection=Direction.UP_LEFT;
+                    break;
+                case 1:
+                    newDirection=Direction.LEFT;
+                    break;
+                case 2:
+                    newDirection=Direction.DOWN_LEFT;
+                default:
+                    newDirection=Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
+            }
+        }
+
+        this.setDirection(newDirection);
+    }*/
+
 
     //Chooses random Direction for monstars
-    public void chooseDirection(boolean ball, Ball ballObject, HoopPosition hoopObject){
+    public void chooseRandomDirection(boolean ball, Ball ballObject, HoopPosition hoopObject){
 
         Direction newDirection = getDirection();
 
         // Sometimes, we want to change Direction...
         if (Math.random() > ((double) probOfChange) / 10) {
-
-            Direction oppositeDirection = Direction.RIGHT;
-
-            /*if(!ball){
-                oppositeDirection = findObjectOppositeDirection(ballObject);
-            }else{
-                oppositeDirection = findObjectOppositeDirection(hoopObject);
-            }
-            newDirection = oppositeDirection.oppositeDirection()[(int) (Math.random() * 3)];*/
 
             newDirection = Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
 
@@ -77,7 +136,7 @@ public class Monstar extends Character {
                 newDirection = Direction.values()[(int) (Math.random() * (Direction.values().length-1))];
             }
         }
-        setDirection(newDirection);
+        this.setDirection(newDirection);
     }
 
 
