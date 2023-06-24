@@ -20,7 +20,7 @@ public class InputHandler implements KeyboardHandler {
     KeyboardEvent[] events;
     MichaelJordan michaelJordan;
     private Ball ball;
-
+    public boolean gameStart=false;
     private boolean leftPressed=false;
     private boolean upPressed=false;
     private boolean rightPressed=false;
@@ -35,6 +35,9 @@ public class InputHandler implements KeyboardHandler {
         createEvents();
     }
 
+    public void resetGameStart(){
+        this.gameStart=false;
+    }
     private void createEvents() {
 
         for (int i = 0; i < events.length; i++) {
@@ -192,6 +195,7 @@ public class InputHandler implements KeyboardHandler {
         }
         michaelJordan.ballCollision(ball);
 
+        gameStart=true;
 
     }
 

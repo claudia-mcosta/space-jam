@@ -164,16 +164,18 @@ public class Game {
 
             Thread.sleep(delay);
 
-            if(player.overlaps(rightHoop) && player.hasBall()){
-                //Go to shootout
+            if(inputHandler.gameStart) {
 
-                //initDraw();
+                if (player.overlaps(rightHoop) && player.hasBall()) {
+                    //Go to shootout
 
-                clearField();
-                shootOut.shoot();
-            }
-            else {
-                moveMonstars();
+                    //initDraw();
+
+                    clearField();
+                    shootOut.shoot();
+                } else {
+                    moveMonstars();
+                }
             }
         }
     }
@@ -247,6 +249,7 @@ public class Game {
             scoreDisplay.delete();
             inputHandler.removeKeyPressedEventsShootOut();
             inputHandler.createKeyPressedEventsGame();
+            inputHandler.resetGameStart();
         }
 
         private void updateScoreDisplay() {
