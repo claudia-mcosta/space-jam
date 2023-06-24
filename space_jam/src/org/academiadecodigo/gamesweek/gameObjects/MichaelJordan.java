@@ -51,13 +51,13 @@ public class MichaelJordan extends Character {
 
         timerClock.start();
 
-        while (shot.getX() == -1){
+        while (shot.getX() == -1 || numShots<2){
 
             //long timeLeft = timerClock.getEndTime() - timerClock.getTimeSinceStartInSeconds();
             //Timer for 10 seconds;
             if(timerClock.getTimeLeft() > 0){
                 aim.move();
-                System.out.println(timerClock.getTimeLeft() - 1);
+                //System.out.println(timerClock.getTimeLeft() - 1);
 
                 //Thread sleep to slow the aim;
                 //Try catch to handle a possible exception;
@@ -123,6 +123,7 @@ public class MichaelJordan extends Character {
     public void shoot() {
 
         shot = aim.getPos();
+        numShots++;
 
     }
 
