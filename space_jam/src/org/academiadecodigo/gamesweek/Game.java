@@ -3,11 +3,10 @@ package org.academiadecodigo.gamesweek;
 import org.academiadecodigo.gamesweek.gameObjects.*;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
+import org.academiadecodigo.gamesweek.shootout.Hoop;
 import org.academiadecodigo.gamesweek.shootout.InputHandler;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-import static org.academiadecodigo.gamesweek.shootout.ShootOut.shoot;
 
 public class Game {
     public static final int PADDING=10;
@@ -28,6 +27,7 @@ public class Game {
     private InputHandler inputHandler;
     private int score;
     private Text scoreDisplay;
+    private ShootOut shootOut;
 
 
     //public boolean playerHasBall = false;
@@ -127,6 +127,8 @@ public class Game {
         createAdversaries();
 
         initDraw();
+
+        shootOut = new ShootOut();
     }
 
     //Draws all the pictures on canvas
@@ -156,7 +158,7 @@ public class Game {
             monstar[i].getPicture().delete();
         }
         backgroundImage.delete();
-        inputHandler.removeKeyPressedEventsGame();
+        //inputHandler.removeKeyPressedEventsGame();
 
         scoreboard.delete();
         scoreDisplay.delete();
@@ -176,7 +178,7 @@ public class Game {
                 //initDraw();
 
                 clearField();
-                shoot(this);
+                shootOut.shoot();
             }
             else {
                 moveMonstars();
@@ -184,16 +186,81 @@ public class Game {
         }
     }
 
-    public int getScore() {
-        return score;
-    }
-    public void setScore(int score) {
-        this.score = score;
-    }
-    public Picture getScoreboard(){return scoreboard;}
-    public Text getScoreDisplay() {return scoreDisplay;}
-    public void setScoreDisplay(Text scoreDisplay) {
-        this.scoreDisplay = scoreDisplay;
+    public class ShootOut {
+
+        private Picture background;
+        private Hoop hoop;
+        private Picture ball;
+
+        private ShootOut() {
+            this.background = new Picture(PADDING, PADDING,"resources/bleachers.jpeg");
+            this.hoop = new Hoop(screenWidth / 2, screenHeight / 2);
+            this.ball = new Picture(PADDING, PADDING,"resources/ball_shootout.png");
+        }
+
+        private void init(){
+
+            // Reposition, resize and show background image (change 1250 and 750 to Game.getWidth() and Game.getHeight())
+            background.translate((Game.screenWidth - background.getWidth()) / 2, (Game.screenHeight - background.getHeight()) / 2);
+            background.grow((Game.screenWidth - background.getWidth()) / 2, (Game.screenHeight - background.getHeight()) / 2);
+            background.draw();
+
+            // Draw hoop image and target frame
+            hoop.draw();
+
+            // Reposition, resize and show ball image - Improve ball translate to be more dynamic in relation to screen size
+            // ball.translate((Game.screenWidth / 2,500);
+            // ball.draw();
+
+            scoreboard.draw();
+            scoreDisplay.draw();
+
+            inputHandler.createKeyPressedEventsShootOut();
+
+        }
+
+        private void start() {
+            calculateScore(player.aim());
+        }
+
+        private void calculateScore(Position shot) {
+
+            int points = 0;
+
+            // Calculate points from shot and add it to the overall score
+            if (shot.getX() + ((double) player.getAim().getAimSize() / 2) >= hoop.getTarget().getX() && shot.getX() + ((double) player.getAim().getAimSize() / 2) <= (hoop.getTarget().getWidth() + hoop.getTarget().getX())) {
+                points = 3;
+            }
+
+            score += points;
+            updateScoreDisplay();
+
+            clearShootOut();
+            initDraw();
+        }
+
+
+        private void shoot() {
+            init();
+            start();
+        }
+
+        private void clearShootOut() {
+            background.delete();
+            hoop.delete();
+            ball.delete();
+            scoreboard.delete();
+            scoreDisplay.delete();
+            inputHandler.removeKeyPressedEventsShootOut();
+        }
+
+        private void updateScoreDisplay() {
+            // Text object cannot be updated and needs to be created with new value everytime score changes
+            scoreDisplay = new Text(PADDING, PADDING, String.valueOf(score));
+            scoreDisplay.translate((screenWidth / 2) - 100, 18);
+            scoreDisplay.grow(10, 10);
+        }
+
     }
 
 }

@@ -1,7 +1,7 @@
 package org.academiadecodigo.gamesweek.gameObjects;
 
 import org.academiadecodigo.gamesweek.Direction;
-import org.academiadecodigo.gamesweek.gameObjects.Character;
+import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.gamesweek.shootout.*;
@@ -9,15 +9,16 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.academiadecodigo.gamesweek.positions.StartingPositions.POSITION_0;
+
 public class MichaelJordan extends Character {
 
-    private Position shot;
-    private Aim aim;
-    private ShootOut shootOut;
-    private int numShots;
+    private Position shot = POSITION_0.getPosition();
+    private Aim aim = new Aim();
     private Monstar[] monstars;
     private final double PLAYER_MOVEMENT = 4;
     private final double PLAYER_DIAGONAL = Math.sqrt(Math.pow(PLAYER_MOVEMENT,2)/2);
+    private TimerClock timerClock = new TimerClock(10);
 
     public MichaelJordan(Picture picture, StartingPositions position, Direction direction, Monstar[] monstars){
         super(picture, position,direction);
@@ -40,24 +41,20 @@ public class MichaelJordan extends Character {
         return aim;
     }
 
-    public void aim(Hoop hoop, ShootOut shootOut){
-        this.shootOut = shootOut;
-        this.shot = new Position(-1, -1);
-        this.aim = new Aim(hoop);
-        this.numShots = 0;
+    public Position aim(){
+        // Reset shot position
+        shot.translatePosition(-shot.getX(), -shot.getY());
 
-        //new InputHandler(this);
-        TimerClock timerClock = new TimerClock(10);
-
+        aim.show();
         timerClock.start();
 
-        while (shot.getX() == -1){
+        while (shot.getX() == 0) {
+            // System.out.println("Shot X: " + shot.getX());
 
-            //long timeLeft = timerClock.getEndTime() - timerClock.getTimeSinceStartInSeconds();
             //Timer for 10 seconds;
             if(timerClock.getTimeLeft() > 0){
+
                 aim.move();
-                System.out.println(timerClock.getTimeLeft() - 1);
 
                 //Thread sleep to slow the aim;
                 //Try catch to handle a possible exception;
@@ -68,13 +65,17 @@ public class MichaelJordan extends Character {
                 }
             }
             else {
-                timerClock.stop();
+                // shot = new Position(-1, -1);
                 System.out.println("time finished.");
                 break;
             }
         }
+        // System.out.println("Shot X: " + shot.getX());
 
-        shootOut.score(shot);
+        timerClock.stop();
+        aim.clear();
+
+        return shot;
     }
 
     //Move object in a direction - POS & GFX
@@ -121,14 +122,11 @@ public class MichaelJordan extends Character {
     }
 
     public void shoot() {
-
-        shot = aim.getPos();
-
+        shot.translatePosition(aim.getPos().getX(), aim.getPos().getY());
     }
 
     public void setMonstars(Monstar[] monstars){
         this.monstars=monstars;
     }
-
 
 }

@@ -26,33 +26,34 @@ public class Aim {
     private int aimSize; // = Game.SHOOTOUT_CELL_SIZE * 5;
     private Position pos;
     private Color color = Color.BLUE;
-    private Rectangle aimBar;
-    private Position[] aimBarSize = new Position[2];
+    private Position[] aimBorder = new Position[2];
     private Direction direction = Direction.RIGHT;
 
-    public Aim(Hoop hoop) {
+    public Aim() {
 
         // Set positions for start and end of aimbar
-        aimBarSize[0] = StartingPositions.POSITION_9.getPosition();
-        aimBarSize[1] = StartingPositions.POSITION_10.getPosition();
+        aimBorder[0] = StartingPositions.POSITION_9.getPosition();
+        aimBorder[1] = StartingPositions.POSITION_10.getPosition();
 
         // Set aim starting position (currently starting at left boundary)
-        this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
+        this.pos = new Position(aimBorder[0].getX(), aimBorder[0].getY());
         this.aim = new Picture(pos.getX(), pos.getY(), "resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
         this.aimSize = aim.getWidth();
-        this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(), aimSize);
 
         /* To use if aim is a square and not a picture
          * // Set initial color
          * aim.setColor(color);
          * // Show aimbar + aim on screen
          * aimBar.draw();
-         * // Fill aim shape
-         * aim.fill();
          */
 
-        // To use if aim is a picture
-        aim.draw();
+    }
+
+    public void reset() {
+        pos.setX(aimBorder[0].getX());
+        aim.translate(pos.getX() - aim.getX(), pos.getY() - aim.getY());
+        direction = Direction.RIGHT;
+        show();
     }
 
     public Position getPos() {
@@ -82,10 +83,10 @@ public class Aim {
         aim.translate(-Game.SHOOTOUT_CELL_SIZE,0);
     }
 
-    public void moveOppositeDirection(Direction currentDirection) {
+    public void moveOppositeDirection() {
     // Switch movement direction to opposite direction - Place in Direction class?
 
-        switch (currentDirection) {
+        switch (direction) {
             case LEFT:
                 direction = Direction.RIGHT;
                 break;
@@ -113,8 +114,8 @@ public class Aim {
         }
 
         // Change movement to opposite direction when aim hits boundaries
-        if (aim.getX() <= aimBarSize[0].getX() || (aim.getX() + aim.getWidth()) >= (aimBarSize[0].getX() + aimBar.getWidth())) {
-            moveOppositeDirection(direction);
+        if (aim.getX() == aimBorder[0].getX() || aim.getX() == (aimBorder[1].getX() - aimSize)) {
+            moveOppositeDirection();
         }
 
         // Draw and fill aim rectangle in new position
@@ -123,8 +124,13 @@ public class Aim {
 
     }
 
-    public void clearAim(){
+    public void clear(){
+        reset();
         aim.delete();
+    }
+    public void show() {
+        aim.draw();
+        // aim.fill();
     }
 
 }

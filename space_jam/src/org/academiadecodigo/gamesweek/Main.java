@@ -1,7 +1,5 @@
 package org.academiadecodigo.gamesweek;
 
-import org.academiadecodigo.gamesweek.shootout.ShootOut;
-
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 

@@ -26,9 +26,6 @@ public class InputHandler implements KeyboardHandler {
     private boolean rightPressed=false;
     private boolean downPressed=false;
 
-    private ShootOut shootOut;
-
-
     public InputHandler(MichaelJordan michaelJordan, Ball ball){
         this.michaelJordan = michaelJordan;
         keyboard = new Keyboard(this);
