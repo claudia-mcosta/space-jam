@@ -82,17 +82,9 @@ public class Game {
             while (monstar[i].hitsBorder())
                 monstar[i].chooseRandomDirection(monstarBall(),ball, leftHoop);
 
-            if(!monstar[i].characterCollision(player)) {
                 monstar[i].move();
                 monstar[i].takeAStep();
                 monstar[i].ballCollision(ball);
-            }else {
-                monstar[i].setDirection(monstar[i].getDirection().returnOppositeDirection());
-                monstar[i].move();
-                monstar[i].takeAStep();
-                monstar[i].ballCollision(ball);
-
-            }
         }
     }
 
@@ -158,7 +150,7 @@ public class Game {
             monstar[i].getPicture().delete();
         }
         backgroundImage.delete();
-        //inputHandler.removeKeyPressedEventsGame();
+        inputHandler.removeKeyPressedEventsGame();
 
         scoreboard.delete();
         scoreDisplay.delete();
@@ -172,7 +164,7 @@ public class Game {
 
             Thread.sleep(delay);
 
-            if(player.overlaps(rightHoop)){
+            if(player.overlaps(rightHoop) && player.hasBall()){
                 //Go to shootout
 
                 //initDraw();
@@ -229,10 +221,12 @@ public class Game {
 
             // Calculate points from shot and add it to the overall score
             if (shot.getX() + ((double) player.getAim().getAimSize() / 2) >= hoop.getTarget().getX() && shot.getX() + ((double) player.getAim().getAimSize() / 2) <= (hoop.getTarget().getWidth() + hoop.getTarget().getX())) {
-                points = 3;
+                points = 2;
             }
 
             score += points;
+
+
             updateScoreDisplay();
 
             clearShootOut();
@@ -252,6 +246,7 @@ public class Game {
             scoreboard.delete();
             scoreDisplay.delete();
             inputHandler.removeKeyPressedEventsShootOut();
+            inputHandler.createKeyPressedEventsGame();
         }
 
         private void updateScoreDisplay() {
