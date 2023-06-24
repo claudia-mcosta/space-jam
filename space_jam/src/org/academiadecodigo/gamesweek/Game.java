@@ -82,17 +82,10 @@ public class Game {
             while (monstar[i].hitsBorder())
                 monstar[i].chooseRandomDirection(monstarBall(),ball, leftHoop);
 
-            if(!monstar[i].characterCollision(player)) {
-                monstar[i].move();
-                monstar[i].takeAStep();
-                monstar[i].ballCollision(ball);
-            }else {
-                monstar[i].setDirection(monstar[i].getDirection().returnOppositeDirection());
-                monstar[i].move();
-                monstar[i].takeAStep();
-                monstar[i].ballCollision(ball);
+            monstar[i].move();
+            monstar[i].takeAStep();
+            monstar[i].ballCollision(ball);
 
-            }
         }
     }
 
