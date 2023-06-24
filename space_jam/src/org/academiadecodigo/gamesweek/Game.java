@@ -170,7 +170,7 @@ public class Game {
 
             Thread.sleep(delay);
 
-            if(player.overlaps(rightHoop)){
+            if(player.overlaps(rightHoop) && player.hasBall()){
                 //Go to shootout
 
                 //initDraw();

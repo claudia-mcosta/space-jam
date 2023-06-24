@@ -72,6 +72,8 @@ public class ShootOut {
         field.setScore(field.getScore() + score);
         clearShootOut();
         updateScoreDisplay();
+        inputHandler.createKeyPressedEventsGame();
+        inputHandler.removeKeyPressedEventsShootOut();
         field.initDraw();
     }
 
