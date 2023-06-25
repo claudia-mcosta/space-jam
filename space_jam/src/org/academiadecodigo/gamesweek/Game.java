@@ -25,8 +25,11 @@ public class Game {
     private int stepSize = 10;
     private InputHandler inputHandler;
     private int score;
+    private int monstarScore;
     private Picture[] scoreDisplay = new Picture[2]; // Text scoreDisplay;
     private Picture[][] scoreNumbers = new Picture[10][10];
+    private Picture[] monstarScoreDisplay = new Picture[2]; // Text scoreDisplay;
+    private Picture[][] monstarScoreNumbers = new Picture[10][10];
     private ShootOut shootOut;
 
 
@@ -41,6 +44,8 @@ public class Game {
         this.screenHeight=height;
         this.delay=delay;
         this.numAdversaries = numAdversaries;
+        this.score=0;
+        this.monstarScore=0;
     }
 
     public InputHandler getInputHandler() {
@@ -85,6 +90,13 @@ public class Game {
                 monstar[i].move();
                 monstar[i].takeAStep();
                 monstar[i].ballCollision(ball);
+
+                if(monstar[i].hasBall()){
+                    //if monstar has ball go to the left
+                    for (int j=0;j< monstar.length;j++){
+                        monstar[j].setDirection(Direction.LEFT);
+                    }
+                }
         }
     }
 
@@ -95,9 +107,6 @@ public class Game {
 
         scoreboard = new Picture(Game.PADDING, Game.PADDING,"resources/scoreboard.png");
         scoreboard.translate((Game.screenWidth - scoreboard.getWidth()) / 2, 0);
-        //scoreDisplay =  new Text(Game.PADDING, Game.PADDING, String.valueOf(score));
-        //scoreDisplay.translate((Game.screenWidth / 2) - 100, 18);
-        //scoreDisplay.grow(10, 10);
 
         for (int i = 0; i < scoreNumbers.length; i++) {
             for (int j = 0; j < scoreNumbers[i].length; j++) {
@@ -111,8 +120,23 @@ public class Game {
             }
         }
 
+        for (int i = 0; i < monstarScoreNumbers.length; i++) {
+            for (int j = 0; j < monstarScoreNumbers[i].length; j++) {
+                monstarScoreNumbers[i][j] = new Picture(Game.PADDING, Game.PADDING, "resources/score" + j + ".png");
+                monstarScoreNumbers[i][j].grow(-3,-5);
+                if (i == 0) {
+                    monstarScoreNumbers[i][j].translate(725, 8 - 5);
+                } else {
+                    monstarScoreNumbers[i][j].translate(697, 8 - 5);
+                }
+            }
+        }
+
         scoreDisplay[0] = scoreNumbers[0][0];
         scoreDisplay[1] = scoreNumbers[1][0];
+
+        monstarScoreDisplay[0] = monstarScoreNumbers[0][0];
+        monstarScoreDisplay[1] = monstarScoreNumbers[1][0];
 
         Position ballPosition = new Position(StartingPositions.POSITION_6);
         ball = new Ball(new Picture(ballPosition.getX(), ballPosition.getY(),"resources/ball.png"));
@@ -125,11 +149,12 @@ public class Game {
         inputHandler.createKeyPressedEventsGame();
         inputHandler.createKeyReleasedEvents();
 
-        int hoopSize = 40;
+        int hoopSize = 50;
 
-        Position hoopMaxPosition = new Position(StartingPositions.POSITION_8.getPosition().getX()+hoopSize,StartingPositions.POSITION_8.getPosition().getY()+hoopSize);
-        rightHoop = new HoopPosition(StartingPositions.POSITION_8.getPosition(),hoopMaxPosition);
-        //leftHoop = new HoopPosition(StartingPositions.POSITION_11.getPosition(),hoopMaxPosition);
+        Position rightHoopMaxPosition = new Position(StartingPositions.POSITION_8.getPosition().getX()+hoopSize,StartingPositions.POSITION_8.getPosition().getY()+hoopSize);
+        Position leftHoopMaxPosition = new Position(StartingPositions.POSITION_11.getPosition().getX()+hoopSize,StartingPositions.POSITION_11.getPosition().getY()+hoopSize);
+        rightHoop = new HoopPosition(StartingPositions.POSITION_8.getPosition(),rightHoopMaxPosition);
+        leftHoop = new HoopPosition(StartingPositions.POSITION_11.getPosition(),leftHoopMaxPosition);
 
         createAdversaries();
 
@@ -146,6 +171,9 @@ public class Game {
         scoreDisplay[0].draw();
         scoreDisplay[1].draw();
 
+        monstarScoreDisplay[0].draw();
+        monstarScoreDisplay[1].draw();
+
         ball.reCenter();
         ball.draw();
 
@@ -156,6 +184,15 @@ public class Game {
             monstar[i].reCenter(StartingPositions.values()[i+1],monstar[i].getWidth(),monstar[i].getHeight());
             monstar[i].draw();
         }
+    }
+
+    public void resetObjectPositions(){
+        ball.reCenter();
+        player.reCenter(StartingPositions.POSITION_7,player.getWidth(),player.getHeight());
+        for(int i=0; i<monstar.length;i++){
+            monstar[i].reCenter(StartingPositions.values()[i+1],monstar[i].getWidth(),monstar[i].getHeight());
+        }
+
     }
 
     private void clearField(){
@@ -171,6 +208,8 @@ public class Game {
         scoreboard.delete();
         scoreDisplay[0].delete();
         scoreDisplay[1].delete();
+        monstarScoreDisplay[0].delete();
+        monstarScoreDisplay[1].delete();
 
     }
 
@@ -192,6 +231,17 @@ public class Game {
                     shootOut.shoot();
                 } else {
                     moveMonstars();
+
+                    for(int i=0;i< monstar.length;i++){
+                        if(monstar[i].overlaps(leftHoop) && monstar[i].hasBall()){
+                            monstarScore += 2;
+                            //point for monstars
+                            //Update display
+                            System.out.println("monstar score = "+monstarScore);
+                            shootOut.updateMonstarScoreDisplay();
+                            resetObjectPositions();
+                        }
+                    }
                 }
             }
         }
@@ -226,6 +276,8 @@ public class Game {
             scoreboard.draw();
             scoreDisplay[0].draw();
             scoreDisplay[1].draw();
+            monstarScoreDisplay[0].draw();
+            monstarScoreDisplay[1].draw();
 
             inputHandler.createKeyPressedEventsShootOut();
 
@@ -282,8 +334,29 @@ public class Game {
 
             scoreDisplay[0] = scoreNumbers[0][scoreUnit];
             scoreDisplay[1] = scoreNumbers[1][scoreDecimal];
+        }
 
+        private void updateMonstarScoreDisplay() {
+            /*
+            // Text object cannot be updated and needs to be created with new value everytime score changes
+            scoreDisplay = new Text(PADDING, PADDING, String.valueOf(score));
+            scoreDisplay.translate((screenWidth / 2) - 100, 18);
+            scoreDisplay.grow(10, 10);
+            */
 
+            if (monstarScore > 99) {
+                // Reset score
+                monstarScore = 0;
+            }
+
+            int scoreUnit = Math.abs(monstarScore % 10);
+            int scoreDecimal = Math.abs((monstarScore / 10) % 10);
+
+            monstarScoreDisplay[0] = monstarScoreNumbers[0][scoreUnit];
+            monstarScoreDisplay[1] = monstarScoreNumbers[1][scoreDecimal];
+
+            monstarScoreDisplay[0].draw();
+            monstarScoreDisplay[1].draw();
         }
 
         private void clearShootOut() {
@@ -293,6 +366,8 @@ public class Game {
             scoreboard.delete();
             scoreDisplay[0].delete();
             scoreDisplay[1].delete();
+            monstarScoreDisplay[0].delete();
+            monstarScoreDisplay[1].delete();
             inputHandler.removeKeyPressedEventsShootOut();
             inputHandler.createKeyPressedEventsGame();
             inputHandler.resetGameStart();
