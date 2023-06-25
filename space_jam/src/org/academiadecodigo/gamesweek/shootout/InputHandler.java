@@ -35,6 +35,10 @@ public class InputHandler implements KeyboardHandler {
         createEvents();
     }
 
+    public boolean getGameStart(){
+        return gameStart;
+    }
+
     public void resetGameStart(){
         this.gameStart=false;
     }

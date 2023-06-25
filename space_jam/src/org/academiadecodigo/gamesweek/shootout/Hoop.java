@@ -7,6 +7,7 @@ public class Hoop {
 
     private Picture hoop;
 
+
     public Hoop(Picture picture) {
         this.hoop = picture;
 

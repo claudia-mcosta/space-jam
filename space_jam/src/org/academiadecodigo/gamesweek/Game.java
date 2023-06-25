@@ -220,7 +220,7 @@ public class Game {
 
             Thread.sleep(delay);
 
-            if(inputHandler.gameStart) {
+            if(inputHandler.getGameStart()) {
 
                 if (player.overlaps(rightHoop) && player.hasBall()) {
                     //Go to shootout
@@ -255,7 +255,8 @@ public class Game {
 
         private ShootOut() {
             this.background = new Picture(PADDING, PADDING,"resources/shootoutBackgroundDark.png");
-            this.hoop = new Hoop(new Picture(PADDING, PADDING, "resources/hoop.png"));
+            Picture picture = new Picture(PADDING,PADDING,"resources/hoop.png");
+            this.hoop = new Hoop(picture);
             this.ball = new Picture(PADDING, PADDING,"resources/ball_shootout.png");
         }
 
