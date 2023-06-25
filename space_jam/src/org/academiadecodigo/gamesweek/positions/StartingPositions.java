@@ -19,7 +19,22 @@ public enum StartingPositions {
 
     private Position position;
 
+    /*private StartingPositions(double x, double y){
+
+        position = new Position(x,y);
+    }*/
+
     private StartingPositions(double x, double y){
+        double Xremainder = x % 10;
+        if(Xremainder != 0){
+            x = x - Xremainder;
+        }
+
+        double Yremainder = y % 10;
+        if(Yremainder != 0)
+        {
+            y = y - Yremainder;
+        }
 
         position = new Position(x,y);
     }

@@ -152,5 +152,119 @@ public class Monstar extends Character {
         currentSteps=0;
     }
 
+    public Direction followBall(Ball ball){
+        double ballXPosition = ball.getCenter().getX();
+        double ballYPosition = ball.getCenter().getY();
+
+        // It means the ball is at my right
+        if(getPosition().getX() < ballXPosition){
+            // Up or down
+            Direction resultUpOrDown = getUpOrDown();
+
+            int firstOptionOrRight = (int)Math.ceil(Math.random() * 4);
+
+            if(firstOptionOrRight == 1)
+            {
+                return resultUpOrDown;
+            }
+
+            return Direction.RIGHT;
+        }
+        // ball is at my left
+        else if(getPosition().getX() > ballXPosition) {
+            // Up or down
+            Direction resultUpOrDown = getUpOrDown();
+
+            int firstOptionOrRight = (int)Math.ceil(Math.random() * 4);
+
+            if(firstOptionOrRight == 1)
+            {
+                return resultUpOrDown;
+            }
+
+
+            return Direction.LEFT;
+        }
+
+        // When im here, it means that im in the same position in X axe
+        // Now i need to do the same in Y axe
+
+        // It means i need to go down
+        if (getPosition().getY() < ballYPosition)
+        {
+            // left or right
+            Direction resultLeftOrRight = getLeftOrRigth();
+
+            int firstOptionOrRight = (int)Math.ceil(Math.random() * 4);
+
+            if(firstOptionOrRight == 1)
+            {
+                return resultLeftOrRight;
+            }
+
+            return  Direction.DOWN;
+        }
+        // Otherwise i go up
+        else if(getPosition().getY() > ballYPosition)
+        {
+            // left or right
+            Direction resultLeftOrRight = getLeftOrRigth();
+
+            int firstOptionOrRight = (int)Math.ceil(Math.random() * 4);
+
+            if(firstOptionOrRight == 1)
+            {
+                return resultLeftOrRight;
+            }
+
+            return Direction.UP;
+        }
+
+        return Direction.NONE;
+    }
+
+    private static Direction getUpOrDown() {
+        int optionUpOrDown = (int)Math.ceil(Math.random() * 2);
+
+        Direction resultUpOrDown;
+        if(optionUpOrDown == 1)
+        {
+            resultUpOrDown = Direction.UP;
+        }else{
+            resultUpOrDown = Direction.DOWN;
+        }
+
+        return resultUpOrDown;
+    }
+
+    private static Direction getLeftOrRigth() {
+        int optionUpOrDown = (int)Math.ceil(Math.random() * 2);
+
+        Direction resultUpOrDown;
+        if(optionUpOrDown == 1)
+        {
+            resultUpOrDown = Direction.LEFT;
+        }else{
+            resultUpOrDown = Direction.RIGHT;
+        }
+
+        return resultUpOrDown;
+    }
+
+    public void reCenter(int monsterId){
+        double currentX = this.getPicture().getX();
+        double currentY = this.getPicture().getY();
+
+        StartingPositions position = StartingPositions.values()[monsterId+1];
+
+        double finalX = position.getPosition().getX();
+        double finalY = position.getPosition().getY();
+
+
+        this.getPicture().translate(finalX-currentX,finalY-currentY);
+
+        getPosition().setX(finalX);
+        getPosition().setY(finalY);
+    }
 
 }

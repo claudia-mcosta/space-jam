@@ -16,7 +16,7 @@ public class MichaelJordan extends Character {
     private Position shot = POSITION_0.getPosition();
     private Aim aim = new Aim();
     private Monstar[] monstars;
-    private final double PLAYER_MOVEMENT = 4;
+    private final double PLAYER_MOVEMENT = 7;
     private final double PLAYER_DIAGONAL = Math.sqrt(Math.pow(PLAYER_MOVEMENT,2)/2);
     private TimerClock timerClock = new TimerClock(10);
 
@@ -59,7 +59,7 @@ public class MichaelJordan extends Character {
                 //Thread sleep to slow the aim;
                 //Try catch to handle a possible exception;
                 try {
-                    TimeUnit.MILLISECONDS.sleep(15);
+                    TimeUnit.MILLISECONDS.sleep(5);
                 } catch (InterruptedException e) {
                     System.out.println("Something went wrong");
                 }

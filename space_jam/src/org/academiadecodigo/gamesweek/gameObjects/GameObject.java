@@ -18,6 +18,8 @@ public abstract class GameObject {
     public static final int STEP_SIZE = 10; //number of pixels it moves per step
     public static final double DIAGONAL_STEP=Math.sqrt(Math.pow(STEP_SIZE,2)/2);
 
+    public static boolean monstarPoint = false;
+
 
     //CONSTRUCTORS
     public GameObject(Picture picture, StartingPositions position, Direction direction){
