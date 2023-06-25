@@ -37,7 +37,7 @@ public class Aim {
 
         // Set aim starting position (currently starting at left boundary)
         this.pos = new Position(aimBorder[0].getX(), aimBorder[0].getY());
-        this.aim = new Picture(pos.getX(), pos.getY(), "resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
+        this.aim = new Picture(pos.getX(), pos.getY(), "resources/aimYellow.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
         this.aimSize = aim.getWidth();
 
         /* To use if aim is a square and not a picture
@@ -60,8 +60,8 @@ public class Aim {
         return pos;
     }
 
-    public int getAimSize() {
-        return aimSize;
+    public int getAimCenter() {
+        return aim.getWidth() / 2;
     }
 
     public Color getColor() {
