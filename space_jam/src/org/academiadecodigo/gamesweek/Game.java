@@ -265,15 +265,17 @@ public class Game {
             scoreDisplay.grow(10, 10);
             */
 
-            if (score > 99) score = 0;
+            if (score > 99) {
+                // Reset score
+                score = 0;
+            }
 
             int scoreUnit = Math.abs(score % 10);
-            scoreDisplay[0] = scoreNumbers[0][scoreUnit];
+            int scoreDecimal = Math.abs((score / 10) % 10);
 
-            if (score >= 10) {
-                int scoreDecimal = Math.abs((score / 10) % 10);
-                scoreDisplay[1] = scoreNumbers[1][scoreDecimal];
-            }
+            scoreDisplay[0] = scoreNumbers[0][scoreUnit];
+            scoreDisplay[1] = scoreNumbers[1][scoreDecimal];
+
 
         }
 
