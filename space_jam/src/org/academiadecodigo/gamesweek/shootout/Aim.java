@@ -27,7 +27,7 @@ public class Aim {
     private Position pos;
     private Color color = Color.BLUE;
     private Position[] aimBorder = new Position[2];
-    private Direction direction = Direction.RIGHT;
+    private Direction direction;
 
     public Aim() {
 
@@ -39,6 +39,7 @@ public class Aim {
         this.pos = new Position(aimBorder[0].getX(), aimBorder[0].getY());
         this.aim = new Picture(pos.getX(), pos.getY(), "resources/aimYellow.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
         this.aimSize = aim.getWidth();
+        this.direction = Direction.RIGHT;
 
         /* To use if aim is a square and not a picture
          * // Set initial color

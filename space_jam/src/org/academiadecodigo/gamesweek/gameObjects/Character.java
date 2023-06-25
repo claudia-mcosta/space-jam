@@ -71,8 +71,6 @@ public abstract class Character extends GameObject{
                 ball.reCenter();
             }else
                 ball.move();
-            System.out.println("Ball Centre: "+ball.getCenter().toString());
-            System.out.println("OVERLAPS");
         }else {
             hasBall=false;
         }

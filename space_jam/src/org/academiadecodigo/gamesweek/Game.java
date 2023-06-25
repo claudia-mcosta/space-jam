@@ -129,7 +129,7 @@ public class Game {
 
         Position hoopMaxPosition = new Position(StartingPositions.POSITION_8.getPosition().getX()+hoopSize,StartingPositions.POSITION_8.getPosition().getY()+hoopSize);
         rightHoop = new HoopPosition(StartingPositions.POSITION_8.getPosition(),hoopMaxPosition);
-        leftHoop = new HoopPosition(StartingPositions.POSITION_11.getPosition(),hoopMaxPosition);
+        //leftHoop = new HoopPosition(StartingPositions.POSITION_11.getPosition(),hoopMaxPosition);
 
         createAdversaries();
 
@@ -239,9 +239,16 @@ public class Game {
 
             int points = 0;
 
+            int rimStart = 144;
+            int rimEnd = 234;
+
+            //System.out.println("Shout x= "+(shot.getX()+player.getAim().getAimCenter()));
+            //System.out.println("Rim limits: "+(hoop.getTarget().getX()+144)+" : "+(hoop.getTarget().getX()+234));
             // Calculate points from shot and add it to the overall score
-            if ((shot.getX() + player.getAim().getAimCenter()) >= hoop.getTarget().getX() && (shot.getX() + player.getAim().getAimCenter()) <= hoop.getTarget().getMaxX()) {
-                points = 2;
+            //if ((shot.getX() + player.getAim().getAimCenter()) >= hoop.getTarget().getX() && (shot.getX() + player.getAim().getAimCenter()) <= hoop.getTarget().getMaxX()) {
+            if ((shot.getX() + player.getAim().getAimCenter()) >= hoop.getTarget().getX()+rimStart && (shot.getX() + player.getAim().getAimCenter()) <= hoop.getTarget().getX()+rimEnd) {
+                    points = 2;
+                //System.out.println("Point!");
             }
 
             score += points;
