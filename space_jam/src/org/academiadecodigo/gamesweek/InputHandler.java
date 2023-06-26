@@ -1,4 +1,4 @@
-package org.academiadecodigo.gamesweek.shootout;
+package org.academiadecodigo.gamesweek;
 
 import org.academiadecodigo.gamesweek.Direction;
 import org.academiadecodigo.gamesweek.gameObjects.Ball;
@@ -20,14 +20,11 @@ public class InputHandler implements KeyboardHandler {
     KeyboardEvent[] events;
     MichaelJordan michaelJordan;
     private Ball ball;
-
+    public boolean gameStart=false;
     private boolean leftPressed=false;
     private boolean upPressed=false;
     private boolean rightPressed=false;
     private boolean downPressed=false;
-
-    private ShootOut shootOut;
-
 
     public InputHandler(MichaelJordan michaelJordan, Ball ball){
         this.michaelJordan = michaelJordan;
@@ -38,6 +35,13 @@ public class InputHandler implements KeyboardHandler {
         createEvents();
     }
 
+    public boolean getGameStart(){
+        return gameStart;
+    }
+
+    public void resetGameStart(){
+        this.gameStart=false;
+    }
     private void createEvents() {
 
         for (int i = 0; i < events.length; i++) {
@@ -195,6 +199,7 @@ public class InputHandler implements KeyboardHandler {
         }
         michaelJordan.ballCollision(ball);
 
+        gameStart=true;
 
     }
 

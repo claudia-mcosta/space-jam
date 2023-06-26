@@ -122,7 +122,7 @@ public class Monstar extends Character {
 
 
     //Chooses random Direction for monstars
-    public void chooseRandomDirection(boolean ball, Ball ballObject, HoopPosition hoopObject){
+    public void chooseRandomDirection(boolean ball, Ball ballObject, Hoop hoopObject){
 
         Direction newDirection = getDirection();
 

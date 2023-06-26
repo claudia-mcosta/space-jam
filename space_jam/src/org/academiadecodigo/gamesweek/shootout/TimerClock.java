@@ -24,7 +24,6 @@ public class TimerClock {
 
     public void stop(){
         if(isRunning){
-            endTime = System.currentTimeMillis();
             isRunning = false;
         }
     }

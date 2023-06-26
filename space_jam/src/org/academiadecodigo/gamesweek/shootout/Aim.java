@@ -22,65 +22,47 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Aim {
 
-    /*
-     *  Line tests NOT WORKING!!
-     *
-     *  private int startX;
-     *  private int startY;
-     *  private int endX;
-     *  private int endY;
-     *  private Line line = new Line(startX, startY, endX, endY);
-     */
-
     private Picture aim; // Rectangle aim;
-    private int aimSize = Game.SHOOTOUT_CELL_SIZE * 5;
+    private int aimSize; // = Game.SHOOTOUT_CELL_SIZE * 5;
     private Position pos;
     private Color color = Color.BLUE;
-    private Rectangle aimBar;
-    private Position[] aimBarSize = new Position[2];
-    private Direction direction = Direction.RIGHT;
+    private Position[] aimBorder = new Position[2];
+    private Direction direction;
 
-    public Aim(Hoop hoop) {
-
-        /*
-         * Line tests NOT WORKING!!
-         *
-         * this.startX = (1250 / 2) + Game.PADDING; // (Game.screenWidth / 2) + Game.PADDING;
-         * this.startY = 750 + Game.PADDING; // Game.screenHeight + Game.PADDING;
-         * this.endX = 0;
-         * this.endY = 750 + Game.PADDING; // Game.screenHeight + Game.PADDING;
-         * this.line = new Line(startX, startY, endX, endY);
-         * line.draw();
-         */
+    public Aim() {
 
         // Set positions for start and end of aimbar
-        aimBarSize[0] = StartingPositions.POSITION_9.getPosition();
-        aimBarSize[1] = StartingPositions.POSITION_10.getPosition();
+        aimBorder[0] = StartingPositions.POSITION_9.getPosition();
+        aimBorder[1] = StartingPositions.POSITION_10.getPosition();
 
         // Set aim starting position (currently starting at left boundary)
-        this.pos = new Position(aimBarSize[0].getX(), aimBarSize[0].getY());
-        this.aim = new Picture(pos.getX(), pos.getY(), "resources/aim.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
-        this.aimBar = new Rectangle(aimBarSize[0].getX(), aimBarSize[0].getY(), aimBarSize[1].getX(), aimSize);
+        this.pos = new Position(aimBorder[0].getX(), aimBorder[0].getY());
+        this.aim = new Picture(pos.getX(), pos.getY(), "resources/aimYellow.png"); // new Rectangle(pos.getX(), pos.getY(), aimSize, aimSize);
+        this.aimSize = aim.getWidth();
+        this.direction = Direction.RIGHT;
 
         /* To use if aim is a square and not a picture
          * // Set initial color
          * aim.setColor(color);
          * // Show aimbar + aim on screen
          * aimBar.draw();
-         * // Fill aim shape
-         * aim.fill();
          */
 
-        // To use if aim is a picture
-        aim.draw();
+    }
+
+    public void reset() {
+        pos.setX(aimBorder[0].getX());
+        aim.translate(pos.getX() - aim.getX(), pos.getY() - aim.getY());
+        direction = Direction.RIGHT;
+        show();
     }
 
     public Position getPos() {
         return pos;
     }
 
-    public int getAimSize() {
-        return aimSize;
+    public int getAimCenter() {
+        return aim.getWidth() / 2;
     }
 
     public Color getColor() {
@@ -102,7 +84,7 @@ public class Aim {
         aim.translate(-Game.SHOOTOUT_CELL_SIZE,0);
     }
 
-    public void moveOppositeDirection(Direction currentDirection) {
+    public void moveOppositeDirection() {
     // Switch movement direction to opposite direction - Place in Direction class?
 
         switch (direction) {
@@ -133,39 +115,23 @@ public class Aim {
         }
 
         // Change movement to opposite direction when aim hits boundaries
-        if (aim.getX() <= aimBarSize[0].getX() || (aim.getX() + aim.getWidth()) >= (aimBarSize[0].getX() + aimBar.getWidth())) {
-            moveOppositeDirection(direction);
+        if (aim.getX() == aimBorder[0].getX() || aim.getX() == (aimBorder[1].getX() - aimSize)) {
+            moveOppositeDirection();
         }
 
         // Draw and fill aim rectangle in new position
         // aim.draw();
         // aim.fill();
 
-        /* Line tests NOT WORKING!!
-         * if (endY > 0 && endX < 1250 + Game.PADDING) {
-         *     endY -= 10;
-         *     System.out.println("EndY " + endY);
-         * }
-         * if (endY == 0 && endX < 1250 + Game.PADDING) {
-         *     endX += 10;
-         *     System.out.println("EndX " + endX);
-         * }
-         *
-         * if (endX == 1250 + Game.PADDING && endY == 0) {
-         *     endY += 10;
-         * }
-         *
-         * line.delete();
-         * line = new Line(startX, startY, endX, endY);
-         * line.draw();
-         */
     }
 
-    public void clearAim(){
+    public void clear(){
+        reset();
         aim.delete();
-        aimBar.delete();
     }
-
-
+    public void show() {
+        aim.draw();
+        // aim.fill();
+    }
 
 }
