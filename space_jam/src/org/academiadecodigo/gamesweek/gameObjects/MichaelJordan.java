@@ -1,7 +1,6 @@
 package org.academiadecodigo.gamesweek.gameObjects;
 
 import org.academiadecodigo.gamesweek.Direction;
-import org.academiadecodigo.gamesweek.Game;
 import org.academiadecodigo.gamesweek.positions.Position;
 import org.academiadecodigo.gamesweek.positions.StartingPositions;
 import org.academiadecodigo.gamesweek.shootout.*;
@@ -18,7 +17,7 @@ public class MichaelJordan extends Character {
     private Monstar[] monstars;
     private final double PLAYER_MOVEMENT = 7;
     private final double PLAYER_DIAGONAL = Math.sqrt(Math.pow(PLAYER_MOVEMENT,2)/2);
-    private TimerClock timerClock = new TimerClock(10);
+    private TimerClock timerClock = new TimerClock(0,10);
 
     public MichaelJordan(Picture picture, StartingPositions position, Direction direction, Monstar[] monstars){
         super(picture, position,direction);
@@ -46,12 +45,15 @@ public class MichaelJordan extends Character {
         shot.translatePosition(-shot.getX(), -shot.getY());
 
         aim.show();
+
+        timerClock.init();
         timerClock.start();
 
         while (shot.getX() == 0) {
-            // System.out.println("Shot X: " + shot.getX());
 
-            //Timer for 10 seconds;
+            // Update timer display
+            timerClock.updateDisplay();
+
             if(timerClock.getTimeLeft() > 0){
 
                 aim.move();
@@ -65,12 +67,9 @@ public class MichaelJordan extends Character {
                 }
             }
             else {
-                // shot = new Position(-1, -1);
-                System.out.println("time finished.");
                 break;
             }
         }
-        // System.out.println("Shot X: " + shot.getX());
 
         timerClock.stop();
         aim.clear();

@@ -27,7 +27,7 @@ public class Game {
     private InputHandler inputHandler;
     private int score;
     private Picture[] scoreDisplay = new Picture[2]; // Text scoreDisplay;
-    private Picture[][] scoreNumbers = new Picture[10][10];
+    private Picture[][] scoreNumbers = new Picture[2][10];
     private ShootOut shootOut;
 
 
@@ -107,22 +107,16 @@ public class Game {
 
         scoreboard = new Picture(Game.PADDING, Game.PADDING,"resources/scoreboard.png");
         scoreboard.translate((Game.screenWidth - scoreboard.getWidth()) / 2, 0);
-        //scoreDisplay =  new Text(Game.PADDING, Game.PADDING, String.valueOf(score));
-        //scoreDisplay.translate((Game.screenWidth / 2) - 100, 18);
-        //scoreDisplay.grow(10, 10);
-
         for (int i = 0; i < scoreNumbers.length; i++) {
             for (int j = 0; j < scoreNumbers[i].length; j++) {
                 scoreNumbers[i][j] = new Picture(Game.PADDING, Game.PADDING, "resources/score" + j + ".png");
-                scoreNumbers[i][j].grow(-3,-5);
                 if (i == 0) {
-                    scoreNumbers[i][j].translate((Game.screenWidth / 2) - 101, 8 - 5);
+                    scoreNumbers[i][j].translate((Game.screenWidth / 2) - 98, 8);
                 } else {
-                    scoreNumbers[i][j].translate((Game.screenWidth / 2) - 129, 8 - 5);
+                    scoreNumbers[i][j].translate((Game.screenWidth / 2) - 126, 8);
                 }
             }
         }
-
         scoreDisplay[0] = scoreNumbers[0][0];
         scoreDisplay[1] = scoreNumbers[1][0];
 
@@ -218,12 +212,11 @@ public class Game {
         private ShootOut() {
             this.background = new Picture(PADDING, PADDING,"resources/shootoutBackgroundDark.png");
             this.hoop = new Hoop(new Picture(PADDING, PADDING, "resources/hoop.png"));
-            this.ball = new Picture(PADDING, PADDING,"resources/ball_shootout.png");
+            this.ball = new Picture(PADDING, PADDING,"resources/ball.png");
         }
 
         private void init(){
 
-            // Reposition, resize and show background image (change 1250 and 750 to Game.getWidth() and Game.getHeight())
             background.translate((Game.screenWidth - background.getWidth()) / 2, (Game.screenHeight - background.getHeight()) / 2);
             background.grow((Game.screenWidth - background.getWidth()) / 2, (Game.screenHeight - background.getHeight()) / 2);
             background.draw();
@@ -270,12 +263,6 @@ public class Game {
         }
 
         private void updateScoreDisplay() {
-            /*
-            // Text object cannot be updated and needs to be created with new value everytime score changes
-            scoreDisplay = new Text(PADDING, PADDING, String.valueOf(score));
-            scoreDisplay.translate((screenWidth / 2) - 100, 18);
-            scoreDisplay.grow(10, 10);
-            */
 
             if (score > 99) {
                 // Reset score
@@ -287,7 +274,6 @@ public class Game {
 
             scoreDisplay[0] = scoreNumbers[0][scoreUnit];
             scoreDisplay[1] = scoreNumbers[1][scoreDecimal];
-
 
         }
 
